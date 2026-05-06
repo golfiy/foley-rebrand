@@ -1,0 +1,976 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Foley · Slide drafts (22 layouts)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1F3A;
+    --navy-2:#061429;
+    --blue:#2D8FE8;
+    --blue-deep:#1B6FBF;
+    --sky:#5DBAEF;
+    --mist:#F2F6FB;
+    --tint:#E5EFFB;
+    --paper:#FFFFFF;
+    --ink:#0B1828;
+    --ink-2:#3A4A5E;
+    --muted:#6B7B8E;
+    --line:#E1E7EF;
+    --success:#2EA86A;
+    --amber:#F4B740;
+    --red:#E5484D;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#E7ECF1;color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .topbar{position:sticky;top:0;background:rgba(231,236,241,.85);backdrop-filter:blur(12px);border-bottom:1px solid #D2D9E1;z-index:10}
+  .topbar-inner{max-width:1320px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--ink-2)}
+  .topbar a{color:var(--ink);font-weight:600;text-decoration:none}
+  .topbar img{height:22px;display:block}
+  .deck{max-width:1320px;margin:0 auto;padding:32px;display:flex;flex-direction:column;gap:32px}
+  .stage{position:relative}
+  .stage-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+  .stage-meta .num{font-family:'JetBrains Mono';font-size:11px}
+  .stage-meta .name{font-family:'Inter Tight';font-weight:700;font-size:13px;color:var(--ink);letter-spacing:-.005em}
+  .slide{
+    aspect-ratio:16/9;
+    width:100%;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 16px 48px -28px rgba(11,31,58,.45),0 1px 0 rgba(255,255,255,.5) inset;
+    position:relative;
+    container-type:inline-size;
+    background:#fff;
+  }
+  .s{position:absolute;inset:0;padding:5cqw;display:flex;flex-direction:column}
+  .s.dark{background:var(--navy);color:#fff}
+  .s.dark::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:24px 24px;opacity:.6;pointer-events:none}
+  .s.blue{background:var(--blue);color:#fff}
+  .s.mist{background:var(--mist);color:var(--ink)}
+  .s.paper{background:#fff;color:var(--ink)}
+
+  .header{display:flex;justify-content:space-between;align-items:center;font-size:1.05cqw;color:inherit;opacity:.7;font-weight:500;position:relative;z-index:2}
+  .header .brand{display:inline-flex;align-items:center;gap:.7cqw;font-family:'Inter Tight';font-weight:800;font-size:1.6cqw;letter-spacing:-.01em;opacity:1}
+  .header .brand img{width:1.8cqw;height:1.8cqw;display:block}
+  .footer{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:.95cqw;font-family:'JetBrains Mono';color:inherit;opacity:.55;position:relative;z-index:2}
+
+  .eyebrow{font-size:.95cqw;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--blue);font-family:'Inter Tight'}
+  .s.blue .eyebrow{color:var(--navy)}
+  .s.mist .eyebrow,.s.paper .eyebrow{color:var(--blue-deep)}
+
+  .body{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+
+  /* SLIDE 01 — Cover */
+  .s1 .body{justify-content:flex-end}
+  .s1 h1{font-family:'Inter Tight';font-weight:700;font-size:8cqw;line-height:.95;letter-spacing:-.025em;margin:0 0 1.5cqw;max-width:78%}
+  .s1 h1 em{font-style:normal;color:var(--blue)}
+  .s1 .sub{font-size:1.5cqw;color:rgba(255,255,255,.7);max-width:50%;line-height:1.45}
+  .s1 .badge{position:absolute;right:5cqw;top:50%;transform:translateY(-50%);width:24cqw;aspect-ratio:1;opacity:.18}
+  .s1 .badge img{width:100%;height:100%;object-fit:contain}
+
+  /* SLIDE 02 — Cover with contact */
+  .s2 .body{justify-content:flex-end}
+  .s2 h1{font-family:'Inter Tight';font-weight:700;font-size:6cqw;line-height:1;letter-spacing:-.022em;margin:0 0 1cqw;max-width:75%}
+  .s2 h1 em{font-style:normal;color:var(--blue)}
+  .s2 .subtitle{font-family:'Inter Tight';font-weight:600;font-size:2cqw;color:rgba(255,255,255,.85);margin-bottom:3cqw}
+  .s2 .contacts{display:flex;gap:4cqw;border-top:1px solid rgba(255,255,255,.18);padding-top:2cqw;font-family:'JetBrains Mono';font-size:1.1cqw;color:rgba(255,255,255,.7)}
+  .s2 .contacts b{color:#fff;font-weight:500;display:block;margin-top:.3cqw;font-family:'Inter Tight';font-size:1.5cqw}
+
+  /* SLIDE 03 — Section divider · dark */
+  .s3 .body{justify-content:center}
+  .s3 .num{font-family:'Inter Tight';font-weight:800;font-size:22cqw;line-height:.85;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:2px var(--blue);margin-bottom:1.5cqw}
+  .s3 h2{font-family:'Inter Tight';font-weight:700;font-size:5cqw;letter-spacing:-.02em;line-height:1.05;margin:0;max-width:60%}
+  .s3 .lede{font-size:1.4cqw;color:rgba(255,255,255,.7);max-width:55%;margin-top:1.5cqw;line-height:1.45}
+
+  /* SLIDE 04 — Section divider · light */
+  .s4 .body{justify-content:center}
+  .s4 .num{font-family:'Inter Tight';font-weight:800;font-size:22cqw;line-height:.85;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:2px var(--blue);margin-bottom:1.5cqw}
+  .s4 h2{font-family:'Inter Tight';font-weight:700;font-size:5cqw;letter-spacing:-.02em;line-height:1.05;margin:0;max-width:60%;color:var(--navy)}
+  .s4 .lede{font-size:1.4cqw;color:var(--ink-2);max-width:55%;margin-top:1.5cqw;line-height:1.45}
+
+  /* SLIDE 05 — Agenda */
+  .s5 h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.018em;margin:0 0 2.5cqw}
+  .s5 ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:1.2cqw 4cqw;counter-reset:item}
+  .s5 li{display:flex;gap:1.5cqw;align-items:flex-start;padding:1.3cqw 0;border-top:1px solid var(--line);counter-increment:item}
+  .s5 li::before{content:"0" counter(item);font-family:'JetBrains Mono';font-weight:500;font-size:1cqw;color:var(--blue-deep);min-width:2.2cqw;padding-top:.3cqw}
+  .s5 li .t{font-family:'Inter Tight';font-weight:600;font-size:1.6cqw;letter-spacing:-.01em;line-height:1.2}
+  .s5 li .d{font-size:1cqw;color:var(--ink-2);margin-top:.3cqw;line-height:1.4}
+
+  /* SLIDE 06 — Statement / Manifesto */
+  .s6 .body{justify-content:center;align-items:center;text-align:center}
+  .s6 blockquote{font-family:'Inter Tight';font-weight:700;font-size:5.4cqw;line-height:1.05;letter-spacing:-.025em;margin:0;max-width:80%}
+  .s6 blockquote em{font-style:normal;color:var(--blue)}
+  .s6 .src{margin-top:2.5cqw;font-size:1.1cqw;color:rgba(255,255,255,.55);font-family:'JetBrains Mono'}
+
+  /* SLIDE 07 — Title + body (light) */
+  .s7 h2{font-family:'Inter Tight';font-weight:700;font-size:3.4cqw;letter-spacing:-.018em;margin:0 0 1.5cqw;max-width:18em}
+  .s7 .body p{font-size:1.3cqw;line-height:1.6;color:var(--ink-2);max-width:42em;margin:0 0 1.2cqw}
+  .s7 .body p:last-child{margin-bottom:0}
+  .s7 .stat-row{display:flex;gap:3cqw;margin-top:2.5cqw;padding-top:2cqw;border-top:1px solid var(--line)}
+  .s7 .stat-row .item{display:flex;flex-direction:column}
+  .s7 .stat-row .v{font-family:'Inter Tight';font-weight:700;font-size:2.4cqw;color:var(--navy);line-height:1}
+  .s7 .stat-row .l{font-size:.9cqw;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:.4cqw}
+
+  /* SLIDE 08 — Title + body (dark) */
+  .s8 h2{font-family:'Inter Tight';font-weight:700;font-size:3.4cqw;letter-spacing:-.018em;margin:0 0 1.5cqw;max-width:18em}
+  .s8 .body p{font-size:1.3cqw;line-height:1.6;color:rgba(255,255,255,.78);max-width:42em;margin:0 0 1.2cqw}
+  .s8 .body p:last-child{margin-bottom:0}
+  .s8 .pull{margin-top:2.5cqw;padding:2cqw;background:rgba(45,143,232,.12);border-left:3px solid var(--blue);border-radius:0 1cqw 1cqw 0;font-family:'Inter Tight';font-weight:600;font-size:1.5cqw;line-height:1.35;color:#fff;max-width:36em}
+
+  /* SLIDE 09 — Hero stat */
+  .s9 .body{flex-direction:row;align-items:center;gap:5cqw}
+  .s9 .stat{font-family:'Inter Tight';font-weight:800;font-size:18cqw;line-height:.85;letter-spacing:-.04em;color:var(--navy)}
+  .s9 .stat sup{font-size:.4em;color:var(--blue);font-weight:700;vertical-align:top;margin-left:.2em;letter-spacing:-.02em}
+  .s9 .desc h3{font-family:'Inter Tight';font-weight:700;font-size:2.4cqw;letter-spacing:-.015em;margin:0 0 1.2cqw;max-width:18em}
+  .s9 .desc p{font-size:1.2cqw;line-height:1.5;color:var(--ink-2);max-width:24em;margin:0}
+  .s9 .meta{margin-top:1.8cqw;display:flex;gap:1.8cqw;font-family:'JetBrains Mono';font-size:.95cqw;color:var(--muted)}
+  .s9 .meta b{color:var(--ink);font-weight:500}
+
+  /* SLIDE 10 — Two column */
+  .s10 .body{flex-direction:row;gap:4cqw;align-items:stretch}
+  .s10 .left{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .s10 .right{flex:1;background:var(--navy);border-radius:1.2cqw;padding:3cqw;color:#fff;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .s10 .right::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:18px 18px;pointer-events:none}
+  .s10 h2{font-family:'Inter Tight';font-weight:700;font-size:3.4cqw;letter-spacing:-.02em;line-height:1.05;margin:.8cqw 0 1.2cqw;max-width:14em}
+  .s10 .left p{font-size:1.2cqw;line-height:1.55;color:var(--ink-2);max-width:26em;margin:0}
+  .s10 .right .label{font-size:.95cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700;font-family:'Inter Tight';position:relative;z-index:1}
+  .s10 .right .kpi{font-family:'Inter Tight';font-weight:700;font-size:7cqw;letter-spacing:-.025em;line-height:1;position:relative;z-index:1;margin:1cqw 0 .8cqw}
+  .s10 .right .cap{font-size:1.1cqw;color:rgba(255,255,255,.7);line-height:1.4;max-width:18em;position:relative;z-index:1}
+  .s10 .right svg{width:100%;height:6cqw;position:relative;z-index:1;margin-top:1cqw}
+
+  /* SLIDE 11 — Three column */
+  .s11 h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.018em;margin:0 0 2cqw;max-width:18em}
+  .s11 .cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4cqw}
+  .s11 .col{display:flex;flex-direction:column;gap:.8cqw}
+  .s11 .col .ico{width:2.6cqw;height:2.6cqw;border-radius:.7cqw;background:var(--tint);color:var(--blue-deep);display:flex;align-items:center;justify-content:center}
+  .s11 .col .ico svg{width:1.6cqw;height:1.6cqw}
+  .s11 .col .sub{font-family:'Inter Tight';font-weight:700;font-size:1.5cqw;letter-spacing:-.01em;color:var(--navy);margin:.4cqw 0 .2cqw}
+  .s11 .col p{font-size:1cqw;line-height:1.5;color:var(--ink-2);margin:0}
+
+  /* SLIDE 12 — Three step */
+  .s12 h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.018em;margin:0 0 2.5cqw;max-width:16em}
+  .s12 .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.3cqw}
+  .s12 .step{background:#fff;border:1px solid var(--line);border-radius:1.2cqw;padding:1.8cqw;display:flex;flex-direction:column;gap:.8cqw;min-height:0}
+  .s12 .step .n{font-family:'JetBrains Mono';font-size:.9cqw;color:var(--blue-deep);font-weight:500}
+  .s12 .step .t{font-family:'Inter Tight';font-weight:700;font-size:1.6cqw;letter-spacing:-.01em;line-height:1.15}
+  .s12 .step .d{font-size:1cqw;line-height:1.5;color:var(--ink-2)}
+  .s12 .step .arrow{margin-top:auto;color:var(--blue);font-size:1.4cqw}
+
+  /* SLIDE 13 — Feature grid 2×2 */
+  .s13 h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.018em;margin:0 0 1.8cqw;max-width:18em}
+  .s13 .grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1cqw}
+  .s13 .feat{background:var(--mist);border-radius:1.2cqw;padding:1.8cqw;display:flex;gap:1.3cqw;align-items:flex-start}
+  .s13 .feat .icon{width:2.8cqw;height:2.8cqw;border-radius:.8cqw;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue-deep)}
+  .s13 .feat .icon svg{width:1.6cqw;height:1.6cqw}
+  .s13 .feat .t{font-family:'Inter Tight';font-weight:700;font-size:1.4cqw;letter-spacing:-.01em;margin:0 0 .4cqw}
+  .s13 .feat .d{font-size:1cqw;line-height:1.5;color:var(--ink-2);margin:0}
+
+  /* SLIDE 14 — Foley Flywheel */
+  .s14 h2{font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;letter-spacing:-.018em;margin:0 0 .5cqw;max-width:24em}
+  .s14 .sub{font-size:1.1cqw;color:var(--ink-2);margin:0 0 1cqw;max-width:32em}
+  .s14 .body{flex-direction:row;gap:3cqw;align-items:center;justify-content:center}
+  .s14 .wheel{position:relative;width:38cqw;aspect-ratio:1;flex-shrink:0}
+  .s14 .wheel-svg{position:absolute;inset:0;width:100%;height:100%}
+  .s14 .wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30%;aspect-ratio:1;border-radius:50%;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:1cqw}
+  .s14 .wheel-center .label{font-size:.7cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  .s14 .wheel-center .name{font-family:'Inter Tight';font-weight:700;font-size:1.4cqw;line-height:1.05;margin-top:.4cqw}
+  .s14 .pet{position:absolute;width:30%;aspect-ratio:1;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.8cqw;color:var(--navy);font-family:'Inter Tight';font-weight:700;font-size:.95cqw;letter-spacing:-.005em;line-height:1.15;box-shadow:0 4px 12px -6px rgba(11,31,58,.15)}
+  .s14 .pet .n{font-family:'JetBrains Mono';font-weight:500;font-size:.7cqw;color:var(--blue-deep);margin-bottom:.3cqw}
+  .s14 .legend{flex:1;display:flex;flex-direction:column;gap:.7cqw;max-width:24em}
+  .s14 .legend-item{display:flex;gap:.8cqw;align-items:flex-start;font-size:.95cqw;line-height:1.35;color:var(--ink-2)}
+  .s14 .legend-item b{color:var(--navy);font-family:'Inter Tight';font-weight:700;display:block;font-size:1cqw}
+  .s14 .legend-item .dot{width:.7cqw;height:.7cqw;border-radius:50%;background:var(--blue);margin-top:.5cqw;flex-shrink:0}
+
+  /* SLIDE 15 — Single quote */
+  .s15 .body{flex-direction:row;gap:5cqw;align-items:center}
+  .s15 .left{flex:.45;display:flex;flex-direction:column;gap:1.5cqw}
+  .s15 .avatar{width:7cqw;height:7cqw;border-radius:50%;background:linear-gradient(135deg,#1B6FBF,#0B1F3A);display:flex;align-items:center;justify-content:center;font-family:'Inter Tight';font-weight:700;font-size:2.2cqw;color:var(--blue)}
+  .s15 .who{font-family:'Inter Tight';font-weight:700;font-size:1.5cqw;letter-spacing:-.005em;color:#fff}
+  .s15 .role{font-size:1.05cqw;color:rgba(255,255,255,.6);line-height:1.4}
+  .s15 .stars{color:var(--blue);font-size:1.2cqw;letter-spacing:.2em}
+  .s15 .right{flex:.55}
+  .s15 blockquote{font-family:'Inter Tight';font-weight:600;font-size:2.4cqw;line-height:1.3;letter-spacing:-.012em;color:#fff;margin:0;max-width:18em}
+  .s15 blockquote::before{content:"";display:block;width:3cqw;height:.3cqw;background:var(--blue);margin-bottom:1.5cqw}
+
+  /* SLIDE 16 — Three quotes */
+  .s16 h2{font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;letter-spacing:-.018em;margin:0 0 2cqw}
+  .s16 .quotes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2cqw}
+  .s16 .q{background:var(--mist);border-radius:1.2cqw;padding:1.8cqw;display:flex;flex-direction:column;gap:1.2cqw;justify-content:space-between}
+  .s16 .q .stars{color:var(--blue);font-size:.9cqw;letter-spacing:.2em}
+  .s16 .q blockquote{font-family:'Inter Tight';font-weight:600;font-size:1.2cqw;line-height:1.35;letter-spacing:-.005em;color:var(--navy);margin:0;flex:1}
+  .s16 .q .who{display:flex;align-items:center;gap:.8cqw;font-family:'Inter Tight'}
+  .s16 .q .who .av{width:2.4cqw;height:2.4cqw;border-radius:50%;background:var(--navy);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95cqw;flex-shrink:0}
+  .s16 .q .who b{display:block;font-weight:700;font-size:1cqw;color:var(--navy)}
+  .s16 .q .who .r{display:block;font-size:.85cqw;color:var(--muted);font-weight:500}
+
+  /* SLIDE 17 — Chart pair */
+  .s17 h2{font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;letter-spacing:-.018em;margin:0 0 1.8cqw;max-width:22em}
+  .s17 .charts{display:grid;grid-template-columns:1fr 1fr;gap:1.3cqw}
+  .s17 .chart-card{background:#fff;border:1px solid var(--line);border-radius:1.2cqw;padding:1.8cqw;display:flex;flex-direction:column;gap:.8cqw}
+  .s17 .chart-card .ti{font-family:'Inter Tight';font-weight:700;font-size:1.3cqw;color:var(--navy);letter-spacing:-.005em}
+  .s17 .chart-card .desc{font-size:.95cqw;color:var(--muted);line-height:1.4;margin:0}
+  .s17 .chart-card .area{height:14cqw;position:relative;margin-top:.5cqw}
+  .s17 .chart-card .area svg{width:100%;height:100%;display:block}
+  .s17 .chart-card .legend{display:flex;gap:1.4cqw;font-size:.85cqw;color:var(--ink-2)}
+  .s17 .chart-card .legend span{display:inline-flex;align-items:center;gap:.5cqw}
+  .s17 .chart-card .legend .dot{width:.6cqw;height:.6cqw;border-radius:50%}
+
+  /* SLIDE 18 — Comparison */
+  .s18 h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.018em;margin:0 0 1.8cqw;max-width:14em}
+  .s18 .row{display:grid;grid-template-columns:1fr 1fr;gap:1.2cqw}
+  .s18 .col{border-radius:1.2cqw;padding:2cqw;display:flex;flex-direction:column;gap:.8cqw}
+  .s18 .before{background:var(--mist);border:1px solid var(--line)}
+  .s18 .after{background:rgba(45,143,232,.08);border:1px solid var(--blue)}
+  .s18 .colhead{display:flex;justify-content:space-between;align-items:center;font-family:'Inter Tight';font-weight:700;font-size:1.4cqw;letter-spacing:-.005em}
+  .s18 .colhead .pill{font-size:.85cqw;font-family:'Inter';font-weight:600;padding:.4cqw 1cqw;border-radius:99px}
+  .s18 .before .pill{background:#fff;color:var(--muted)}
+  .s18 .after .pill{background:var(--blue);color:#fff}
+  .s18 ul{list-style:none;padding:0;margin:0;font-size:1.05cqw;line-height:1.45}
+  .s18 li{padding:.7cqw 0;border-top:1px solid rgba(11,31,58,.08);display:flex;gap:.7cqw;align-items:flex-start;color:var(--ink-2)}
+  .s18 li::before{content:"·";font-weight:700;color:var(--ink)}
+  .s18 .after li::before{content:"+";color:var(--blue-deep)}
+
+  /* SLIDE 19 — Photo full bleed */
+  .s19{padding:0}
+  .s19 .photo{position:absolute;inset:0;background:linear-gradient(135deg,#0B1F3A 0%,#1B6FBF 50%,#0B1F3A 100%);overflow:hidden}
+  .s19 .photo::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(45,143,232,.25) 1px,transparent 1px),radial-gradient(rgba(255,255,255,.04) 1px,transparent 1.5px);background-size:34px 34px,18px 18px;background-position:0 0,12px 12px;mix-blend-mode:overlay}
+  .s19 .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,31,58,0) 40%,rgba(11,31,58,.85) 100%)}
+  .s19 .scrim{position:absolute;inset:0;padding:5cqw;display:flex;flex-direction:column;color:#fff;z-index:2}
+  .s19 .header{display:flex;justify-content:space-between;align-items:center}
+  .s19 .body{justify-content:flex-end;align-items:flex-start}
+  .s19 h2{font-family:'Inter Tight';font-weight:700;font-size:5.2cqw;letter-spacing:-.022em;line-height:1.02;margin:0 0 1cqw;max-width:78%}
+  .s19 h2 em{font-style:normal;color:var(--blue)}
+  .s19 .cap{font-size:1.3cqw;color:rgba(255,255,255,.78);max-width:50%;line-height:1.45}
+
+  /* SLIDE 20 — Brand notes (style reference) */
+  .s20 h2{font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;letter-spacing:-.018em;margin:0 0 .4cqw}
+  .s20 .sub{font-size:1.1cqw;color:var(--ink-2);margin:0 0 1.8cqw;max-width:38em}
+  .s20 .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:1.4cqw;flex:1}
+  .s20 .panel{background:#fff;border:1px solid var(--line);border-radius:1.2cqw;padding:1.8cqw;display:flex;flex-direction:column;gap:1cqw}
+  .s20 .panel.dark{background:var(--navy);color:#fff;border-color:transparent}
+  .s20 .panel .label{font-size:.85cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-deep);font-weight:700;font-family:'Inter Tight'}
+  .s20 .panel.dark .label{color:var(--blue)}
+  .s20 .panel h3{font-family:'Inter Tight';font-weight:700;font-size:1.5cqw;letter-spacing:-.005em;margin:0}
+  .s20 .panel p{font-size:1cqw;line-height:1.5;margin:0;color:inherit;opacity:.85}
+  .s20 .swatches{display:flex;gap:.5cqw;margin-top:auto}
+  .s20 .sw{flex:1;height:2cqw;border-radius:.5cqw;display:flex;align-items:flex-end;justify-content:flex-start;padding:.3cqw .5cqw;font-family:'JetBrains Mono';font-size:.65cqw;color:#fff}
+  .s20 .panel.dark .sw{color:#fff}
+  .s20 .typetable{display:flex;flex-direction:column;gap:.5cqw}
+  .s20 .typerow{display:flex;align-items:baseline;gap:1cqw;font-family:'Inter Tight'}
+  .s20 .typerow .k{font-family:'JetBrains Mono';font-size:.75cqw;color:var(--muted);width:6em;flex-shrink:0;font-weight:500}
+  .s20 .typerow .v{font-weight:700;color:var(--navy)}
+
+  /* SLIDE 21 — Logo & icon library */
+  .s21 h2{font-family:'Inter Tight';font-weight:700;font-size:2.4cqw;letter-spacing:-.018em;margin:0 0 .4cqw}
+  .s21 .sub{font-size:1.05cqw;color:var(--ink-2);margin:0 0 1.6cqw}
+  .s21 .row{display:grid;grid-template-columns:1.4fr 2fr;gap:1.4cqw;flex:1}
+  .s21 .logos{display:grid;grid-template-columns:1fr 1fr;gap:.8cqw}
+  .s21 .logo-tile{border-radius:1cqw;padding:1.4cqw;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);min-height:8cqw}
+  .s21 .logo-tile.dark{background:var(--navy);border-color:transparent}
+  .s21 .logo-tile img{max-width:80%;max-height:5cqw;object-fit:contain}
+  .s21 .logo-tile.dark img{filter:brightness(0) invert(1)}
+  .s21 .logo-tile.symbol img{max-height:4.5cqw}
+  .s21 .icons{background:var(--mist);border-radius:1cqw;padding:1.4cqw;display:grid;grid-template-columns:repeat(6,1fr);gap:.8cqw;align-content:start}
+  .s21 .icons .ico{aspect-ratio:1;background:#fff;border-radius:.7cqw;display:flex;align-items:center;justify-content:center;color:var(--blue-deep);border:1px solid var(--line)}
+  .s21 .icons .ico svg{width:1.6cqw;height:1.6cqw}
+  .s21 .icons .head{grid-column:1/-1;font-size:.8cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;font-family:'Inter Tight';margin-bottom:.2cqw}
+
+  /* SLIDE 22 — Closing / CTA */
+  .s22 .body{justify-content:center}
+  .s22 h2{font-family:'Inter Tight';font-weight:700;font-size:6.6cqw;letter-spacing:-.025em;line-height:.98;margin:0 0 2cqw;max-width:80%}
+  .s22 h2 em{font-style:normal;color:var(--blue)}
+  .s22 .cta{display:flex;gap:2cqw;margin-top:2cqw;align-items:center}
+  .s22 .btn{display:inline-flex;align-items:center;gap:.6cqw;padding:1.2cqw 2.2cqw;border-radius:.9cqw;font-family:'Inter';font-weight:600;font-size:1.2cqw;background:var(--blue);color:#fff;text-decoration:none}
+  .s22 .contact{display:flex;gap:3cqw;font-family:'JetBrains Mono';font-size:1.05cqw;color:rgba(255,255,255,.7)}
+  .s22 .contact b{color:#fff;font-weight:500;display:block;margin-top:.3cqw;font-family:'Inter Tight'}
+
+  .doc-footer{padding:48px 32px;text-align:center;color:var(--muted);font-size:13px}
+  .doc-footer a{color:var(--blue-deep);font-weight:600;text-decoration:none}
+
+  @media(max-width:880px){.deck{padding:16px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:8px"><img src="assets/image30.png" alt="Foley"></a>
+    <div>22 slide layouts · 16:9 · v0.2</div>
+    <a href="brandbook.html">Brandbook →</a>
+  </div>
+</div>
+
+<div class="deck">
+
+  <!-- 01 COVER -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">01 / 22</span><span class="name">Cover</span><span>Title slide · Navy</span></div>
+    <div class="slide">
+      <div class="s s1 dark">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Investor briefing · Q2 2026</div>
+        </div>
+        <div class="badge"><img src="assets/image29.png" alt=""></div>
+        <div class="body">
+          <div class="eyebrow">Foley platform · 2026</div>
+          <h1 style="margin-top:1cqw">Smarter data.<br/>Lower risk.<br/>Safer <em>fleets</em>.</h1>
+          <p class="sub">A 30‑year compliance leader, rebuilt as a modern data platform for commercial transportation.</p>
+        </div>
+        <div class="footer"><span>foley.io</span><span>2026.05 · Confidential</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 COVER WITH CONTACT -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">02 / 22</span><span class="name">Cover with contact</span><span>Navy · End‑of‑intro variant</span></div>
+    <div class="slide">
+      <div class="s s2 dark">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Investor briefing · Q2 2026</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">A platform briefing</div>
+          <h1>Smarter data.<br/>Lower risk.<br/>Safer <em>fleets</em>.</h1>
+          <div class="subtitle">Prepared for commercial fleet operators.</div>
+          <div class="contacts">
+            <div>Web<b>foley.io</b></div>
+            <div>Email<b>marketing@foley.io</b></div>
+            <div>Date<b>May 2026</b></div>
+          </div>
+        </div>
+        <div class="footer"><span>Foley · 2026</span><span>02 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 SECTION DIVIDER · DARK -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">03 / 22</span><span class="name">Section divider · dark</span><span>Navy · Big numeral</span></div>
+    <div class="slide">
+      <div class="s s3 dark">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Section</div>
+        </div>
+        <div class="body">
+          <div class="num">01</div>
+          <div class="eyebrow">Part one</div>
+          <h2 style="margin-top:.5cqw">The compliance reality.</h2>
+          <p class="lede">Where the cost of risk actually shows up — and why it usually shows up too late.</p>
+        </div>
+        <div class="footer"><span>foley.io</span><span>03 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 SECTION DIVIDER · LIGHT -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">04 / 22</span><span class="name">Section divider · light</span><span>Mist · Big numeral</span></div>
+    <div class="slide">
+      <div class="s s4 mist">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Section</div>
+        </div>
+        <div class="body">
+          <div class="num">02</div>
+          <div class="eyebrow">Part two</div>
+          <h2 style="margin-top:.5cqw">The platform, in one view.</h2>
+          <p class="lede">Hiring, compliance, monitoring, and Navigator AI — assembled so a safety director spends hours, not days.</p>
+        </div>
+        <div class="footer"><span>foley.io</span><span>04 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 AGENDA -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">05 / 22</span><span class="name">Agenda</span><span>Paper · Numbered list</span></div>
+    <div class="slide">
+      <div class="s s5 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Agenda · 35 min</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">Today</div>
+          <h2>What we'll cover.</h2>
+          <ol>
+            <li><div><div class="t">The compliance reality for fleets</div><div class="d">Where the cost of risk actually shows up.</div></div></li>
+            <li><div><div class="t">One platform, four signals</div><div class="d">Hiring · CSA · MVR · Audit risk.</div></div></li>
+            <li><div><div class="t">Navigator AI</div><div class="d">From signals to actions.</div></div></li>
+            <li><div><div class="t">Customer outcomes</div><div class="d">From 5 drivers to 500.</div></div></li>
+            <li><div><div class="t">Roadmap 2026</div><div class="d">Platform refresh · pricing · packaging.</div></div></li>
+            <li><div><div class="t">Q&amp;A</div><div class="d">Discussion.</div></div></li>
+          </ol>
+        </div>
+        <div class="footer"><span>foley.io</span><span>05 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 STATEMENT -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">06 / 22</span><span class="name">Statement</span><span>Navy · Manifesto</span></div>
+    <div class="slide">
+      <div class="s s6 dark">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Manifesto</div>
+        </div>
+        <div class="body">
+          <blockquote>Get your fleet to <em>clear</em> — and keep it there.</blockquote>
+          <div class="src">— Foley brand promise · 2026</div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>06 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 TITLE + BODY (LIGHT) -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">07 / 22</span><span class="name">Title + body</span><span>Paper · Single column</span></div>
+    <div class="slide">
+      <div class="s s7 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Why now</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">The shift</div>
+          <h2>Compliance is no longer a back‑office task.</h2>
+          <p>Insurance carriers, brokers, and shippers are pricing risk in real time. A clean CSA score and a complete DQ file aren't a defense against the auditor anymore — they're an input into how much you pay for capacity, premiums, and freight.</p>
+          <p>Fleets that treat compliance as live data, not annual paperwork, win the next contract and pay less for the same coverage. The rest pay the spread.</p>
+          <div class="stat-row">
+            <div class="item"><div class="v">−42%</div><div class="l">Avg audit risk · 12 mo</div></div>
+            <div class="item"><div class="v">3.2 d</div><div class="l">Avg time to hire</div></div>
+            <div class="item"><div class="v">98.4%</div><div class="l">DQ file completeness</div></div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>07 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 TITLE + BODY (DARK) -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">08 / 22</span><span class="name">Title + body · dark</span><span>Navy · Single column</span></div>
+    <div class="slide">
+      <div class="s s8 dark">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Our position</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">Why Foley</div>
+          <h2>Thirty years of compliance, rebuilt as software.</h2>
+          <p>Foley spent three decades being the call center fleets dialed when an audit notice arrived. We've used that institutional memory to build a platform that catches the audit signals long before the notice does.</p>
+          <div class="pull">"Audit risk is now a KPI on our weekly review. Before Foley, that was impossible."</div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>08 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 HERO STAT -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">09 / 22</span><span class="name">Hero stat</span><span>Paper · Big number</span></div>
+    <div class="slide">
+      <div class="s s9 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Trust · 2026</div>
+        </div>
+        <div class="body">
+          <div class="stat">50,000<sup>+</sup></div>
+          <div class="desc">
+            <div class="eyebrow">Companies</div>
+            <h3>Trusted across transportation, retail, construction and beyond.</h3>
+            <p>From 5‑truck operators to 500‑driver fleets, Foley powers the compliance and screening for some of the most demanding safety programs in North America.</p>
+            <div class="meta">
+              <div><b>30 yrs</b> of compliance expertise</div>
+              <div><b>4.3★</b> Trustpilot · 1,124 reviews</div>
+              <div><b>#1</b> DOT Compliance Provider</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>09 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 TWO COLUMN -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">10 / 22</span><span class="name">Two column</span><span>Mist + Navy panel</span></div>
+    <div class="slide">
+      <div class="s s10 mist">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>CSA Monitoring</div>
+        </div>
+        <div class="body">
+          <div class="left">
+            <div class="eyebrow">Product · CSA</div>
+            <h2>Stay on top of every crash, inspection, violation.</h2>
+            <p>Foley pulls FMCSA signals daily, scores them against your operating profile, and surfaces what actually moves your CSA score — before audit time.</p>
+          </div>
+          <div class="right">
+            <div class="label">Audit risk · trailing 12 months</div>
+            <div class="kpi">−42%</div>
+            <div class="cap">Average reduction in audit risk score for customers on CSA Monitoring + Navigator AI.</div>
+            <svg viewBox="0 0 300 80" preserveAspectRatio="none">
+              <path d="M0,60 C40,55 60,50 90,52 C130,55 160,30 200,22 C240,15 270,12 300,8" stroke="#2D8FE8" stroke-width="2.2" fill="none"/>
+              <path d="M0,60 C40,55 60,50 90,52 C130,55 160,30 200,22 C240,15 270,12 300,8 L300,80 L0,80 Z" fill="rgba(45,143,232,.18)"/>
+            </svg>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>10 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 THREE COLUMN -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">11 / 22</span><span class="name">Three column</span><span>Paper · Balanced layout</span></div>
+    <div class="slide">
+      <div class="s s11 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>The signals</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">Three categories</div>
+          <h2>Three signal classes, one operating picture.</h2>
+          <div class="cols">
+            <div class="col">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <div class="sub">Live regulatory signals</div>
+              <p>FMCSA roadside inspections, crashes, Clearinghouse queries, MVR changes — pulled daily, scored against your operating profile.</p>
+            </div>
+            <div class="col">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-3-3"/></svg></div>
+              <div class="sub">Hiring & screening</div>
+              <p>Background checks, drug & alcohol testing, social, employment history — running in parallel with status in one dashboard.</p>
+            </div>
+            <div class="col">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg></div>
+              <div class="sub">Navigator AI</div>
+              <p>Plain‑English explanations of what each signal means, what it could cost, and the next concrete action to take.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>11 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 THREE STEP -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">12 / 22</span><span class="name">Three step</span><span>Mist · Process</span></div>
+    <div class="slide">
+      <div class="s s12 mist">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Hiring flow</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">How it works</div>
+          <h2>Hire in days, not weeks.</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="n">STEP 01</div>
+              <div class="t">Post &amp; source</div>
+              <div class="d">Job ads pushed to Indeed, niche boards, and referrals — all wired to one candidate file.</div>
+              <div class="arrow">→</div>
+            </div>
+            <div class="step">
+              <div class="n">STEP 02</div>
+              <div class="t">Screen &amp; verify</div>
+              <div class="d">Background checks, MVR, drug &amp; alcohol, social — running in parallel, status in one dashboard.</div>
+              <div class="arrow">→</div>
+            </div>
+            <div class="step">
+              <div class="n">STEP 03</div>
+              <div class="t">Onboard &amp; file</div>
+              <div class="d">DQ file assembled automatically, Clearinghouse cleared, driver on the road in 3–5 days.</div>
+              <div class="arrow">✓</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>12 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 FEATURE GRID 2x2 -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">13 / 22</span><span class="name">Feature grid 2×2</span><span>Paper · Capabilities</span></div>
+    <div class="slide">
+      <div class="s s13 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>What you can do with Foley</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">Platform</div>
+          <h2>Four signals. One platform.</h2>
+          <div class="grid">
+            <div class="feat">
+              <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <div><div class="t">CSA Monitoring</div><div class="d">Crashes, inspections, and violations — real‑time alerts, scored for your operating profile.</div></div>
+            </div>
+            <div class="feat">
+              <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-3-3"/></svg></div>
+              <div><div class="t">Hiring &amp; Screening</div><div class="d">From job ad to DQ file: candidate sourcing, background checks, MVR, Clearinghouse — in one flow.</div></div>
+            </div>
+            <div class="feat">
+              <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 7v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V7l-8-5Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+              <div><div class="t">Background checks</div><div class="d">Pre/post‑employment, criminal, drug &amp; health, social — for CDL and office staff alike.</div></div>
+            </div>
+            <div class="feat">
+              <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg></div>
+              <div><div class="t">Navigator AI</div><div class="d">Foley surfaces the signals. Navigator explains what they mean and what to do next.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>13 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14 FOLEY FLYWHEEL -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">14 / 22</span><span class="name">Foley Flywheel</span><span>Paper · Six‑petal value loop</span></div>
+    <div class="slide">
+      <div class="s s14 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>How we compound</div>
+        </div>
+        <div class="body">
+          <div class="wheel">
+            <svg class="wheel-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="#E1E7EF" stroke-width=".6" stroke-dasharray="2 2"/></svg>
+            <div class="wheel-center">
+              <div class="label">Foley</div>
+              <div class="name">Flywheel</div>
+            </div>
+            <div class="pet" style="top:0;left:50%;transform:translate(-50%,0)"><div class="n">01</div>Great people<br/>winning together</div>
+            <div class="pet" style="top:18%;right:0;transform:translate(0,0)"><div class="n">02</div>Dominant vertical<br/>solutions</div>
+            <div class="pet" style="bottom:18%;right:0;transform:translate(0,0)"><div class="n">03</div>Marketing &amp; sales<br/>execution</div>
+            <div class="pet" style="bottom:0;left:50%;transform:translate(-50%,0)"><div class="n">04</div>6‑star customer<br/>experience</div>
+            <div class="pet" style="bottom:18%;left:0;transform:translate(0,0)"><div class="n">05</div>Annual recurring<br/>revenue growth</div>
+            <div class="pet" style="top:18%;left:0;transform:translate(0,0)"><div class="n">06</div>Screening &amp;<br/>compliance edge</div>
+          </div>
+          <div class="legend">
+            <div class="eyebrow" style="margin-bottom:.5cqw">The loop</div>
+            <h2 style="margin-bottom:.8cqw">Six forces, one direction.</h2>
+            <p class="sub" style="margin-bottom:1.5cqw">Each turn of the wheel makes the next one easier — better people land sharper vertical solutions, which fund deeper sales execution, which earns 6‑star experiences, which compounds ARR and reinvests in the screening edge.</p>
+            <div class="legend-item"><div class="dot"></div><div><b>Why it matters.</b> A flywheel beats a funnel because every previous customer outcome makes the next sale cheaper.</div></div>
+            <div class="legend-item"><div class="dot"></div><div><b>Where Foley adds force.</b> The screening &amp; compliance edge is the moat — the deeper our data, the better Navigator's recommendations get.</div></div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>14 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15 SINGLE QUOTE -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">15 / 22</span><span class="name">Single quote</span><span>Navy · Hero testimonial</span></div>
+    <div class="slide">
+      <div class="s s15 dark">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Trustpilot · verified review</div>
+        </div>
+        <div class="body">
+          <div class="left">
+            <div class="avatar">SM</div>
+            <div>
+              <div class="who">Sarah M.</div>
+              <div class="role">Director of Safety · 220‑truck fleet, Texas</div>
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <div class="right">
+            <blockquote>Audit risk is now a KPI on our weekly review. Before Foley that was impossible — now it's just a number on the wall.</blockquote>
+          </div>
+        </div>
+        <div class="footer"><span>4.3★ · 1,124 reviews</span><span>15 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16 THREE QUOTES -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">16 / 22</span><span class="name">Three quotes</span><span>Paper · Customer wall</span></div>
+    <div class="slide">
+      <div class="s s16 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Customer voice</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">Verified Trustpilot reviews</div>
+          <h2>What fleets actually tell us.</h2>
+          <div class="quotes">
+            <div class="q">
+              <div class="stars">★★★★★</div>
+              <blockquote>"Hiring went from a three‑week cycle to under a week. Driver gets in the cab, not in a queue."</blockquote>
+              <div class="who"><div class="av">JR</div><div><b>James R.</b><div class="r">Recruiter · 80‑truck fleet</div></div></div>
+            </div>
+            <div class="q">
+              <div class="stars">★★★★★</div>
+              <blockquote>"Navigator caught a Clearinghouse mismatch on a Friday. We would have lost a contract Monday."</blockquote>
+              <div class="who"><div class="av">EM</div><div><b>Erica M.</b><div class="r">Compliance lead · waste hauler</div></div></div>
+            </div>
+            <div class="q">
+              <div class="stars">★★★★☆</div>
+              <blockquote>"Audit risk dropped 38% in the first quarter. The CFO actually noticed before we mentioned it."</blockquote>
+              <div class="who"><div class="av">DT</div><div><b>David T.</b><div class="r">VP of Safety · regional carrier</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>16 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 17 CHART PAIR -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">17 / 22</span><span class="name">Chart pair</span><span>Paper · Two metrics side by side</span></div>
+    <div class="slide">
+      <div class="s s17 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Outcomes · 2024 cohort</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">12 months · 480 fleets</div>
+          <h2>Cohorts on Foley get to clear — and stay there.</h2>
+          <div class="charts">
+            <div class="chart-card">
+              <div class="ti">Audit risk score · monthly avg</div>
+              <p class="desc">Lower is better. Foley cohort vs. industry average.</p>
+              <div class="area">
+                <svg viewBox="0 0 300 100" preserveAspectRatio="none">
+                  <line x1="0" y1="25" x2="300" y2="25" stroke="#E1E7EF" stroke-dasharray="3 4"/>
+                  <line x1="0" y1="50" x2="300" y2="50" stroke="#E1E7EF" stroke-dasharray="3 4"/>
+                  <line x1="0" y1="75" x2="300" y2="75" stroke="#E1E7EF" stroke-dasharray="3 4"/>
+                  <path d="M0,20 C30,28 60,38 100,40 C140,42 180,55 220,68 C260,80 290,90 300,92" stroke="#6B7B8E" stroke-width="2" fill="none" stroke-dasharray="4 5"/>
+                  <path d="M0,20 C30,28 60,32 100,28 C140,23 180,18 220,12 C260,8 290,6 300,5" stroke="#2D8FE8" stroke-width="2.5" fill="none"/>
+                  <path d="M0,20 C30,28 60,32 100,28 C140,23 180,18 220,12 C260,8 290,6 300,5 L300,100 L0,100 Z" fill="rgba(45,143,232,.10)"/>
+                </svg>
+              </div>
+              <div class="legend"><span><span class="dot" style="background:#2D8FE8"></span> Foley cohort</span><span><span class="dot" style="background:#6B7B8E"></span> Industry avg</span></div>
+            </div>
+            <div class="chart-card">
+              <div class="ti">Time to hire · days</div>
+              <p class="desc">From requisition to driver in cab. Quarterly average.</p>
+              <div class="area">
+                <svg viewBox="0 0 300 100" preserveAspectRatio="none">
+                  <line x1="0" y1="25" x2="300" y2="25" stroke="#E1E7EF" stroke-dasharray="3 4"/>
+                  <line x1="0" y1="50" x2="300" y2="50" stroke="#E1E7EF" stroke-dasharray="3 4"/>
+                  <line x1="0" y1="75" x2="300" y2="75" stroke="#E1E7EF" stroke-dasharray="3 4"/>
+                  <g fill="#2D8FE8">
+                    <rect x="20" y="22" width="32" height="78" rx="3"/>
+                    <rect x="80" y="40" width="32" height="60" rx="3"/>
+                    <rect x="140" y="58" width="32" height="42" rx="3"/>
+                    <rect x="200" y="70" width="32" height="30" rx="3"/>
+                    <rect x="260" y="78" width="32" height="22" rx="3"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="legend"><span><span class="dot" style="background:#2D8FE8"></span> Days to hire · 14.2 → 3.2</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>17 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 18 COMPARISON -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">18 / 22</span><span class="name">Comparison</span><span>Paper · Before / After</span></div>
+    <div class="slide">
+      <div class="s s18 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>The shift</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">Then vs. now</div>
+          <h2>From scattered files to a single signal.</h2>
+          <div class="row">
+            <div class="col before">
+              <div class="colhead">Before Foley<span class="pill">Today's reality</span></div>
+              <ul>
+                <li>5–7 systems for compliance, hiring, MVR</li>
+                <li>Bumps in ELD data only surface post‑audit</li>
+                <li>Onboarding a new driver takes 2–3 weeks</li>
+                <li>Audit risk is a PDF from a consultant once a year</li>
+                <li>Navigator? Excel and Slack from the safety lead</li>
+              </ul>
+            </div>
+            <div class="col after">
+              <div class="colhead">With Foley<span class="pill">2026</span></div>
+              <ul>
+                <li>One platform, one candidate file, one DQ file</li>
+                <li>Real‑time CSA + audit risk monitoring</li>
+                <li>Hiring flow in 3–5 days</li>
+                <li>Audit risk is a live KPI, not an annual report</li>
+                <li>Navigator AI — explains what to do next</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>18 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 19 PHOTO FULL BLEED -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">19 / 22</span><span class="name">Photo · full bleed</span><span>Image canvas with overlay copy</span></div>
+    <div class="slide">
+      <div class="s s19">
+        <div class="photo"></div>
+        <div class="scrim">
+          <div class="header">
+            <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+            <div>Industries</div>
+          </div>
+          <div class="body">
+            <div class="eyebrow">Where Foley operates</div>
+            <h2>Seven industries.<br/>One <em>operating picture</em>.</h2>
+            <p class="cap">Transportation · Retail · Construction · Waste · Agriculture · Healthcare · Manufacturing — wherever DOT compliance touches the workforce.</p>
+          </div>
+          <div class="footer"><span>foley.io</span><span>19 / 22</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 20 BRAND NOTES -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">20 / 22</span><span class="name">Brand notes</span><span>Paper · In‑deck style reference</span></div>
+    <div class="slide">
+      <div class="s s20 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Brand · quick reference</div>
+        </div>
+        <div class="eyebrow">Internal · style</div>
+        <h2>Brand quick reference.</h2>
+        <p class="sub">Drop this slide into any internal deck to remind teammates of the basics. Replaces the old "POWERPOINT BRANDING" slide.</p>
+        <div class="grid">
+          <div class="panel dark">
+            <div class="label">Color</div>
+            <h3>Brand surfaces</h3>
+            <p>Navy is the executive surface. Foley Blue is the only brand accent. Green is reserved for "cleared" status — never as a brand color.</p>
+            <div class="swatches">
+              <div class="sw" style="background:#0B1F3A">Navy</div>
+              <div class="sw" style="background:#2D8FE8">Blue</div>
+              <div class="sw" style="background:#1B6FBF">Deep</div>
+              <div class="sw" style="background:#5DBAEF;color:#0B1F3A">Sky</div>
+              <div class="sw" style="background:#2EA86A">OK</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="label">Typography</div>
+            <h3>Inter Tight + Inter</h3>
+            <p>Inter Tight 700 for display and headings (never ALL CAPS). Inter 400/500 for body. JetBrains Mono for KPIs and meta.</p>
+            <div class="typetable">
+              <div class="typerow"><span class="k">Display</span><span class="v" style="font-size:1.6cqw">Smarter data.</span></div>
+              <div class="typerow"><span class="k">H2</span><span class="v" style="font-size:1.2cqw">Section title here</span></div>
+              <div class="typerow"><span class="k">Body</span><span class="v" style="font-size:.95cqw;font-weight:400;font-family:'Inter';color:var(--ink-2)">Inter, regular weight, 70 ch max.</span></div>
+              <div class="typerow"><span class="k">Mono</span><span class="v" style="font-size:.95cqw;font-family:'JetBrains Mono';font-weight:500;color:var(--blue-deep)">50,000+ · 4.3★ · 30 yrs</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>20 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 21 LOGO & ICON LIBRARY -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">21 / 22</span><span class="name">Logo &amp; icon library</span><span>Paper · Asset reference</span></div>
+    <div class="slide">
+      <div class="s s21 paper">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Asset library</div>
+        </div>
+        <div class="eyebrow">Internal · assets</div>
+        <h2>Logo &amp; icon library.</h2>
+        <p class="sub">Use the supplied PNG / SVG. Don't redraw, recolor, or stretch.</p>
+        <div class="row">
+          <div class="logos">
+            <div class="logo-tile"><img src="assets/image30.png" alt="Wordmark on light"></div>
+            <div class="logo-tile dark"><img src="assets/image30.png" alt="Wordmark on dark"></div>
+            <div class="logo-tile symbol"><img src="assets/image29.png" alt="Symbol"></div>
+            <div class="logo-tile dark symbol"><img src="assets/image29.png" alt="Symbol on dark"></div>
+          </div>
+          <div class="icons">
+            <div class="head">Outline icon set · 1.5 px stroke</div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2 4 7v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V7l-8-5Z"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9"/><path d="M3 10h18"/><path d="m16 19 2 2 4-4"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12c0 1-1 2-2 2H5c-1 0-2-1-2-2V6c0-1 1-2 2-2h14c1 0 2 1 2 2v6Z"/><path d="M7 22h10"/><path d="M12 14v8"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 22V12h6v10"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12h4l3 9 6-18 3 9h4"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+          </div>
+        </div>
+        <div class="footer"><span>foley.io</span><span>21 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 22 CLOSING -->
+  <div class="stage">
+    <div class="stage-meta"><span class="num">22 / 22</span><span class="name">Closing</span><span>Navy · CTA</span></div>
+    <div class="slide">
+      <div class="s s22 dark">
+        <div class="header">
+          <div class="brand"><img src="assets/image29.png" alt=""> Foley</div>
+          <div>Thank you</div>
+        </div>
+        <div class="body">
+          <div class="eyebrow">Let's get your fleet to clear</div>
+          <h2>Smarter data starts<br/>with one <em>conversation</em>.</h2>
+          <div class="cta">
+            <a class="btn">Book a demo →</a>
+            <div class="contact">
+              <div>Web<b>foley.io</b></div>
+              <div>Email<b>marketing@foley.io</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>Foley · 2026</span><span>22 / 22</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="doc-footer">
+  Foley · Slide drafts v0.2 · 22 layouts · <a href="brandbook.html">Brandbook</a> · <a href="gamma-prompt.md">Gamma prompt</a> · <a href="index.html">Index</a>
+</div>
+
+</body>
+</html>

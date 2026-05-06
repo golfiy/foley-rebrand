@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Foley · Brandbook 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1F3A;
+    --navy-2:#061429;
+    --blue:#2D8FE8;
+    --blue-deep:#1B6FBF;
+    --sky:#5DBAEF;
+    --mist:#F2F6FB;
+    --tint:#E5EFFB;
+    --paper:#FFFFFF;
+    --ink:#0B1828;
+    --ink-2:#3A4A5E;
+    --muted:#6B7B8E;
+    --line:#E1E7EF;
+    --success:#2EA86A;
+    --amber:#F4B740;
+    --red:#E5484D;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#FAFBFC;color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .nav{position:sticky;top:0;background:rgba(250,251,252,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:10}
+  .nav-inner{max-width:1180px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;font-size:13px}
+  .nav a{color:var(--ink-2);margin-left:18px;text-decoration:none;font-weight:500}
+  .nav a:hover{color:var(--blue-deep)}
+  .logo{display:inline-flex;align-items:center;gap:10px;font-family:'Inter Tight';font-weight:800;font-size:18px;letter-spacing:-.01em;color:var(--ink)}
+  .logo img{height:24px;width:auto;display:block}
+  section{max-width:1180px;margin:0 auto;padding:96px 32px;border-bottom:1px solid var(--line)}
+  section:last-child{border-bottom:0}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-deep);font-weight:600;margin-bottom:14px}
+  h1{font-family:'Inter Tight';font-weight:700;letter-spacing:-.025em;font-size:88px;line-height:.98;margin:0 0 24px}
+  h1 em{font-style:normal;color:var(--blue)}
+  h2{font-family:'Inter Tight';font-weight:700;letter-spacing:-.022em;font-size:44px;line-height:1.05;margin:0 0 18px}
+  h3{font-family:'Inter Tight';font-weight:700;letter-spacing:-.015em;font-size:22px;margin:0 0 8px}
+  p{font-size:16px;line-height:1.6;color:var(--ink-2);max-width:680px}
+  .lede{font-size:20px;line-height:1.5;color:var(--ink-2);max-width:760px}
+
+  .hero{padding-top:120px;padding-bottom:120px}
+  .hero-meta{display:flex;gap:32px;margin-top:48px;font-size:13px;color:var(--muted)}
+  .hero-meta div span{display:block;color:var(--ink);font-weight:600;margin-top:4px}
+
+  .essence-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+  .essence-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px}
+  .essence-card .label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:12px}
+  .essence-card .body{font-family:'Inter Tight';font-weight:600;font-size:24px;line-height:1.25;letter-spacing:-.015em;color:var(--ink)}
+
+  .logo-row{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-top:32px}
+  .logo-block{background:var(--navy);color:#fff;border-radius:24px;padding:80px;display:flex;align-items:center;justify-content:center;min-height:280px}
+  .logo-block.alt{background:var(--mist);color:var(--navy)}
+  .logo-block img{max-width:340px;width:100%;height:auto}
+  .logo-block.symbol img{max-width:140px}
+  .logo-rules{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+  .rule{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+  .rule .ok{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--blue-deep)}
+  .rule .no{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--red)}
+  .rule p{font-size:13px;margin:6px 0 0;color:var(--ink-2)}
+
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+  .swatch{border-radius:18px;padding:20px;height:200px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line)}
+  .swatch .name{font-family:'Inter Tight';font-weight:700;font-size:15px;letter-spacing:-.01em}
+  .swatch .role{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;opacity:.7;margin-top:2px}
+  .swatch .codes{font-family:'JetBrains Mono';font-size:11px;line-height:1.5;opacity:.85}
+  .swatch.dark{color:#fff}
+  .palette-section{margin-top:48px}
+  .palette-section h3{margin-bottom:16px}
+  .tints{display:flex;border-radius:14px;overflow:hidden;border:1px solid var(--line);margin-top:8px;height:64px}
+  .tints div{flex:1;display:flex;align-items:flex-end;padding:10px;font-family:'JetBrains Mono';font-size:10px}
+
+  .type-grid{display:grid;grid-template-columns:240px 1fr;gap:24px;margin-top:24px;align-items:center;border-bottom:1px solid var(--line);padding:28px 0}
+  .type-grid:last-child{border-bottom:0}
+  .type-meta{font-family:'JetBrains Mono';font-size:12px;color:var(--muted);line-height:1.7}
+  .type-meta b{color:var(--ink);font-weight:600}
+  .sample-display{font-family:'Inter Tight';font-weight:700;letter-spacing:-.025em;font-size:64px;line-height:1.02;color:var(--ink)}
+  .sample-h1{font-family:'Inter Tight';font-weight:700;letter-spacing:-.022em;font-size:44px;line-height:1.05}
+  .sample-h2{font-family:'Inter Tight';font-weight:700;letter-spacing:-.018em;font-size:28px;line-height:1.15}
+  .sample-h3{font-family:'Inter Tight';font-weight:600;letter-spacing:-.012em;font-size:20px;line-height:1.25}
+  .sample-body{font-family:'Inter';font-weight:400;font-size:17px;line-height:1.55;color:var(--ink-2);max-width:600px}
+  .sample-mono{font-family:'JetBrains Mono';font-weight:500;font-size:14px;color:var(--blue-deep)}
+
+  .img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  .img{aspect-ratio:4/3;border-radius:16px;background:linear-gradient(135deg,#0B1F3A 0%,#1F3A5C 100%);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px;color:#fff;font-size:13px;border:1px solid var(--line)}
+  .img.b{background:linear-gradient(135deg,#2D8FE8 0%,#1B6FBF 100%)}
+  .img.c{background:linear-gradient(135deg,#F2F6FB 0%,#E1E7EF 100%);color:var(--ink)}
+  .img::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:14px 14px;opacity:.4}
+  .img.c::before{background-image:radial-gradient(rgba(11,31,58,.12) 1px,transparent 1px)}
+  .img span{position:relative;z-index:1;font-weight:500}
+  .do-dont{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+  .do-dont ul{list-style:none;padding:0;margin:12px 0 0;font-size:14px;line-height:1.7;color:var(--ink-2)}
+  .do-dont li{padding-left:22px;position:relative;margin-bottom:6px}
+  .do-dont li::before{position:absolute;left:0;top:0;font-weight:700}
+  .do .head{color:var(--blue-deep);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .dont .head{color:var(--red);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .do li::before{content:"+";color:var(--blue-deep)}
+  .dont li::before{content:"×";color:var(--red)}
+
+  .comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+  .comp{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px}
+  .comp h4{font-family:'Inter Tight';font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 18px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-family:'Inter';font-weight:600;font-size:14px;border:none;cursor:pointer;transition:all .15s}
+  .btn.primary{background:var(--navy);color:#fff}
+  .btn.primary:hover{background:var(--blue-deep)}
+  .btn.blue{background:var(--blue);color:#fff}
+  .btn.ghost{background:transparent;color:var(--navy);border:1px solid var(--line)}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .tag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--tint);color:var(--blue-deep)}
+  .tag.success{background:#E0F4E9;color:#1F8951}
+  .tag.amber{background:#FEF5E0;color:#B07A14}
+  .tag.red{background:#FCE9EA;color:#B0303A}
+  .tag.muted{background:var(--mist);color:var(--ink-2)}
+  .tag-row{display:flex;gap:8px;flex-wrap:wrap}
+  .kpi{font-family:'Inter Tight';font-weight:700;font-size:48px;letter-spacing:-.02em;color:var(--navy);line-height:1}
+  .kpi-cap{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin-top:8px}
+  .chart{margin-top:14px;height:120px;border-radius:10px;position:relative;border-bottom:1px solid var(--line)}
+  .chart svg{position:absolute;inset:0;width:100%;height:100%}
+
+  .layouts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+  .ly{aspect-ratio:16/9;border-radius:12px;border:1px solid var(--line);background:#fff;padding:12px;display:flex;flex-direction:column;justify-content:space-between;font-size:11px}
+  .ly .n{font-family:'JetBrains Mono';font-size:10px;color:var(--muted)}
+  .ly .t{font-family:'Inter Tight';font-weight:700;font-size:12px;letter-spacing:-.01em;color:var(--ink)}
+  .ly .preview{flex:1;margin:6px 0;background:var(--mist);border-radius:6px;padding:8px;display:flex;flex-direction:column;gap:3px;justify-content:flex-end;overflow:hidden}
+  .ly .preview .bar{height:4px;border-radius:2px;background:var(--ink-2);opacity:.25}
+  .ly .preview .bar.a{background:var(--blue);opacity:1;height:5px}
+  .ly .preview .bar.h{background:var(--navy);opacity:1;height:7px;width:60%}
+  .ly .preview .bar.s{width:80%}
+  .ly .preview .bar.m{width:50%}
+  .ly .preview .bar.l{width:30%}
+  .ly.dark .preview{background:var(--navy)}
+  .ly.dark .preview .bar{background:#fff;opacity:.35}
+  .ly.dark .preview .bar.a{background:var(--blue);opacity:1}
+
+  .voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+  .voice{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px}
+  .voice .head{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .voice.is .head{color:var(--blue-deep)}
+  .voice.isnt .head{color:var(--red)}
+  .voice ul{list-style:none;padding:0;margin:14px 0 0}
+  .voice li{font-family:'Inter Tight';font-weight:600;font-size:18px;line-height:1.4;letter-spacing:-.01em;padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink)}
+  .voice li:last-child{border-bottom:0}
+
+  footer{padding:48px 32px;text-align:center;color:var(--muted);font-size:13px}
+  @media(max-width:880px){
+    h1{font-size:48px}
+    .swatches,.layouts,.img-grid{grid-template-columns:1fr 1fr}
+    .essence-grid,.do-dont,.comp-grid,.voice-grid,.logo-row{grid-template-columns:1fr}
+    .type-grid{grid-template-columns:1fr}
+    .sample-display{font-size:42px}
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/image30.png" alt="Foley">
+    </a>
+    <div>
+      <a href="#essence">Essence</a>
+      <a href="#logo">Logo</a>
+      <a href="#color">Color</a>
+      <a href="#type">Type</a>
+      <a href="#imagery">Imagery</a>
+      <a href="#components">UI</a>
+      <a href="#layouts">Layouts</a>
+      <a href="#voice">Voice</a>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="eyebrow">Brandbook · v0.2 · 2026</div>
+  <h1>Smarter data.<br/>Lower risk.<br/>Safer <em>fleets</em>.</h1>
+  <p class="lede">Foley helps transportation companies keep their fleets compliant and safe — and hire drivers in days, not weeks. This brandbook defines the visual language for presentations, web materials, and executive documents: calm, digital, confident, anchored on Foley's blue identity.</p>
+  <div class="hero-meta">
+    <div>Designed for<span>Executive · Sales · Investor decks</span></div>
+    <div>Aligned with<span>foley.io · platform refresh 2026</span></div>
+    <div>Replaces<span>Internal Deck Template 2025</span></div>
+  </div>
+</section>
+
+<section id="essence">
+  <div class="eyebrow">01 · Essence</div>
+  <h2>What Foley means now.</h2>
+  <p class="lede">The brand is moving from Foley Services / Carrier Services to simply <b>Foley</b>. A platform, not a service. Data and AI, not paperwork. The wordmark — three concentric blue rings with a green arc — stays. We just give it a calmer, more modern environment to live in.</p>
+
+  <div class="essence-grid">
+    <div class="essence-card">
+      <div class="label">Brand promise</div>
+      <div class="body">Get your fleet to clear — and keep it there.</div>
+    </div>
+    <div class="essence-card">
+      <div class="label">Positioning</div>
+      <div class="body">An all‑in‑one compliance, safety, and screening platform for commercial fleets — from 5 drivers to 500.</div>
+    </div>
+    <div class="essence-card">
+      <div class="label">Personality</div>
+      <div class="body">Calm expert. 30 years of experience, but speaks like a modern SaaS — not an insurance broker.</div>
+    </div>
+    <div class="essence-card">
+      <div class="label">Audience</div>
+      <div class="body">Safety and HR directors in transportation, retail, construction, agriculture, healthcare. Bought by COO and CFO.</div>
+    </div>
+  </div>
+</section>
+
+<section id="logo">
+  <div class="eyebrow">02 · Logo</div>
+  <h2>The mark stays. The frame changes.</h2>
+  <p class="lede">Foley's existing wordmark — three concentric rings with a green arc forming the "O" — is the brand asset. Use it as the canonical FOLEY mark; do not redraw, recolor, or replace it. Two base modes: full color on light surfaces, white wordmark on dark surfaces.</p>
+
+  <div class="logo-row">
+    <div class="logo-block">
+      <img src="assets/image48.png" alt="Foley wordmark on navy" style="filter:brightness(0) invert(1) drop-shadow(0 0 0 transparent);max-width:340px">
+    </div>
+    <div class="logo-block alt">
+      <img src="assets/image30.png" alt="Foley wordmark on light">
+    </div>
+  </div>
+
+  <div class="logo-row" style="margin-top:16px">
+    <div class="logo-block alt symbol">
+      <img src="assets/image29.png" alt="Foley symbol mark">
+    </div>
+    <div class="logo-block symbol">
+      <img src="assets/image29.png" alt="Foley symbol on navy">
+    </div>
+  </div>
+
+  <div class="logo-rules">
+    <div class="rule"><div class="ok">Do</div><p>Use the supplied PNG / SVG. The symbol mark (rings only) is for favicons, app icons, and slide footers when space is tight.</p></div>
+    <div class="rule"><div class="ok">Do</div><p>Minimum clearspace = the height of the lowercase "o" around the wordmark. Minimum size on a slide: 24 px tall.</p></div>
+    <div class="rule"><div class="no">Don't</div><p>Don't redraw, recolor, or change the proportions of the rings. Don't use "Foley Services" or "Foley Carrier Services" — those names are discontinued.</p></div>
+    <div class="rule"><div class="no">Don't</div><p>Don't place the logo on busy photos without a backing surface. Don't tint it, drop‑shadow it, or animate the rings.</p></div>
+  </div>
+</section>
+
+<section id="color">
+  <div class="eyebrow">03 · Color</div>
+  <h2>Their blue, fresher.</h2>
+  <p class="lede">The palette respects the existing logo blues but updates them for screen and modern executive contexts. <b>Foley Navy</b> replaces the old corporate dark blue with a deeper, cooler tone. <b>Foley Blue</b> takes the bright cyan from the logo and pushes it slightly cleaner. Green is retained — but only as the semantic <i>success</i> state, not a brand accent.</p>
+
+  <div class="palette-section">
+    <h3>Brand</h3>
+    <div class="swatches">
+      <div class="swatch dark" style="background:#0B1F3A">
+        <div><div class="name">Foley Navy</div><div class="role">Primary surface</div></div>
+        <div class="codes">HEX #0B1F3A<br/>RGB 11 · 31 · 58</div>
+      </div>
+      <div class="swatch dark" style="background:#2D8FE8">
+        <div><div class="name">Foley Blue</div><div class="role">Brand accent</div></div>
+        <div class="codes">HEX #2D8FE8<br/>RGB 45 · 143 · 232</div>
+      </div>
+      <div class="swatch dark" style="background:#1B6FBF">
+        <div><div class="name">Foley Blue Deep</div><div class="role">Hover · Active</div></div>
+        <div class="codes">HEX #1B6FBF<br/>RGB 27 · 111 · 191</div>
+      </div>
+      <div class="swatch dark" style="background:#5DBAEF">
+        <div><div class="name">Foley Sky</div><div class="role">Light accent · Echoes the logo's inner cyan</div></div>
+        <div class="codes">HEX #5DBAEF<br/>RGB 93 · 186 · 239</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="palette-section">
+    <h3>Neutrals</h3>
+    <div class="swatches">
+      <div class="swatch dark" style="background:#0B1828"><div><div class="name">Ink</div><div class="role">Body text</div></div><div class="codes">HEX #0B1828</div></div>
+      <div class="swatch dark" style="background:#3A4A5E"><div><div class="name">Ink Soft</div><div class="role">Lede · Caption</div></div><div class="codes">HEX #3A4A5E</div></div>
+      <div class="swatch" style="background:#6B7B8E;color:#fff"><div><div class="name">Muted</div><div class="role">Eyebrow · Meta</div></div><div class="codes">HEX #6B7B8E</div></div>
+      <div class="swatch" style="background:#F2F6FB"><div><div class="name">Mist</div><div class="role">Section bg</div></div><div class="codes">HEX #F2F6FB</div></div>
+    </div>
+  </div>
+
+  <div class="palette-section">
+    <h3>Semantic (use sparingly — never as a brand color)</h3>
+    <div class="swatches">
+      <div class="swatch" style="background:#2EA86A;color:#fff"><div><div class="name">Success</div><div class="role">Cleared · OK · "to green"</div></div><div class="codes">HEX #2EA86A</div></div>
+      <div class="swatch" style="background:#F4B740"><div><div class="name">Caution</div><div class="role">Warning only</div></div><div class="codes">HEX #F4B740</div></div>
+      <div class="swatch dark" style="background:#E5484D"><div><div class="name">Risk</div><div class="role">Error · Violation</div></div><div class="codes">HEX #E5484D</div></div>
+      <div class="swatch" style="background:#fff;border:1px solid var(--line)"><div><div class="name">Paper</div><div class="role">Default canvas</div></div><div class="codes">HEX #FFFFFF</div></div>
+    </div>
+  </div>
+
+  <div class="palette-section">
+    <h3>Tints — Foley Blue ramp</h3>
+    <div class="tints">
+      <div style="background:#E5EFFB">50</div>
+      <div style="background:#C9DEF8">100</div>
+      <div style="background:#9EC5F2;color:#0B1828">200</div>
+      <div style="background:#6FAAEB;color:#0B1828">300</div>
+      <div style="background:#2D8FE8;color:#fff">400</div>
+      <div style="background:#1B6FBF;color:#fff">500</div>
+      <div style="background:#125496;color:#fff">600</div>
+      <div style="background:#0B1F3A;color:#fff">900</div>
+    </div>
+  </div>
+</section>
+
+<section id="type">
+  <div class="eyebrow">04 · Typography</div>
+  <h2>Inter system + Inter Tight for display.</h2>
+  <p class="lede">Moving away from Arial / Arial Black ALL CAPS. Inter Tight gives headings the SaaS / executive density we want; Inter is the universal body face. JetBrains Mono is reserved for KPIs, metadata, and code‑style moments.</p>
+
+  <div class="type-grid">
+    <div class="type-meta"><b>Display</b><br/>Inter Tight 700<br/>−2.5% tracking<br/>72–96 px / line‑height 1.0</div>
+    <div class="sample-display">Get the fleet to clear.</div>
+  </div>
+  <div class="type-grid">
+    <div class="type-meta"><b>H1 · Slide title</b><br/>Inter Tight 700<br/>−2.2% tracking<br/>40–48 px / line‑height 1.05</div>
+    <div class="sample-h1">All compliance signals in one place.</div>
+  </div>
+  <div class="type-grid">
+    <div class="type-meta"><b>H2 · Section</b><br/>Inter Tight 700<br/>26–30 px / line‑height 1.15</div>
+    <div class="sample-h2">CSA Monitoring · Hiring · Navigator AI</div>
+  </div>
+  <div class="type-grid">
+    <div class="type-meta"><b>H3 · Subhead</b><br/>Inter Tight 600<br/>18–20 px / line‑height 1.25</div>
+    <div class="sample-h3">Hire in days, not weeks.</div>
+  </div>
+  <div class="type-grid">
+    <div class="type-meta"><b>Body</b><br/>Inter 400<br/>16–18 px / line‑height 1.55<br/>max 70ch</div>
+    <div class="sample-body">Foley's all‑in‑one platform gives you a complete view of your compliance, safety, and screening data — so you can make informed decisions, respond faster, and stay ahead of risk whether you manage 5 drivers or 500.</div>
+  </div>
+  <div class="type-grid">
+    <div class="type-meta"><b>Mono · KPI · Meta</b><br/>JetBrains Mono 500<br/>13–14 px<br/>Tabular numerals</div>
+    <div class="sample-mono">50,000+ companies · 4.3★ Trustpilot · 30 yrs</div>
+  </div>
+</section>
+
+<section id="imagery">
+  <div class="eyebrow">05 · Imagery</div>
+  <h2>Honest documentary, not stock cliché.</h2>
+  <p class="lede">Three modes: <b>Navy</b> (dark brand surface with subtle dot grid and a blue graph line), <b>Blue</b> (for hero moments and stat slides), and <b>Mist</b> (for analytics and UI screenshots on light). Photography means real drivers, depots, dispatch rooms — never staged handshakes.</p>
+
+  <div class="img-grid">
+    <div class="img"><span>Navy · UI · charts</span></div>
+    <div class="img b"><span>Blue · KPI · stat moments</span></div>
+    <div class="img c"><span>Mist · analytics · UI shots</span></div>
+  </div>
+
+  <div class="do-dont">
+    <div class="do">
+      <div class="head">+ Do</div>
+      <ul>
+        <li>Real people in context: cab, depot, office</li>
+        <li>UI screenshots on a Navy backing surface</li>
+        <li>Clean dot grids and thin line charts</li>
+        <li>Green only as a status indicator: "cleared", "passed"</li>
+        <li>Generous whitespace, generous margins</li>
+      </ul>
+    </div>
+    <div class="dont">
+      <div class="head">× Don't</div>
+      <ul>
+        <li>Yellow‑orange gradients, retro hues</li>
+        <li>Stock handshakes and staged office shots</li>
+        <li>Heavy drop shadows, embossed effects</li>
+        <li>Cartoon clipart icons, multicolor flat illustrations</li>
+        <li>ALL CAPS headlines everywhere — keep them for eyebrows / labels only</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="components">
+  <div class="eyebrow">06 · UI components</div>
+  <h2>A small system, so the team doesn't reinvent.</h2>
+  <p class="lede">A baseline kit for slides and one‑pagers. One radius (12–18 px), one stroke (1 px), one grid (8 px) everywhere.</p>
+
+  <div class="comp-grid">
+    <div class="comp">
+      <h4>Buttons</h4>
+      <div class="btn-row">
+        <button class="btn primary">Get a demo →</button>
+        <button class="btn blue">See pricing</button>
+        <button class="btn ghost">Learn more</button>
+      </div>
+      <p style="font-size:13px;margin:12px 0 0;color:var(--muted)">Primary = Navy. Brand = Blue. Ghost = transparent.</p>
+    </div>
+
+    <div class="comp">
+      <h4>Tags / Status pills</h4>
+      <div class="tag-row">
+        <span class="tag success">Cleared</span>
+        <span class="tag amber">Action needed</span>
+        <span class="tag red">Violation</span>
+        <span class="tag muted">Pending</span>
+        <span class="tag">In review</span>
+      </div>
+      <p style="font-size:13px;margin:14px 0 0;color:var(--muted)">"Cleared" green is the success state — never used as a brand accent.</p>
+    </div>
+
+    <div class="comp">
+      <h4>KPI block</h4>
+      <div class="kpi">50,000+</div>
+      <div class="kpi-cap">Companies trust Foley</div>
+    </div>
+
+    <div class="comp">
+      <h4>Trend chart</h4>
+      <div class="kpi" style="font-size:32px">−42%</div>
+      <div class="kpi-cap">Avg audit risk reduction · 12 mo</div>
+      <div class="chart" style="background:linear-gradient(180deg,rgba(45,143,232,.15),rgba(45,143,232,0))">
+        <svg viewBox="0 0 300 120" preserveAspectRatio="none">
+          <path d="M0,90 C40,80 60,70 90,75 C130,82 160,40 200,30 C240,22 270,18 300,12" stroke="#2D8FE8" stroke-width="2.2" fill="none"/>
+          <path d="M0,90 C40,80 60,70 90,75 C130,82 160,40 200,30 C240,22 270,18 300,12 L300,120 L0,120 Z" fill="rgba(45,143,232,.12)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="layouts">
+  <div class="eyebrow">07 · Slide layouts</div>
+  <h2>22 layouts — full coverage of the original deck.</h2>
+  <p class="lede">A 1:1 mapping of the original Internal Deck Template 2025, modernized. Every slide type from cover to product photos has its updated counterpart. <a href="slides.html" style="color:var(--blue-deep);font-weight:600">Open the drafts →</a></p>
+
+  <div class="layouts">
+    <div class="ly dark"><div><div class="n">01</div><div class="t" style="color:#fff">Cover</div></div><div class="preview"><div class="bar h"></div><div class="bar s"></div><div class="bar m"></div><div class="bar a l"></div></div></div>
+    <div class="ly dark"><div><div class="n">02</div><div class="t" style="color:#fff">Cover w/ contact</div></div><div class="preview"><div class="bar h"></div><div class="bar s"></div><div class="bar m"></div><div class="bar a"></div></div></div>
+    <div class="ly dark"><div><div class="n">03</div><div class="t" style="color:#fff">Section divider · dark</div></div><div class="preview"><div class="bar a l"></div><div class="bar h"></div><div class="bar m"></div></div></div>
+    <div class="ly"><div><div class="n">04</div><div class="t">Section divider · light</div></div><div class="preview"><div class="bar a l"></div><div class="bar h"></div><div class="bar m"></div></div></div>
+    <div class="ly"><div><div class="n">05</div><div class="t">Agenda</div></div><div class="preview"><div class="bar h" style="width:30%"></div><div class="bar s"></div><div class="bar s"></div><div class="bar m"></div></div></div>
+    <div class="ly dark"><div><div class="n">06</div><div class="t" style="color:#fff">Statement</div></div><div class="preview" style="justify-content:center"><div class="bar s"></div><div class="bar s"></div><div class="bar m"></div></div></div>
+    <div class="ly"><div><div class="n">07</div><div class="t">Title + body</div></div><div class="preview"><div class="bar h"></div><div class="bar s"></div><div class="bar s"></div><div class="bar m"></div></div></div>
+    <div class="ly dark"><div><div class="n">08</div><div class="t" style="color:#fff">Title + body · dark</div></div><div class="preview"><div class="bar h"></div><div class="bar s"></div><div class="bar s"></div><div class="bar m"></div></div></div>
+    <div class="ly"><div><div class="n">09</div><div class="t">Hero stat</div></div><div class="preview" style="justify-content:center"><div class="bar a" style="height:18px;width:50%"></div><div class="bar m"></div></div></div>
+    <div class="ly"><div><div class="n">10</div><div class="t">Two column</div></div><div class="preview" style="flex-direction:row;align-items:flex-end;gap:6px"><div style="flex:1;display:flex;flex-direction:column;gap:3px"><div class="bar h"></div><div class="bar s"></div><div class="bar m"></div></div><div style="flex:1;height:60%;background:var(--blue);border-radius:3px"></div></div></div>
+    <div class="ly"><div><div class="n">11</div><div class="t">Three column</div></div><div class="preview" style="flex-direction:row;gap:4px"><div style="flex:1;background:var(--mist);border-radius:3px;display:flex;flex-direction:column;gap:3px;padding:4px;justify-content:flex-end"><div class="bar a" style="width:50%"></div><div class="bar s"></div></div><div style="flex:1;background:var(--mist);border-radius:3px;display:flex;flex-direction:column;gap:3px;padding:4px;justify-content:flex-end"><div class="bar a" style="width:50%"></div><div class="bar s"></div></div><div style="flex:1;background:var(--mist);border-radius:3px;display:flex;flex-direction:column;gap:3px;padding:4px;justify-content:flex-end"><div class="bar a" style="width:50%"></div><div class="bar s"></div></div></div></div>
+    <div class="ly"><div><div class="n">12</div><div class="t">Three step</div></div><div class="preview" style="flex-direction:row;gap:4px;align-items:flex-end"><div style="flex:1;display:flex;flex-direction:column;gap:3px"><div class="bar a" style="width:40%"></div><div class="bar s"></div></div><div style="flex:1;display:flex;flex-direction:column;gap:3px"><div class="bar a" style="width:40%"></div><div class="bar s"></div></div><div style="flex:1;display:flex;flex-direction:column;gap:3px"><div class="bar a" style="width:40%"></div><div class="bar s"></div></div></div></div>
+    <div class="ly"><div><div class="n">13</div><div class="t">Feature grid 2×2</div></div><div class="preview" style="display:grid;grid-template-columns:1fr 1fr;gap:3px"><div style="background:var(--mist);border-radius:3px"></div><div style="background:var(--mist);border-radius:3px"></div><div style="background:var(--mist);border-radius:3px"></div><div style="background:var(--mist);border-radius:3px"></div></div></div>
+    <div class="ly"><div><div class="n">14</div><div class="t">Foley Flywheel</div></div><div class="preview" style="justify-content:center;align-items:center"><div style="width:48px;height:48px;border-radius:50%;border:1.5px solid var(--blue);position:relative"><div style="position:absolute;inset:6px;border-radius:50%;background:var(--blue)"></div></div></div></div>
+    <div class="ly dark"><div><div class="n">15</div><div class="t" style="color:#fff">Quote · single</div></div><div class="preview" style="justify-content:center"><div class="bar" style="background:#2D8FE8;width:6px;height:6px;border-radius:50%"></div><div class="bar s"></div><div class="bar m"></div><div class="bar l"></div></div></div>
+    <div class="ly"><div><div class="n">16</div><div class="t">Three quotes</div></div><div class="preview" style="flex-direction:row;gap:4px"><div style="flex:1;background:var(--mist);border-radius:3px"></div><div style="flex:1;background:var(--mist);border-radius:3px"></div><div style="flex:1;background:var(--mist);border-radius:3px"></div></div></div>
+    <div class="ly"><div><div class="n">17</div><div class="t">Chart pair</div></div><div class="preview" style="flex-direction:row;gap:4px"><div style="flex:1;background:linear-gradient(180deg,rgba(45,143,232,.25),transparent);border-radius:3px"></div><div style="flex:1;background:linear-gradient(180deg,rgba(45,143,232,.25),transparent);border-radius:3px"></div></div></div>
+    <div class="ly"><div><div class="n">18</div><div class="t">Comparison</div></div><div class="preview" style="flex-direction:row;gap:4px"><div style="flex:1;background:var(--mist);border-radius:3px"></div><div style="flex:1;background:rgba(45,143,232,.15);border-radius:3px;border:1px solid var(--blue)"></div></div></div>
+    <div class="ly dark"><div><div class="n">19</div><div class="t" style="color:#fff">Photo · full bleed</div></div><div class="preview" style="background:linear-gradient(135deg,#0B1F3A,#1B6FBF);justify-content:flex-end"><div class="bar a"></div><div class="bar l"></div></div></div>
+    <div class="ly"><div><div class="n">20</div><div class="t">Brand notes</div></div><div class="preview"><div class="bar h" style="width:40%"></div><div class="bar s"></div><div class="bar m"></div></div></div>
+    <div class="ly"><div><div class="n">21</div><div class="t">Logo &amp; icon library</div></div><div class="preview" style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px"><div style="background:#fff;border:1px solid var(--line);border-radius:3px"></div><div style="background:#fff;border:1px solid var(--line);border-radius:3px"></div><div style="background:#fff;border:1px solid var(--line);border-radius:3px"></div><div style="background:#fff;border:1px solid var(--line);border-radius:3px"></div></div></div>
+    <div class="ly dark"><div><div class="n">22</div><div class="t" style="color:#fff">Closing · CTA</div></div><div class="preview" style="justify-content:center"><div class="bar h" style="width:50%"></div><div class="bar a" style="width:30%"></div><div class="bar l"></div></div></div>
+  </div>
+</section>
+
+<section id="voice">
+  <div class="eyebrow">08 · Voice & tone</div>
+  <h2>Calm, confident, never preachy.</h2>
+  <p class="lede">Foley knows the regulations, but doesn't lecture about them. It sounds like a senior colleague who just spotted a problem before it became a fine — and is calmly telling you what to do about it.</p>
+
+  <div class="voice-grid">
+    <div class="voice is">
+      <div class="head">Foley sounds like</div>
+      <ul>
+        <li>Hire in days, not weeks.</li>
+        <li>Get your fleet to clear — and keep it there.</li>
+        <li>Foley surfaces the signals. Navigator explains what they mean.</li>
+        <li>From 5 drivers to 500, one platform.</li>
+      </ul>
+    </div>
+    <div class="voice isnt">
+      <div class="head">Foley does NOT sound like</div>
+      <ul>
+        <li>Revolutionary, world‑class, best‑in‑breed solutions.</li>
+        <li>Leveraging synergies to drive compliance excellence.</li>
+        <li>YOUR #1 PARTNER FOR DOT REGULATIONS!!!</li>
+        <li>Click here to learn more about our amazing services.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Foley · Brand refresh 2026 · For internal review · <a href="index.html" style="color:var(--blue-deep)">Back to index</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Foley — Brand Refresh 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1F3A;
+    --blue:#2D8FE8;
+    --blue-deep:#1B6FBF;
+    --mist:#F2F6FB;
+    --paper:#FAFBFC;
+    --ink:#0B1828;
+    --ink-2:#3A4A5E;
+    --muted:#6B7B8E;
+    --line:#E1E7EF;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:80px 32px}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  h1{font-family:'Inter Tight';font-weight:700;letter-spacing:-.025em;font-size:64px;line-height:1.02;margin:16px 0 24px}
+  h1 em{font-style:normal;color:var(--blue-deep)}
+  p.lede{font-size:19px;line-height:1.55;color:var(--ink-2);max-width:680px;margin:0 0 48px}
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;min-height:240px;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+  .card:hover{transform:translateY(-2px);border-color:var(--blue);box-shadow:0 8px 24px -12px rgba(11,31,58,.18)}
+  .card .num{font-family:'Inter Tight';font-weight:700;font-size:14px;color:var(--blue-deep);letter-spacing:.05em}
+  .card h3{font-family:'Inter Tight';font-weight:700;font-size:24px;letter-spacing:-.02em;margin:8px 0 8px}
+  .card p{font-size:14px;line-height:1.5;color:var(--ink-2);margin:0 0 18px}
+  .card .go{font-size:13px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:6px}
+  .card .go::after{content:"→";transition:transform .15s}
+  .card:hover .go::after{transform:translateX(3px)}
+  .meta{margin-top:64px;padding-top:32px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+  .logo img{height:30px;display:block}
+  @media(max-width:760px){h1{font-size:42px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo"><img src="assets/image30.png" alt="Foley"></div>
+  <div class="eyebrow" style="margin-top:64px">Brand Refresh · Working draft · v0.2</div>
+  <h1>Their blue, only <em>fresher</em>.</h1>
+  <p class="lede">A mini brandbook, 22 modernized slide layouts, and an AI‑deck prompt — anchored on Foley's existing logo and blue identity. The palette respects the original brand mark; everything around it gets a calmer, more modern frame.</p>
+
+  <div class="grid">
+    <a class="card" href="brandbook.html">
+      <div>
+        <div class="num">01</div>
+        <h3>Brandbook</h3>
+        <p>Palette, typography, logo logic, icons, photography, UI components, voice &amp; tone.</p>
+      </div>
+      <span class="go">Open</span>
+    </a>
+    <a class="card" href="slides.html">
+      <div>
+        <div class="num">02</div>
+        <h3>Slide drafts</h3>
+        <p>22 layouts — full coverage of the original deck, including the Foley Flywheel, chart pair, brand notes, logo &amp; icon library.</p>
+      </div>
+      <span class="go">Open</span>
+    </a>
+    <a class="card" href="gamma-prompt.md">
+      <div>
+        <div class="num">03</div>
+        <h3>Gamma / AI prompt</h3>
+        <p>A ready-to-paste detailed prompt for Gamma, Tome, or any AI deck tool — with the full style system and layout rules.</p>
+      </div>
+      <span class="go">Open</span>
+    </a>
+  </div>
+
+  <div class="meta">
+    <div>Foley · Smarter Data. Lower Risk. Safer Fleets.</div>
+    <div>foley.io · marketing@foley.io</div>
+  </div>
+</div>
+</body>
+</html>
