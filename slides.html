@@ -58,9 +58,24 @@
   .photo-overlay{position:absolute;inset:0}
   .grain{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:18px 18px;pointer-events:none}
 
-  /* === SLIDE 01 — COVER (full-bleed photo + huge title) === */
-  .s1 .photo-bg{background-image:url("https://images.unsplash.com/photo-1577086664693-894d8405334a?auto=format&fit=crop&w=1800&q=80"),linear-gradient(135deg,#1B3A66,#0B1F3A)}
-  .s1 .photo-overlay{background:linear-gradient(180deg,rgba(11,31,58,.4) 0%,rgba(11,31,58,.55) 50%,rgba(11,31,58,.92) 100%)}
+  /* === SLIDE 01 — COVER (CSS-only blue with vertical light + mirror) === */
+  .s1 .photo-bg{
+    background:
+      /* horizon mirror — soft horizontal band ~70% down */
+      linear-gradient(180deg,transparent 0%,transparent 58%,rgba(93,186,239,.06) 66%,rgba(93,186,239,.14) 72%,rgba(45,143,232,.04) 78%,transparent 88%),
+      /* fine vertical micro-bars (every ~7px) */
+      repeating-linear-gradient(90deg,transparent 0,transparent 5px,rgba(168,212,242,.045) 6px,rgba(168,212,242,0) 7px),
+      /* primary vertical light "louvre" stripes */
+      repeating-linear-gradient(91deg,rgba(93,186,239,0) 0,rgba(93,186,239,0) 56px,rgba(93,186,239,.10) 64px,rgba(93,186,239,.20) 70px,rgba(93,186,239,.06) 80px,rgba(93,186,239,0) 96px),
+      /* hot-spot glow center-left */
+      radial-gradient(ellipse 65% 90% at 28% 45%,rgba(45,143,232,.42) 0%,transparent 58%),
+      /* secondary glow upper-right */
+      radial-gradient(ellipse 38% 55% at 78% 28%,rgba(168,212,242,.22) 0%,transparent 62%),
+      /* base navy */
+      linear-gradient(135deg,#0F2A4F 0%,#0B1F3A 50%,#061429 100%);
+    background-size:cover;
+  }
+  .s1 .photo-overlay{background:linear-gradient(180deg,transparent 0%,transparent 45%,rgba(11,31,58,.4) 75%,rgba(11,31,58,.85) 100%)}
   .s1 .body{position:absolute;left:3.4cqw;right:3.4cqw;bottom:5cqw;display:flex;flex-direction:column;align-items:flex-start;gap:1.4cqw;color:#fff;z-index:3}
   .s1 .eyebrow{font-size:.85cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue);font-family:'Inter Tight'}
   .s1 h1{font-family:'Inter Tight';font-weight:700;font-size:8.6cqw;line-height:.94;letter-spacing:-.028em;margin:0;max-width:14ch}
