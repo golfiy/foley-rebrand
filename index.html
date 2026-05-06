@@ -6,7 +6,7 @@
 <title>Foley — Brand Refresh 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#0B1F3A;
@@ -36,6 +36,12 @@
   .card .go{font-size:13px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:6px}
   .card .go::after{content:"→";transition:transform .15s}
   .card:hover .go::after{transform:translateX(3px)}
+  .drafts{margin-top:24px;padding:18px 22px;background:var(--mist);border:1px solid var(--line);border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink-2);gap:18px;flex-wrap:wrap}
+  .drafts .label{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .drafts a{color:var(--blue-deep);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .drafts a:hover{color:var(--navy)}
+  .drafts a::after{content:"→";font-family:'JetBrains Mono';transition:transform .15s}
+  .drafts a:hover::after{transform:translateX(3px)}
   .meta{margin-top:64px;padding-top:32px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
   .logo img{height:30px;display:block}
   @media(max-width:760px){h1{font-size:42px}.grid{grid-template-columns:1fr}}
@@ -44,9 +50,9 @@
 <body>
 <div class="wrap">
   <div class="logo"><img src="assets/image30.png" alt="Foley"></div>
-  <div class="eyebrow" style="margin-top:64px">Brand Refresh · Working draft · v0.2</div>
+  <div class="eyebrow" style="margin-top:64px">Brand Refresh · v0.4 · 2026</div>
   <h1>Their blue, only <em>fresher</em>.</h1>
-  <p class="lede">A mini brandbook, 22 modernized slide layouts, and an AI‑deck prompt — anchored on Foley's existing logo and blue identity. The palette respects the original brand mark; everything around it gets a calmer, more modern frame.</p>
+  <p class="lede">A mini brandbook, 22 modernized slide layouts, and an AI‑deck config — anchored on Foley's existing logo and blue identity. The palette respects the original brand mark; everything around it gets a calmer, more modern frame.</p>
 
   <div class="grid">
     <a class="card" href="brandbook.html">
@@ -61,18 +67,26 @@
       <div>
         <div class="num">02</div>
         <h3>Slide drafts</h3>
-        <p>22 layouts — full coverage of the original deck, including the Foley Flywheel, chart pair, brand notes, logo &amp; icon library.</p>
+        <p>22 layouts — full coverage of the original deck, redesigned with documentary photography and Swiss‑style charts.</p>
       </div>
       <span class="go">Open</span>
     </a>
     <a class="card" href="gamma-prompt.md">
       <div>
         <div class="num">03</div>
-        <h3>Gamma / AI prompt</h3>
-        <p>A ready-to-paste detailed prompt for Gamma, Tome, or any AI deck tool — with the full style system and layout rules.</p>
+        <h3>Gamma / AI config</h3>
+        <p>Loadable theme + layouts schema (YAML) and a generation prompt for Gamma, Tome, Beautiful.ai, Pitch AI.</p>
       </div>
       <span class="go">Open</span>
     </a>
+  </div>
+
+  <div class="drafts">
+    <div>
+      <div class="label">Earlier drafts</div>
+      <div style="margin-top:4px">Previous 22‑layout draft (before the 1:1 PDF rebuild) is kept here for reference.</div>
+    </div>
+    <a href="slides-draft-prev.html">v0.2 · 22 layouts (early draft)</a>
   </div>
 
   <div class="meta">

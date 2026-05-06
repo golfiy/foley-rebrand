@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Foley · Slide drafts (22 layouts · 1:1)</title>
+<title>Foley · Slide drafts</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#0B1F3A;
@@ -21,12 +22,14 @@
     --ink-2:#3A4A5E;
     --muted:#6B7B8E;
     --line:#E1E7EF;
+    --line-2:#EFF2F6;
     --success:#2EA86A;
     --amber:#F4B740;
     --red:#E5484D;
+    --img: "https://images.unsplash.com/photo-";
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:#E7ECF1;color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  html,body{margin:0;padding:0;background:#E7ECF1;color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:'cv11','ss01'}
   .topbar{position:sticky;top:0;background:rgba(231,236,241,.85);backdrop-filter:blur(12px);border-bottom:1px solid #D2D9E1;z-index:10}
   .topbar-inner{max-width:1320px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--ink-2)}
   .topbar a{color:var(--ink);font-weight:600;text-decoration:none}
@@ -36,340 +39,356 @@
   .stage-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;font-size:12px;color:var(--muted);letter-spacing:.04em}
   .stage-meta .num{font-family:'JetBrains Mono';font-size:11px}
   .stage-meta .name{font-family:'Inter Tight';font-weight:700;font-size:13px;color:var(--ink);letter-spacing:-.005em}
-  .slide{aspect-ratio:16/9;width:100%;border-radius:18px;overflow:hidden;box-shadow:0 16px 48px -28px rgba(11,31,58,.45),0 1px 0 rgba(255,255,255,.5) inset;position:relative;container-type:inline-size;background:#fff}
+  .slide{aspect-ratio:16/9;width:100%;border-radius:18px;overflow:hidden;box-shadow:0 24px 60px -32px rgba(11,31,58,.45),0 1px 0 rgba(255,255,255,.5) inset;position:relative;container-type:inline-size;background:#fff}
 
-  /* shared slide chrome */
+  /* shared chrome */
   .s{position:absolute;inset:0;display:flex;flex-direction:column}
-  .mark{position:absolute;top:3cqw;right:3cqw;width:3cqw;height:3cqw;z-index:3;opacity:1}
-  .mark img{width:100%;height:100%;object-fit:contain}
-  .footer{position:absolute;left:3cqw;right:3cqw;bottom:1.5cqw;display:flex;justify-content:space-between;align-items:center;font-size:.85cqw;font-family:'JetBrains Mono';color:inherit;opacity:.55;z-index:3}
+  .header{position:absolute;left:3.4cqw;right:3.4cqw;top:2.6cqw;display:flex;justify-content:space-between;align-items:center;font-size:.85cqw;font-family:'JetBrains Mono';letter-spacing:.04em;z-index:5}
+  .header.dark{color:rgba(255,255,255,.65)}
+  .header.light{color:var(--muted)}
+  .header .lm{display:inline-flex;align-items:center;gap:.5cqw;height:1.5cqw}
+  .header .lm img{height:1.5cqw;display:block}
+  .header.dark .lm img{filter:brightness(0) invert(1)}
+  .footer{position:absolute;left:3.4cqw;right:3.4cqw;bottom:2.2cqw;display:flex;justify-content:space-between;align-items:center;font-size:.78cqw;font-family:'JetBrains Mono';color:inherit;z-index:5}
+  .footer.dark{color:rgba(255,255,255,.5)}
+  .footer.light{color:var(--muted)}
 
-  /* SLIDE 01 — Cover (Main Title Goes Here) */
-  .s1{background:#fff;color:var(--navy)}
-  .s1 .navy-bar{position:absolute;left:0;top:0;bottom:0;width:5cqw;background:var(--navy);border-radius:0 4cqw 4cqw 0;z-index:1}
-  .s1 .grey-shape{position:absolute;right:0;top:0;width:36cqw;bottom:24%;background:var(--mist);border-radius:8cqw 0 0 8cqw;z-index:0}
-  .s1 .light-bottom{position:absolute;left:0;right:0;bottom:0;height:32%;background:var(--mist);z-index:0}
-  .s1 .accent-tint{position:absolute;right:14cqw;bottom:18%;width:9cqw;height:9cqw;background:var(--tint);border-radius:1.6cqw;z-index:1}
-  .s1 .accent-blue-stripe{position:absolute;right:0;top:8cqw;width:.6cqw;height:8cqw;background:var(--blue);border-radius:1cqw 0 0 1cqw}
-  .s1 .accent-blue-stripe.b{top:24cqw;height:6cqw}
-  .s1 .body{position:relative;z-index:2;padding:9cqw 8cqw;display:flex;flex-direction:column;justify-content:center;height:100%;align-items:flex-start}
-  .s1 h1{font-family:'Inter Tight';font-weight:700;font-size:9.4cqw;line-height:.95;letter-spacing:-.025em;margin:0 0 3cqw;color:var(--navy);max-width:14ch}
-  .s1 .pill{display:inline-flex;align-items:center;padding:1cqw 2.4cqw;background:var(--blue);color:#fff;font-family:'Inter';font-weight:500;font-size:1.3cqw;border-radius:99px;letter-spacing:-.005em}
+  /* photo helper */
+  .photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat}
+  .photo-overlay{position:absolute;inset:0}
+  .grain{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:18px 18px;pointer-events:none}
 
-  /* SLIDE 02 — Cover with photo + contacts */
-  .s2{background:#fff;color:var(--navy);display:grid;grid-template-columns:1.1fr .9fr}
-  .s2 .left{padding:5cqw;display:flex;flex-direction:column;justify-content:center;background:#fff;position:relative;z-index:2}
-  .s2 .eyebrow-mark{position:absolute;top:4cqw;left:5cqw;width:2.2cqw;height:2.2cqw}
-  .s2 .eyebrow-mark img{width:100%;height:100%;object-fit:contain}
-  .s2 h1{font-family:'Inter Tight';font-weight:700;font-size:6.4cqw;line-height:1;letter-spacing:-.025em;margin:0 0 1cqw;color:var(--navy)}
-  .s2 .sub{font-family:'Inter Tight';font-weight:600;font-size:1.7cqw;color:var(--ink-2);margin:0 0 2cqw;letter-spacing:-.01em}
-  .s2 .pill{display:inline-flex;align-items:center;padding:.8cqw 2cqw;background:var(--blue);color:#fff;font-weight:500;font-size:1.1cqw;border-radius:99px;align-self:flex-start;margin-bottom:3cqw}
-  .s2 .contacts{border-top:1px solid var(--line);padding-top:1.6cqw;display:flex;flex-direction:column;gap:.9cqw}
-  .s2 .contact{display:flex;align-items:center;gap:1.1cqw;font-family:'JetBrains Mono';font-size:1.05cqw;color:var(--ink-2)}
-  .s2 .contact .ic{width:2.2cqw;height:2.2cqw;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .s2 .contact .ic svg{width:1.2cqw;height:1.2cqw}
-  .s2 .right{position:relative;background:linear-gradient(135deg,#1B3A66 0%,#0B1F3A 100%);overflow:hidden}
-  .s2 .right::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 30% 40%,rgba(45,143,232,.35),transparent 50%),radial-gradient(circle at 70% 60%,rgba(93,186,239,.25),transparent 50%);mix-blend-mode:screen}
-  .s2 .right::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:18px 18px}
-  .s2 .right .photo-cap{position:absolute;left:3cqw;bottom:2.5cqw;color:rgba(255,255,255,.65);font-family:'JetBrains Mono';font-size:.85cqw;z-index:2}
-  .s2 .right .silhouette{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-  .s2 .right .silhouette svg{width:60%;height:auto;opacity:.18}
-  .s2 .right .accent-shape{position:absolute;right:3cqw;top:3cqw;width:5cqw;height:5cqw;border-radius:1cqw;background:var(--tint);opacity:.18}
+  /* === SLIDE 01 — COVER (full-bleed photo + huge title) === */
+  .s1 .photo-bg{background-image:url("https://images.unsplash.com/photo-1577086664693-894d8405334a?auto=format&fit=crop&w=1800&q=80"),linear-gradient(135deg,#1B3A66,#0B1F3A)}
+  .s1 .photo-overlay{background:linear-gradient(180deg,rgba(11,31,58,.4) 0%,rgba(11,31,58,.55) 50%,rgba(11,31,58,.92) 100%)}
+  .s1 .body{position:absolute;left:3.4cqw;right:3.4cqw;bottom:5cqw;display:flex;flex-direction:column;align-items:flex-start;gap:1.4cqw;color:#fff;z-index:3}
+  .s1 .eyebrow{font-size:.85cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue);font-family:'Inter Tight'}
+  .s1 h1{font-family:'Inter Tight';font-weight:700;font-size:8.6cqw;line-height:.94;letter-spacing:-.028em;margin:0;max-width:14ch}
+  .s1 h1 em{font-style:normal;color:var(--blue);font-weight:700}
+  .s1 .sub{font-size:1.4cqw;color:rgba(255,255,255,.78);max-width:48ch;line-height:1.45;margin:0}
 
-  /* SLIDE 03 — Section divider · Blue */
-  .s3{background:linear-gradient(135deg,#5DBAEF 0%,#2D8FE8 50%,#1B6FBF 100%);color:#fff;justify-content:center;padding:5cqw 6cqw}
-  .s3::before{content:"";position:absolute;right:-8cqw;top:50%;transform:translateY(-50%);width:50cqw;height:50cqw;background:radial-gradient(circle,rgba(255,255,255,.18) 0%,transparent 65%);pointer-events:none}
-  .s3 .ring{position:absolute;right:5cqw;top:50%;transform:translateY(-50%);width:32cqw;height:32cqw;opacity:.4}
-  .s3 .ring img{width:100%;height:100%;object-fit:contain;filter:brightness(0) invert(1) opacity(.5)}
-  .s3 .body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center}
-  .s3 .eyebrow{font-size:.95cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.75);font-family:'Inter Tight';margin-bottom:1cqw}
-  .s3 h2{font-family:'Inter Tight';font-weight:700;font-size:5.6cqw;letter-spacing:-.022em;line-height:1.05;margin:0 0 2cqw;max-width:14ch}
-  .s3 .underline{width:14cqw;height:.4cqw;background:#fff;border-radius:.2cqw}
-  .s3 .wordmark{position:absolute;left:5cqw;bottom:3cqw;height:2.4cqw;z-index:3}
-  .s3 .wordmark img{height:100%;filter:brightness(0) invert(1)}
+  /* === SLIDE 02 — Title with photo + contacts === */
+  .s2{display:grid;grid-template-columns:1fr 1fr;background:#fff}
+  .s2 .left{padding:6cqw 4cqw 4cqw;display:flex;flex-direction:column;justify-content:center;gap:1.2cqw}
+  .s2 .eyebrow{font-size:.85cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue-deep);font-family:'Inter Tight'}
+  .s2 h1{font-family:'Inter Tight';font-weight:700;font-size:5.6cqw;line-height:.98;letter-spacing:-.024em;margin:0;color:var(--navy);max-width:13ch}
+  .s2 h1 em{font-style:normal;color:var(--blue);font-weight:700}
+  .s2 .sub{font-size:1.4cqw;line-height:1.5;color:var(--ink-2);margin:0;max-width:34ch}
+  .s2 .contacts{margin-top:1.2cqw;padding-top:1.6cqw;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:.85cqw;font-family:'JetBrains Mono';font-size:1cqw}
+  .s2 .contact{display:flex;align-items:center;gap:1.1cqw;color:var(--ink-2)}
+  .s2 .contact .ic{width:1.4cqw;height:1.4cqw;color:var(--blue-deep);flex-shrink:0}
+  .s2 .contact .ic svg{width:100%;height:100%}
+  .s2 .right{position:relative;background:#0B1F3A}
+  .s2 .right .photo-bg{background-image:url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80")}
+  .s2 .right .photo-overlay{background:linear-gradient(90deg,rgba(11,31,58,.55) 0%,rgba(11,31,58,.1) 30%,transparent 60%)}
 
-  /* SLIDE 04 — Section divider · Navy */
-  .s4{background:linear-gradient(135deg,#1B3A66 0%,#0B1F3A 70%,#061429 100%);color:#fff;justify-content:center;padding:5cqw 6cqw}
-  .s4::before{content:"";position:absolute;right:-8cqw;top:50%;transform:translateY(-50%);width:50cqw;height:50cqw;background:radial-gradient(circle,rgba(45,143,232,.12) 0%,transparent 65%);pointer-events:none}
-  .s4 .ring{position:absolute;right:5cqw;top:50%;transform:translateY(-50%);width:32cqw;height:32cqw;opacity:.25}
-  .s4 .ring img{width:100%;height:100%;object-fit:contain;filter:brightness(0) invert(1) opacity(.4)}
-  .s4 .body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center}
-  .s4 .eyebrow{font-size:.95cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--blue);font-family:'Inter Tight';margin-bottom:1cqw}
-  .s4 h2{font-family:'Inter Tight';font-weight:700;font-size:5.6cqw;letter-spacing:-.022em;line-height:1.05;margin:0 0 2cqw;max-width:14ch}
-  .s4 .underline{width:14cqw;height:.4cqw;background:var(--blue);border-radius:.2cqw}
-  .s4 .wordmark{position:absolute;left:5cqw;bottom:3cqw;height:2.4cqw;z-index:3}
-  .s4 .wordmark img{height:100%;filter:brightness(0) invert(1)}
+  /* === SLIDE 03 — Section title (photo) === */
+  .s3 .photo-bg{background-image:url("https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1800&q=80"),linear-gradient(135deg,#1B3A66,#0B1F3A)}
+  .s3 .photo-overlay{background:linear-gradient(135deg,rgba(11,31,58,.55) 0%,rgba(11,31,58,.92) 70%)}
+  .s3 .num{position:absolute;top:6cqw;right:5cqw;font-family:'Inter Tight';font-weight:800;font-size:18cqw;color:rgba(45,143,232,.18);line-height:.85;letter-spacing:-.04em;z-index:2}
+  .s3 .body{position:absolute;left:3.4cqw;bottom:5cqw;color:#fff;z-index:3;display:flex;flex-direction:column;gap:1.4cqw;max-width:60%}
+  .s3 .eyebrow{font-size:.85cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue);font-family:'Inter Tight'}
+  .s3 h2{font-family:'Inter Tight';font-weight:700;font-size:5.4cqw;line-height:1;letter-spacing:-.022em;margin:0;max-width:14ch}
+  .s3 .lede{font-size:1.3cqw;line-height:1.5;color:rgba(255,255,255,.7);margin:0;max-width:42ch}
 
-  /* SLIDE 05 — Agenda */
-  .s5{display:grid;grid-template-columns:.9fr 1.1fr;background:#fff}
-  .s5 .photo{background:linear-gradient(135deg,#1B3A66 0%,#0B1F3A 100%);position:relative;overflow:hidden}
-  .s5 .photo::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 35% 45%,rgba(93,186,239,.3),transparent 55%),radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:auto,18px 18px}
-  .s5 .photo svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:60%;opacity:.25}
-  .s5 .right{padding:4cqw 4cqw 4cqw 4cqw;display:flex;flex-direction:column;position:relative}
-  .s5 .right .accent-circle{position:absolute;right:5cqw;top:3.5cqw;width:2.4cqw;height:2.4cqw;border-radius:50%;background:var(--blue);opacity:.85}
-  .s5 .right .accent-tint{position:absolute;right:1.5cqw;top:5cqw;width:5cqw;height:5cqw;border-radius:1.2cqw;background:var(--tint);opacity:.7;z-index:0}
-  .s5 .accent-bottom{position:absolute;right:6cqw;bottom:3cqw;width:8cqw;height:8cqw;border:.4cqw solid var(--success);border-radius:50%;opacity:.18}
-  .s5 h2{font-family:'Inter Tight';font-weight:700;font-size:3.4cqw;letter-spacing:-.018em;color:var(--navy);margin:0 0 2cqw;position:relative;z-index:1}
-  .s5 ol{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6cqw;position:relative;z-index:1;counter-reset:item}
-  .s5 li{display:flex;gap:1.2cqw;align-items:center;padding:.9cqw 1.2cqw;border-radius:.8cqw;background:var(--mist);counter-increment:item}
-  .s5 li::before{content:counter(item);width:2.2cqw;height:2.2cqw;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter Tight';font-weight:700;font-size:1.05cqw;flex-shrink:0}
-  .s5 li.alt{background:#fff;border:1px solid var(--line)}
-  .s5 li .t{font-family:'Inter Tight';font-weight:600;font-size:1.25cqw;color:var(--navy);letter-spacing:-.005em}
+  /* === SLIDE 04 — Section title (navy gradient) === */
+  .s4{background:radial-gradient(circle at 80% 30%,#1B6FBF22,transparent 50%),linear-gradient(135deg,#1B3A66 0%,#0B1F3A 60%,#061429 100%);color:#fff}
+  .s4 .grain{opacity:.5}
+  .s4 .num{position:absolute;top:6cqw;right:5cqw;font-family:'Inter Tight';font-weight:800;font-size:18cqw;color:rgba(45,143,232,.16);line-height:.85;letter-spacing:-.04em;z-index:2}
+  .s4 .body{position:absolute;left:3.4cqw;bottom:5cqw;color:#fff;z-index:3;display:flex;flex-direction:column;gap:1.4cqw;max-width:60%}
+  .s4 .eyebrow{font-size:.85cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue);font-family:'Inter Tight'}
+  .s4 h2{font-family:'Inter Tight';font-weight:700;font-size:5.4cqw;line-height:1;letter-spacing:-.022em;margin:0;max-width:14ch}
+  .s4 .lede{font-size:1.3cqw;line-height:1.5;color:rgba(255,255,255,.7);margin:0;max-width:42ch}
 
-  /* SLIDE 06 — Title left navy + 3 cards w/ circle photos */
+  /* === SLIDE 05 — Agenda === */
+  .s5{display:grid;grid-template-columns:.85fr 1.15fr;background:#fff}
+  .s5 .photo-side{position:relative;background:#0B1F3A}
+  .s5 .photo-side .photo-bg{background-image:url("https://images.unsplash.com/photo-1591768793355-74d04bb6608f?auto=format&fit=crop&w=1200&q=80")}
+  .s5 .photo-side .photo-overlay{background:linear-gradient(160deg,rgba(11,31,58,.35),rgba(11,31,58,.7) 80%)}
+  .s5 .right{padding:5cqw 4cqw 4cqw;display:flex;flex-direction:column;justify-content:center;gap:1.4cqw}
+  .s5 .eyebrow{font-size:.85cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue-deep);font-family:'Inter Tight'}
+  .s5 h2{font-family:'Inter Tight';font-weight:700;font-size:3.6cqw;letter-spacing:-.022em;margin:0;color:var(--navy)}
+  .s5 ol{list-style:none;padding:0;margin:1cqw 0 0;display:flex;flex-direction:column;counter-reset:item}
+  .s5 li{display:grid;grid-template-columns:3cqw 1fr;gap:1.4cqw;padding:1.05cqw 0;border-top:1px solid var(--line);counter-increment:item;align-items:center}
+  .s5 li:last-child{border-bottom:1px solid var(--line)}
+  .s5 li::before{content:"0" counter(item);font-family:'JetBrains Mono';font-weight:500;font-size:.95cqw;color:var(--blue-deep)}
+  .s5 li .t{font-family:'Inter Tight';font-weight:600;font-size:1.5cqw;color:var(--navy);letter-spacing:-.005em}
+
+  /* === SLIDE 06 — Title + 3 photo cards === */
   .s6{display:grid;grid-template-columns:.85fr 1.15fr;background:#fff}
-  .s6 .left{background:var(--navy);color:#fff;padding:4cqw;display:flex;flex-direction:column;justify-content:center;position:relative}
-  .s6 .left h2{font-family:'Inter Tight';font-weight:700;font-size:3.4cqw;letter-spacing:-.018em;line-height:1.05;margin:0 0 1.8cqw}
-  .s6 .left .underline{width:5cqw;height:.3cqw;background:var(--blue);border-radius:.15cqw;margin-bottom:1.8cqw}
-  .s6 .left p{font-size:1.1cqw;line-height:1.55;color:rgba(255,255,255,.78);margin:0;max-width:32ch}
+  .s6 .left{background:var(--navy);color:#fff;padding:5cqw 4cqw;display:flex;flex-direction:column;justify-content:center;gap:1cqw;position:relative}
+  .s6 .left .grain{opacity:.5}
+  .s6 .left .eyebrow{font-size:.8cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue);font-family:'Inter Tight';position:relative;z-index:1}
+  .s6 .left h2{font-family:'Inter Tight';font-weight:700;font-size:3.4cqw;letter-spacing:-.02em;line-height:1.02;margin:0;position:relative;z-index:1}
+  .s6 .left p{font-size:1.05cqw;line-height:1.55;color:rgba(255,255,255,.72);margin:0;max-width:32ch;position:relative;z-index:1}
   .s6 .right{padding:3cqw 4cqw;display:flex;flex-direction:column;justify-content:center;gap:1.2cqw}
-  .s6 .card{display:grid;grid-template-columns:5cqw 1fr;gap:1.4cqw;align-items:center;background:var(--mist);border-radius:1cqw;padding:1.2cqw 1.4cqw}
-  .s6 .card .photo{width:5cqw;height:5cqw;border-radius:50%;background:linear-gradient(135deg,#1B3A66,#0B1F3A);position:relative;overflow:hidden;flex-shrink:0}
-  .s6 .card .photo::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 40% 40%,rgba(93,186,239,.5),transparent 60%)}
-  .s6 .card .text .pill{display:inline-block;padding:.4cqw 1cqw;background:var(--blue);color:#fff;font-size:.95cqw;font-weight:600;border-radius:99px;margin-bottom:.4cqw}
-  .s6 .card .text .body{font-size:.95cqw;line-height:1.45;color:var(--ink-2);margin:0}
+  .s6 .pcard{display:grid;grid-template-columns:5cqw 1fr;gap:1.6cqw;align-items:center;padding:1.4cqw 0;border-bottom:1px solid var(--line)}
+  .s6 .pcard:last-child{border-bottom:0}
+  .s6 .pcard .ph{width:5cqw;height:5cqw;border-radius:50%;background-size:cover;background-position:center;flex-shrink:0;border:1px solid var(--line)}
+  .s6 .pcard .ph.a{background-image:url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=400&q=80")}
+  .s6 .pcard .ph.b{background-image:url("https://images.unsplash.com/photo-1565891741441-64926e441838?auto=format&fit=crop&w=400&q=80")}
+  .s6 .pcard .ph.c{background-image:url("https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=400&q=80")}
+  .s6 .pcard .label{font-family:'JetBrains Mono';font-size:.75cqw;color:var(--blue-deep);text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+  .s6 .pcard .sub{font-family:'Inter Tight';font-weight:700;font-size:1.4cqw;color:var(--navy);margin:.2cqw 0 .4cqw;letter-spacing:-.005em}
+  .s6 .pcard p{font-size:.95cqw;line-height:1.5;color:var(--ink-2);margin:0;max-width:42ch}
 
-  /* SLIDE 07 — Title navy panel left + 3 numbered items right */
+  /* === SLIDE 07 — Title panel + 3 numbered === */
   .s7{display:grid;grid-template-columns:.5fr 1.1fr;background:#fff}
-  .s7 .left{background:var(--navy);color:#fff;padding:4cqw 3cqw;display:flex;flex-direction:column;justify-content:center}
-  .s7 .left h2{font-family:'Inter Tight';font-weight:700;font-size:3.6cqw;letter-spacing:-.018em;margin:0 0 1.4cqw;line-height:1.02}
-  .s7 .left .underline{width:5cqw;height:.3cqw;background:var(--blue);border-radius:.15cqw;margin-bottom:1.8cqw}
-  .s7 .left p{font-size:1.1cqw;line-height:1.6;color:rgba(255,255,255,.78);margin:0;max-width:34ch}
-  .s7 .right{padding:4cqw;display:flex;flex-direction:column;justify-content:center;gap:1.8cqw}
+  .s7 .left{background:var(--navy);color:#fff;padding:5cqw 3cqw;display:flex;flex-direction:column;justify-content:center;gap:1cqw;position:relative}
+  .s7 .left .eyebrow{font-size:.8cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue);font-family:'Inter Tight'}
+  .s7 .left h2{font-family:'Inter Tight';font-weight:700;font-size:3.4cqw;letter-spacing:-.02em;line-height:1;margin:0}
+  .s7 .left p{font-size:1.05cqw;line-height:1.6;color:rgba(255,255,255,.72);margin:0}
+  .s7 .right{padding:5cqw 4cqw;display:flex;flex-direction:column;justify-content:center;gap:2.4cqw}
   .s7 .item{display:grid;grid-template-columns:3.6cqw 1fr;gap:1.4cqw;align-items:flex-start}
-  .s7 .item .num{width:3.2cqw;height:3.2cqw;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter Tight';font-weight:700;font-size:1.4cqw}
-  .s7 .item .sub{font-family:'Inter Tight';font-weight:700;font-size:1.5cqw;color:var(--navy);margin:0 0 .4cqw;letter-spacing:-.005em}
-  .s7 .item p{font-size:1.05cqw;line-height:1.5;color:var(--ink-2);margin:0;max-width:42ch}
+  .s7 .item .n{font-family:'JetBrains Mono';font-weight:500;font-size:.9cqw;color:var(--blue-deep);padding-top:.4cqw;letter-spacing:.04em}
+  .s7 .item .sub{font-family:'Inter Tight';font-weight:700;font-size:1.5cqw;color:var(--navy);margin:0 0 .35cqw;letter-spacing:-.005em}
+  .s7 .item p{font-size:1cqw;line-height:1.55;color:var(--ink-2);margin:0;max-width:46ch}
 
-  /* SLIDE 08 — 4 numbered items left + navy panel right */
+  /* === SLIDE 08 — 4 numbered + navy panel === */
   .s8{display:grid;grid-template-columns:1.1fr .55fr;background:#fff}
-  .s8 .left{padding:3cqw 3.5cqw;display:flex;flex-direction:column;justify-content:center;gap:1.2cqw}
+  .s8 .left{padding:5cqw 4cqw;display:flex;flex-direction:column;justify-content:center;gap:1.6cqw}
   .s8 .item{display:grid;grid-template-columns:3.2cqw 1fr;gap:1.2cqw;align-items:flex-start}
-  .s8 .item .num{width:2.8cqw;height:2.8cqw;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter Tight';font-weight:700;font-size:1.2cqw}
-  .s8 .item .sub{font-family:'Inter Tight';font-weight:700;font-size:1.3cqw;color:var(--navy);margin:0 0 .3cqw;letter-spacing:-.005em}
-  .s8 .item p{font-size:.95cqw;line-height:1.5;color:var(--ink-2);margin:0;max-width:46ch}
-  .s8 .right{background:var(--navy);color:#fff;padding:3.5cqw 3cqw;display:flex;flex-direction:column;justify-content:center}
-  .s8 .right h2{font-family:'Inter Tight';font-weight:700;font-size:2.4cqw;letter-spacing:-.018em;margin:0 0 1.2cqw;line-height:1.05}
-  .s8 .right .underline{width:4cqw;height:.3cqw;background:var(--blue);border-radius:.15cqw;margin-bottom:1.4cqw}
-  .s8 .right p{font-size:1cqw;line-height:1.6;color:rgba(255,255,255,.78);margin:0 0 .8cqw}
-  .s8 .right p:last-child{margin-bottom:0}
+  .s8 .item .n{font-family:'JetBrains Mono';font-weight:500;font-size:.85cqw;color:var(--blue-deep);padding-top:.4cqw;letter-spacing:.04em}
+  .s8 .item .sub{font-family:'Inter Tight';font-weight:700;font-size:1.3cqw;color:var(--navy);margin:0 0 .25cqw;letter-spacing:-.005em}
+  .s8 .item p{font-size:.95cqw;line-height:1.55;color:var(--ink-2);margin:0;max-width:46ch}
+  .s8 .right{background:var(--navy);color:#fff;padding:5cqw 3.4cqw;display:flex;flex-direction:column;justify-content:center;gap:1cqw;position:relative}
+  .s8 .right .eyebrow{font-size:.78cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue);font-family:'Inter Tight'}
+  .s8 .right h2{font-family:'Inter Tight';font-weight:700;font-size:2.4cqw;letter-spacing:-.018em;margin:0;line-height:1.05}
+  .s8 .right p{font-size:1cqw;line-height:1.6;color:rgba(255,255,255,.72);margin:0}
 
-  /* SLIDE 09 — Title bar + 2 cards */
-  .s9{background:#fff}
-  .s9 .titlebar{background:var(--navy);color:#fff;padding:2.5cqw 4cqw;display:flex;align-items:center}
-  .s9 .titlebar h2{font-family:'Inter Tight';font-weight:700;font-size:2.8cqw;letter-spacing:-.018em;margin:0;color:#fff}
-  .s9 .grid{flex:1;padding:3cqw 4cqw 5cqw;display:grid;grid-template-columns:1fr 1fr;gap:2.4cqw}
-  .s9 .card{background:var(--mist);border:1px solid var(--line);border-radius:1.4cqw;padding:1.8cqw 2cqw 2cqw;position:relative;display:flex;flex-direction:column;border-bottom:.4cqw solid var(--blue-deep)}
-  .s9 .card .dot{position:absolute;left:1.6cqw;top:-2cqw;width:4cqw;height:4cqw;border-radius:50%;background:var(--blue)}
-  .s9 .card .sub{font-family:'Inter Tight';font-weight:700;font-size:1.5cqw;color:var(--navy);text-align:center;margin:2cqw 0 1.2cqw}
-  .s9 .card ul{list-style:none;padding:0;margin:0;font-size:1.05cqw;line-height:1.55;color:var(--ink-2)}
-  .s9 .card li{padding:.4cqw 0 .4cqw 1.4cqw;position:relative}
-  .s9 .card li::before{content:"";position:absolute;left:0;top:.95cqw;width:.5cqw;height:.5cqw;background:var(--blue);border-radius:50%}
+  /* === SLIDE 09-11 — Title bar + N cards (clean Linear-style) === */
+  .s9,.s10,.s11{background:#fff}
+  .titlebar-clean{padding:4.4cqw 4cqw 1.6cqw;display:flex;align-items:flex-end;justify-content:space-between;gap:2cqw}
+  .titlebar-clean .eyebrow{font-size:.8cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue-deep);font-family:'Inter Tight';margin-bottom:.6cqw}
+  .titlebar-clean h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.02em;line-height:1.05;margin:0;color:var(--navy);max-width:24ch}
+  .titlebar-clean .meta{font-family:'JetBrains Mono';font-size:.85cqw;color:var(--muted);align-self:flex-end}
+  .grid-cards{flex:1;padding:.4cqw 4cqw 5cqw;display:grid}
+  .s9 .grid-cards{grid-template-columns:1fr 1fr;gap:1.4cqw}
+  .s10 .grid-cards{grid-template-columns:1fr 1fr 1fr;gap:1.2cqw}
+  .s11 .grid-cards{grid-template-columns:repeat(4,1fr);gap:1cqw}
+  .nc{padding:2cqw 1.8cqw 1.8cqw;border:1px solid var(--line);border-radius:1cqw;background:#fff;display:flex;flex-direction:column;gap:.6cqw;position:relative;transition:border-color .15s}
+  .nc::before{content:"";position:absolute;left:1.8cqw;top:0;width:2cqw;height:.2cqw;background:var(--blue);border-radius:0 0 .2cqw .2cqw}
+  .nc .n{font-family:'JetBrains Mono';font-weight:500;font-size:.8cqw;color:var(--blue-deep);letter-spacing:.04em}
+  .nc .sub{font-family:'Inter Tight';font-weight:700;font-size:1.3cqw;color:var(--navy);letter-spacing:-.005em;margin:.2cqw 0 .4cqw;line-height:1.15}
+  .s11 .nc .sub{font-size:1.1cqw}
+  .nc ul{list-style:none;padding:0;margin:0;font-size:.92cqw;line-height:1.5;color:var(--ink-2);display:flex;flex-direction:column;gap:.4cqw}
+  .s11 .nc ul{font-size:.82cqw}
+  .nc li{padding-left:1cqw;position:relative}
+  .nc li::before{content:"";position:absolute;left:0;top:.6cqw;width:.4cqw;height:.4cqw;border-radius:50%;background:var(--blue)}
 
-  /* SLIDE 10 — Title bar + 3 cards */
-  .s10{background:#fff}
-  .s10 .titlebar{background:var(--navy);color:#fff;padding:2.5cqw 4cqw;display:flex;align-items:center}
-  .s10 .titlebar h2{font-family:'Inter Tight';font-weight:700;font-size:2.8cqw;letter-spacing:-.018em;margin:0;color:#fff}
-  .s10 .grid{flex:1;padding:3cqw 3.5cqw 4cqw;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.6cqw}
-  .s10 .card{background:var(--mist);border:1px solid var(--line);border-radius:1.4cqw;padding:1.6cqw 1.6cqw 1.6cqw;position:relative;display:flex;flex-direction:column;border-bottom:.4cqw solid var(--blue-deep)}
-  .s10 .card .dot{position:absolute;left:1.4cqw;top:-1.8cqw;width:3.6cqw;height:3.6cqw;border-radius:50%;background:var(--blue)}
-  .s10 .card .sub{font-family:'Inter Tight';font-weight:700;font-size:1.3cqw;color:var(--navy);text-align:center;margin:2cqw 0 1cqw;line-height:1.15}
-  .s10 .card ul{list-style:none;padding:0;margin:0;font-size:.95cqw;line-height:1.5;color:var(--ink-2)}
-  .s10 .card li{padding:.3cqw 0 .3cqw 1.2cqw;position:relative}
-  .s10 .card li::before{content:"";position:absolute;left:0;top:.9cqw;width:.4cqw;height:.4cqw;background:var(--blue);border-radius:50%}
+  /* === SLIDE 12 — Four quadrants (clean Linear-style) === */
+  .s12{background:#fff;padding:4.4cqw 4cqw 4cqw;display:flex;flex-direction:column}
+  .s12 .titlebar-clean{padding:0 0 2cqw;flex:0 0 auto}
+  .s12 .quads{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;column-gap:3cqw;row-gap:2.4cqw;position:relative}
+  .s12 .quads::before{content:"";position:absolute;left:50%;top:5%;bottom:5%;width:1px;background:var(--line)}
+  .s12 .quads::after{content:"";position:absolute;top:50%;left:5%;right:5%;height:1px;background:var(--line)}
+  .s12 .quad{padding:.4cqw .8cqw;display:flex;flex-direction:column;gap:.5cqw;justify-content:center}
+  .s12 .quad .n{font-family:'JetBrains Mono';font-weight:500;font-size:.78cqw;color:var(--blue-deep);letter-spacing:.04em}
+  .s12 .quad .sub{font-family:'Inter Tight';font-weight:700;font-size:1.6cqw;color:var(--navy);letter-spacing:-.012em;margin:0 0 .2cqw}
+  .s12 .quad p{font-size:.95cqw;line-height:1.55;color:var(--ink-2);margin:0;max-width:44ch}
 
-  /* SLIDE 11 — Title bar + 4 cards */
-  .s11{background:#fff}
-  .s11 .titlebar{background:var(--navy);color:#fff;padding:2.5cqw 4cqw;display:flex;align-items:center}
-  .s11 .titlebar h2{font-family:'Inter Tight';font-weight:700;font-size:2.8cqw;letter-spacing:-.018em;margin:0;color:#fff}
-  .s11 .grid{flex:1;padding:3cqw 3cqw 4cqw;display:grid;grid-template-columns:repeat(4,1fr);gap:1.2cqw}
-  .s11 .card{background:var(--mist);border:1px solid var(--line);border-radius:1.2cqw;padding:1.4cqw 1.2cqw;position:relative;display:flex;flex-direction:column;border-bottom:.4cqw solid var(--blue-deep)}
-  .s11 .card .dot{position:absolute;left:1.2cqw;top:-1.6cqw;width:3.2cqw;height:3.2cqw;border-radius:50%;background:var(--blue)}
-  .s11 .card .sub{font-family:'Inter Tight';font-weight:700;font-size:1.1cqw;color:var(--navy);text-align:center;margin:1.8cqw 0 .8cqw;line-height:1.15}
-  .s11 .card ul{list-style:none;padding:0;margin:0;font-size:.85cqw;line-height:1.5;color:var(--ink-2)}
-  .s11 .card li{padding:.25cqw 0 .25cqw 1cqw;position:relative}
-  .s11 .card li::before{content:"";position:absolute;left:0;top:.85cqw;width:.35cqw;height:.35cqw;background:var(--blue);border-radius:50%}
+  /* === SLIDE 13 — Social proof (Stripe/Linear style) === */
+  .s13{background:#fff;padding:4.4cqw 4cqw 4cqw;display:flex;flex-direction:column}
+  .s13 .titlebar-clean{padding:0 0 2cqw}
+  .s13 .grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1.4cqw}
+  .s13 .card{border:1px solid var(--line);border-radius:1.2cqw;padding:1.8cqw 2cqw 1.6cqw;display:flex;flex-direction:column;gap:1cqw;background:#fff}
+  .s13 .card .stars{color:var(--blue);font-size:.95cqw;letter-spacing:.2em}
+  .s13 .card blockquote{font-family:'Inter Tight';font-weight:600;font-size:1.2cqw;line-height:1.4;letter-spacing:-.005em;color:var(--navy);margin:0;flex:1}
+  .s13 .card .who{display:flex;align-items:center;gap:.9cqw;margin-top:.4cqw;padding-top:1cqw;border-top:1px solid var(--line)}
+  .s13 .card .av{width:2.4cqw;height:2.4cqw;border-radius:50%;background-size:cover;background-position:center;flex-shrink:0;border:1px solid var(--line)}
+  .s13 .av.a{background-image:url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=200&q=80")}
+  .s13 .av.b{background-image:url("https://images.unsplash.com/photo-1565891741441-64926e441838?auto=format&fit=crop&w=200&q=80")}
+  .s13 .av.c{background-image:url("https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=200&q=80")}
+  .s13 .av.d{background-image:url("https://images.unsplash.com/photo-1486946255434-2466348c2166?auto=format&fit=crop&w=200&q=80")}
+  .s13 .who .name{font-family:'Inter Tight';font-weight:700;font-size:.95cqw;color:var(--navy);letter-spacing:-.005em}
+  .s13 .who .role{font-family:'JetBrains Mono';font-size:.72cqw;color:var(--muted);margin-top:.1cqw}
 
-  /* SLIDE 12 — Title + 4 quadrants */
-  .s12{background:#fff;padding:3.5cqw 4cqw 3cqw}
-  .s12 h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.018em;color:var(--navy);margin:0}
-  .s12 .underline{width:4cqw;height:.3cqw;background:var(--blue);border-radius:.15cqw;margin:1cqw 0 2cqw}
-  .s12 .quads{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;column-gap:3cqw;row-gap:1.6cqw;position:relative}
-  .s12 .quads::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line)}
-  .s12 .quads::after{content:"";position:absolute;top:50%;left:0;right:0;height:1px;background:var(--line)}
-  .s12 .quad{padding:.4cqw .6cqw;display:flex;flex-direction:column;gap:.8cqw}
-  .s12 .quad .pill{display:inline-flex;align-items:center;align-self:flex-start;padding:.6cqw 1.4cqw;background:var(--blue);color:#fff;font-family:'Inter Tight';font-weight:700;font-size:1.1cqw;border-radius:99px}
-  .s12 .quad p{font-size:1cqw;line-height:1.55;color:var(--ink-2);margin:0;max-width:42ch}
-
-  /* SLIDE 13 — Social proof — 4 testimonials */
-  .s13{background:#fff;padding:3.5cqw 4cqw 4cqw}
-  .s13 h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.018em;color:var(--navy);margin:0}
-  .s13 .underline{width:4cqw;height:.3cqw;background:var(--blue);border-radius:.15cqw;margin:1cqw 0 2cqw}
-  .s13 .grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1.5cqw}
-  .s13 .card{border-radius:1.2cqw;padding:2cqw 2cqw 1.6cqw;display:flex;flex-direction:column;gap:1cqw;position:relative;color:#fff}
-  .s13 .card.navy{background:var(--navy)}
-  .s13 .card.blue{background:var(--blue)}
-  .s13 .card .avatar{position:absolute;left:1.4cqw;top:-1.6cqw;width:3.4cqw;height:3.4cqw;border-radius:50%;background:linear-gradient(135deg,#5DBAEF,#1B6FBF);border:.25cqw solid var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Inter Tight';font-weight:700;font-size:1.1cqw;color:#fff}
-  .s13 .card blockquote{font-size:1.05cqw;line-height:1.5;margin:1.6cqw 0 0;color:rgba(255,255,255,.92)}
-  .s13 .card .who{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:.4cqw}
-  .s13 .card .who .name{font-family:'Inter Tight';font-weight:600;font-size:1cqw;color:rgba(255,255,255,.85)}
-  .s13 .card .stars{color:#FFD43B;font-size:1.2cqw;letter-spacing:.1em}
-
-  /* SLIDE 14 — Title navy left + 6-photo collage */
+  /* === SLIDE 14 — Title + Bento photo collage === */
   .s14{display:grid;grid-template-columns:.85fr 1.15fr;background:#fff}
-  .s14 .left{background:var(--navy);color:#fff;padding:4cqw 3.5cqw;display:flex;flex-direction:column;justify-content:center}
-  .s14 .left h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.018em;line-height:1.05;margin:0 0 1.4cqw}
-  .s14 .left .underline{width:4cqw;height:.3cqw;background:var(--blue);border-radius:.15cqw;margin-bottom:1.6cqw}
-  .s14 .left p{font-size:1cqw;line-height:1.6;color:rgba(255,255,255,.78);margin:0}
-  .s14 .right{padding:2.4cqw;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:1cqw}
-  .s14 .ph{border-radius:.8cqw;background:var(--mist);position:relative;overflow:hidden;border:1px solid var(--line)}
-  .s14 .ph::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#1B3A66 0%,#0B1F3A 100%);opacity:.92}
-  .s14 .ph::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 30% 40%,rgba(93,186,239,.45),transparent 55%),radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:auto,16px 16px;mix-blend-mode:screen}
-  .s14 .ph.b::before{background:linear-gradient(135deg,#2D8FE8,#1B6FBF)}
-  .s14 .ph.c::before{background:linear-gradient(135deg,#5DBAEF,#2D8FE8)}
-  .s14 .ph .label{position:absolute;left:.8cqw;bottom:.6cqw;color:#fff;font-family:'JetBrains Mono';font-size:.7cqw;z-index:1;opacity:.8}
+  .s14 .left{background:var(--navy);color:#fff;padding:5cqw 3.6cqw;display:flex;flex-direction:column;justify-content:center;gap:1cqw;position:relative}
+  .s14 .left .eyebrow{font-size:.78cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue);font-family:'Inter Tight'}
+  .s14 .left h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.02em;line-height:1;margin:0}
+  .s14 .left p{font-size:1cqw;line-height:1.6;color:rgba(255,255,255,.72);margin:0}
+  .s14 .right{padding:2.4cqw;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:.7cqw}
+  .s14 .ph{border-radius:.7cqw;background-size:cover;background-position:center;background-color:#0B1F3A;position:relative;overflow:hidden}
+  .s14 .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(11,31,58,.35) 100%)}
+  .s14 .ph.a{background-image:url("https://images.unsplash.com/photo-1591768793355-74d04bb6608f?auto=format&fit=crop&w=600&q=80");grid-column:span 2}
+  .s14 .ph.b{background-image:url("https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=400&q=80")}
+  .s14 .ph.c{background-image:url("https://images.unsplash.com/photo-1577086664693-894d8405334a?auto=format&fit=crop&w=400&q=80")}
+  .s14 .ph.d{background-image:url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=400&q=80")}
+  .s14 .ph.e{background-image:url("https://images.unsplash.com/photo-1565891741441-64926e441838?auto=format&fit=crop&w=400&q=80")}
+  .s14 .ph .lab{position:absolute;left:.7cqw;bottom:.5cqw;font-family:'JetBrains Mono';font-size:.65cqw;color:#fff;letter-spacing:.04em;z-index:1;opacity:.85}
 
-  /* SLIDE 15 — Foley Flywheel */
-  .s15{background:#fff;padding:3.5cqw 4cqw 3cqw}
-  .s15 h2{font-family:'Inter Tight';font-weight:700;font-size:3cqw;letter-spacing:-.018em;color:var(--navy);margin:0}
-  .s15 .underline{width:5cqw;height:.3cqw;background:var(--blue);border-radius:.15cqw;margin:1cqw 0 1.5cqw}
-  .s15 .stage15{flex:1;display:flex;justify-content:center;align-items:center;position:relative}
-  .s15 .wheel{position:relative;width:46cqw;aspect-ratio:1}
-  .s15 .label{position:absolute;font-family:'Inter Tight';font-weight:700;font-size:1.4cqw;line-height:1.15;color:var(--navy);text-align:center;letter-spacing:-.005em}
-  .s15 .label.top{top:-1.5cqw;left:50%;transform:translateX(-50%);width:14cqw}
-  .s15 .label.right{top:24%;right:-15cqw;width:14cqw;text-align:left}
-  .s15 .label.br{bottom:8%;right:-16cqw;width:14cqw;text-align:left}
-  .s15 .label.bottom{bottom:-3cqw;left:50%;transform:translateX(-50%);width:18cqw}
-  .s15 .label.left{top:36%;left:-15cqw;width:14cqw;text-align:right}
-  .s15 .center-disc{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46%;aspect-ratio:1;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5cqw;color:var(--navy);font-family:'Inter Tight';font-weight:700;font-size:1.05cqw;line-height:1.3;box-shadow:0 0 0 .15cqw var(--line) inset}
+  /* === SLIDE 15 — Foley Flywheel (refined) === */
+  .s15{background:#fff;padding:4.4cqw 4cqw 4cqw;display:flex;flex-direction:column}
+  .s15 .titlebar-clean{padding:0 0 1.5cqw}
+  .s15 .stage15{flex:1;display:grid;grid-template-columns:1.1fr 1fr;gap:3cqw;align-items:center}
+  .s15 .wheel{position:relative;width:100%;aspect-ratio:1;max-width:32cqw;justify-self:center}
+  .s15 .center-disc{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:42%;aspect-ratio:1;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:2cqw;color:var(--navy);font-family:'Inter Tight';font-weight:600;font-size:.9cqw;line-height:1.3;box-shadow:0 0 0 1px var(--line) inset}
+  .s15 .legend{display:flex;flex-direction:column;gap:.7cqw}
+  .s15 .leg-item{display:grid;grid-template-columns:1.4cqw 1fr;gap:1cqw;align-items:flex-start;padding:.7cqw 0;border-top:1px solid var(--line)}
+  .s15 .leg-item:last-child{border-bottom:1px solid var(--line)}
+  .s15 .leg-item .sw{width:.7cqw;height:.7cqw;border-radius:50%;margin-top:.4cqw}
+  .s15 .leg-item .h{font-family:'Inter Tight';font-weight:700;font-size:1cqw;color:var(--navy);letter-spacing:-.005em;margin:0}
+  .s15 .leg-item .n{font-family:'JetBrains Mono';font-size:.7cqw;color:var(--muted);margin-bottom:.05cqw}
 
-  /* SLIDE 16 — Timeline */
-  .s16{background:#fff}
-  .s16 .titlebar{background:var(--navy);color:#fff;padding:2cqw 4cqw;display:grid;grid-template-columns:.7fr 1.3fr;gap:3cqw;align-items:center}
-  .s16 .titlebar h2{font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;letter-spacing:-.018em;margin:0;line-height:1.02}
-  .s16 .titlebar p{font-size:1cqw;line-height:1.55;color:rgba(255,255,255,.78);margin:0;border-left:.2cqw solid var(--blue);padding-left:1.5cqw}
-  .s16 .timeline{flex:1;position:relative;padding:3cqw 4cqw 4cqw;display:flex;flex-direction:column;justify-content:center}
-  .s16 .years{display:flex;align-items:center;justify-content:center;position:relative;height:5cqw}
-  .s16 .yr{flex:1;background:var(--blue);color:#fff;font-family:'Inter Tight';font-weight:700;font-size:1.8cqw;display:flex;align-items:center;justify-content:center;height:100%;clip-path:polygon(0 0,calc(100% - 1.2cqw) 0,100% 50%,calc(100% - 1.2cqw) 100%,0 100%);margin-right:-.6cqw;position:relative}
-  .s16 .yr.a{background:var(--success)}
-  .s16 .yr.b{background:var(--blue-deep)}
-  .s16 .yr.c{background:var(--muted)}
-  .s16 .yr.d{background:var(--blue)}
-  .s16 .yr.e{background:var(--sky);color:var(--navy)}
-  .s16 .yr:first-child{clip-path:polygon(0 0,calc(100% - 1.2cqw) 0,100% 50%,calc(100% - 1.2cqw) 100%,0 100%)}
-  .s16 .yr:last-child{clip-path:polygon(0 0,calc(100% - 1.2cqw) 0,100% 50%,calc(100% - 1.2cqw) 100%,0 100%)}
-  .s16 .notes{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5cqw;margin-top:1.5cqw;align-items:start}
-  .s16 .notes .above{position:absolute;top:5cqw;display:none}
-  .s16 .timeline-wrap{position:relative}
-  .s16 .ntop{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5cqw;margin-bottom:1.5cqw;min-height:6cqw}
-  .s16 .nbot{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5cqw;margin-top:1.5cqw;min-height:6cqw}
-  .s16 .note{display:flex;flex-direction:column;gap:.3cqw;padding:0 .4cqw}
-  .s16 .note .pin{width:.7cqw;height:.7cqw;border-radius:50%;background:var(--blue);align-self:center}
-  .s16 .note .stem{width:.1cqw;height:.8cqw;background:var(--line);align-self:center}
-  .s16 .note .ti{font-size:.85cqw;color:var(--blue);font-weight:600;letter-spacing:-.005em}
-  .s16 .note .h{font-family:'Inter Tight';font-weight:700;font-size:1cqw;color:var(--navy);letter-spacing:-.005em}
-  .s16 .note .b{font-size:.8cqw;line-height:1.45;color:var(--ink-2);margin:0}
-  .s16 .nbot .note{flex-direction:column-reverse}
+  /* === SLIDE 16 — Timeline (Swiss style) === */
+  .s16{background:#fff;display:flex;flex-direction:column}
+  .s16 .titlebar-clean{padding:4.4cqw 4cqw 1cqw}
+  .s16 .titlebar-clean p{font-size:1.05cqw;line-height:1.55;color:var(--ink-2);margin:0;max-width:60ch}
+  .s16 .body{flex:1;padding:1cqw 4cqw 4cqw;display:flex;flex-direction:column;justify-content:center}
+  .s16 .timeline{position:relative;height:21cqw;display:grid;grid-template-rows:1fr 4cqw 1fr;align-items:center}
+  .s16 .axis{position:relative;height:100%;display:flex;align-items:center}
+  .s16 .axis::before{content:"";position:absolute;left:5%;right:5%;top:50%;height:1px;background:var(--line)}
+  .s16 .markers{position:relative;display:grid;grid-template-columns:repeat(5,1fr);width:100%;align-items:center}
+  .s16 .marker{display:flex;flex-direction:column;align-items:center;gap:.4cqw;position:relative;z-index:1}
+  .s16 .marker .dot{width:1.1cqw;height:1.1cqw;border-radius:50%;background:#fff;border:.18cqw solid var(--blue);box-shadow:0 0 0 .35cqw #fff}
+  .s16 .marker.now .dot{background:var(--blue);border-color:var(--blue)}
+  .s16 .marker.future .dot{background:#fff;border-color:var(--muted);border-style:dashed}
+  .s16 .marker .yr{font-family:'JetBrains Mono';font-weight:500;font-size:.95cqw;color:var(--navy);letter-spacing:.04em}
+  .s16 .top,.s16 .bot{display:grid;grid-template-columns:repeat(5,1fr)}
+  .s16 .top{align-items:flex-end}
+  .s16 .bot{align-items:flex-start}
+  .s16 .note{padding:0 .8cqw}
+  .s16 .note .h{font-family:'Inter Tight';font-weight:700;font-size:1.1cqw;color:var(--navy);letter-spacing:-.005em;margin:0 0 .3cqw}
+  .s16 .note .b{font-size:.88cqw;line-height:1.5;color:var(--ink-2);margin:0}
+  .s16 .top .note{padding-bottom:1.2cqw;border-bottom:1px solid var(--line);margin-bottom:.6cqw}
+  .s16 .bot .note{padding-top:1.2cqw;border-top:1px solid var(--line);margin-top:.6cqw}
 
-  /* SLIDE 17 — Donut charts */
-  .s17{display:grid;grid-template-columns:.5fr 1.1fr;background:#fff}
-  .s17 .left{background:var(--navy);color:#fff;padding:4cqw 3cqw;display:flex;flex-direction:column;justify-content:center}
-  .s17 .left h2{font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;letter-spacing:-.018em;line-height:1.05;margin:0 0 1.2cqw}
-  .s17 .left .underline{width:4cqw;height:.3cqw;background:var(--blue);border-radius:.15cqw;margin-bottom:1.4cqw}
-  .s17 .left p{font-size:.95cqw;line-height:1.6;color:rgba(255,255,255,.78);margin:0}
-  .s17 .right{padding:3cqw 4cqw;display:flex;flex-direction:column;gap:1.5cqw}
-  .s17 .donuts{display:grid;grid-template-columns:1fr 1fr;gap:2cqw;flex:1}
+  /* === SLIDE 17 — Donut pair === */
+  .s17{display:grid;grid-template-columns:.55fr 1.05fr;background:#fff}
+  .s17 .left{background:var(--navy);color:#fff;padding:5cqw 3.4cqw;display:flex;flex-direction:column;justify-content:center;gap:1cqw}
+  .s17 .left .eyebrow{font-size:.78cqw;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--blue);font-family:'Inter Tight'}
+  .s17 .left h2{font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;letter-spacing:-.018em;line-height:1.05;margin:0}
+  .s17 .left p{font-size:1cqw;line-height:1.6;color:rgba(255,255,255,.72);margin:0}
+  .s17 .right{padding:5cqw 4cqw 4cqw;display:flex;flex-direction:column;gap:1.5cqw;justify-content:center}
+  .s17 .donuts{display:grid;grid-template-columns:1fr 1fr;gap:2cqw}
   .s17 .donut{display:flex;flex-direction:column;align-items:center;gap:.8cqw}
-  .s17 .donut .ti{font-family:'Inter Tight';font-weight:700;font-size:1.3cqw;color:var(--blue-deep);letter-spacing:-.005em}
+  .s17 .donut .ti{font-family:'JetBrains Mono';font-size:.78cqw;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-weight:500}
   .s17 .donut .chart{position:relative;width:14cqw;height:14cqw}
-  .s17 .donut .chart svg{width:100%;height:100%}
-  .s17 .donut .center-pct{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;color:var(--blue-deep);letter-spacing:-.02em}
-  .s17 .right .desc{font-size:.95cqw;line-height:1.55;color:var(--ink-2);margin:0;max-width:60ch}
+  .s17 .donut .chart svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .s17 .donut .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center}
+  .s17 .donut .pct{font-family:'Inter Tight';font-weight:700;font-size:3cqw;color:var(--navy);letter-spacing:-.025em;line-height:1}
+  .s17 .donut .pct-cap{font-family:'JetBrains Mono';font-size:.65cqw;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:.2cqw}
+  .s17 .donut .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:.4cqw .9cqw;font-family:'JetBrains Mono';font-size:.7cqw;color:var(--ink-2)}
+  .s17 .donut .legend span{display:inline-flex;align-items:center;gap:.3cqw}
+  .s17 .donut .legend .sw{width:.5cqw;height:.5cqw;border-radius:50%}
+  .s17 .right .desc{font-size:1cqw;line-height:1.55;color:var(--ink-2);margin:0;max-width:60ch}
 
-  /* SLIDE 18 — Chart pair (bar + area) */
-  .s18{background:#fff}
-  .s18 .titlebar{background:var(--navy);color:#fff;padding:2.4cqw 4cqw}
-  .s18 .titlebar h2{font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;letter-spacing:-.018em;margin:0}
-  .s18 .charts{flex:1;padding:3cqw 4cqw;display:grid;grid-template-columns:1fr 1fr;gap:3cqw}
-  .s18 .ch{display:flex;flex-direction:column;gap:1cqw}
-  .s18 .ch .ti{font-family:'Inter Tight';font-weight:700;font-size:1.3cqw;color:var(--blue-deep);text-align:center}
-  .s18 .ch .area{position:relative;height:14cqw}
-  .s18 .ch .area svg{width:100%;height:100%}
-  .s18 .ch .legend{display:flex;justify-content:center;gap:1.5cqw;font-size:.85cqw;color:var(--ink-2)}
+  /* === SLIDE 18 — Bar + Area chart pair (Swiss) === */
+  .s18{background:#fff;display:flex;flex-direction:column}
+  .s18 .titlebar-clean{padding:4.4cqw 4cqw 1cqw}
+  .s18 .charts{flex:1;padding:1cqw 4cqw 4cqw;display:grid;grid-template-columns:1fr 1fr;gap:3cqw}
+  .s18 .ch{display:flex;flex-direction:column;gap:.6cqw}
+  .s18 .ch .ti{font-family:'JetBrains Mono';font-size:.75cqw;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-weight:500;margin-bottom:.2cqw}
+  .s18 .ch .h{font-family:'Inter Tight';font-weight:700;font-size:1.4cqw;color:var(--navy);letter-spacing:-.005em;margin:0 0 .8cqw}
+  .s18 .ch .area{position:relative;flex:1;min-height:13cqw}
+  .s18 .ch .area svg{width:100%;height:100%;display:block}
+  .s18 .ch .legend{display:flex;gap:1.2cqw;font-family:'JetBrains Mono';font-size:.7cqw;color:var(--ink-2);margin-top:.4cqw}
   .s18 .ch .legend span{display:inline-flex;align-items:center;gap:.4cqw}
-  .s18 .ch .legend .sw{width:.6cqw;height:.6cqw;border-radius:50%}
-  .s18 .ch .meta .h{font-family:'Inter Tight';font-weight:700;font-size:1.1cqw;color:var(--navy);margin:0 0 .2cqw}
-  .s18 .ch .meta .b{font-size:.9cqw;color:var(--ink-2);margin:0}
+  .s18 .ch .legend .sw{width:.5cqw;height:.5cqw;border-radius:50%}
+  .s18 .ch .b{font-size:.88cqw;color:var(--ink-2);margin:0;line-height:1.5;max-width:46ch}
 
-  /* SLIDE 19 — Comparison matrix */
-  .s19{background:#fff}
-  .s19 .titlebar{background:var(--navy);color:#fff;padding:2cqw 4cqw;display:grid;grid-template-columns:.7fr 1.3fr;gap:3cqw;align-items:center}
-  .s19 .titlebar h2{font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;letter-spacing:-.018em;margin:0;line-height:1.02}
-  .s19 .titlebar p{font-size:1cqw;line-height:1.55;color:rgba(255,255,255,.78);margin:0;border-left:.2cqw solid var(--blue);padding-left:1.5cqw}
-  .s19 .matrix{flex:1;padding:2cqw 3cqw 3cqw;display:grid}
-  .s19 table{width:100%;height:100%;border-collapse:collapse;font-family:'Inter Tight'}
-  .s19 th,.s19 td{border:1px solid var(--navy);padding:1cqw 1.4cqw;text-align:center;vertical-align:middle}
-  .s19 thead th{background:var(--navy);color:#fff;font-weight:700;font-size:1cqw;letter-spacing:-.005em;height:5cqw}
-  .s19 thead th:first-child{background:var(--navy-2)}
-  .s19 tbody th{background:var(--blue);color:#fff;font-weight:700;font-size:1cqw;text-align:left;padding-left:1.6cqw}
+  /* === SLIDE 19 — Comparison matrix (hairline) === */
+  .s19{background:#fff;display:flex;flex-direction:column}
+  .s19 .titlebar-clean{padding:4.4cqw 4cqw 1cqw}
+  .s19 .titlebar-clean p{font-size:1.05cqw;line-height:1.55;color:var(--ink-2);margin:0;max-width:60ch}
+  .s19 .matrix{flex:1;padding:1cqw 4cqw 4cqw;display:flex}
+  .s19 table{width:100%;border-collapse:collapse;font-family:'Inter Tight';align-self:stretch}
+  .s19 th,.s19 td{border-bottom:1px solid var(--line);padding:1.1cqw 1.4cqw;text-align:center;vertical-align:middle}
+  .s19 thead th{background:transparent;color:var(--navy);font-weight:700;font-size:1.05cqw;letter-spacing:-.005em;border-bottom:2px solid var(--navy);padding-bottom:.9cqw}
+  .s19 thead th:first-child{text-align:left;font-family:'JetBrains Mono';font-weight:500;font-size:.78cqw;color:var(--muted);text-transform:uppercase;letter-spacing:.14em}
+  .s19 tbody th{background:transparent;color:var(--navy);font-weight:600;font-size:1cqw;text-align:left;letter-spacing:-.005em;padding-left:0;width:30%}
   .s19 tbody td{background:#fff}
-  .s19 .check{width:2.4cqw;height:2.4cqw;border-radius:50%;background:var(--success);color:#fff;display:inline-flex;align-items:center;justify-content:center}
-  .s19 .check svg{width:1.3cqw;height:1.3cqw}
-  .s19 .cross{width:2.4cqw;height:2.4cqw;border-radius:50%;background:var(--red);color:#fff;display:inline-flex;align-items:center;justify-content:center}
-  .s19 .cross svg{width:1.3cqw;height:1.3cqw}
+  .s19 .check{width:1.7cqw;height:1.7cqw;border-radius:50%;background:rgba(46,168,106,.1);color:var(--success);display:inline-flex;align-items:center;justify-content:center}
+  .s19 .check svg{width:1cqw;height:1cqw;stroke-width:2.5}
+  .s19 .cross{width:1.7cqw;height:1.7cqw;border-radius:50%;background:rgba(229,72,77,.08);color:var(--red);display:inline-flex;align-items:center;justify-content:center}
+  .s19 .cross svg{width:1cqw;height:1cqw;stroke-width:2.5}
 
-  /* SLIDE 20 — Brand notes */
-  .s20{background:#fff}
-  .s20 .titlebar{background:var(--navy);color:#fff;padding:2.4cqw 4cqw}
-  .s20 .titlebar h2{font-family:'Inter Tight';font-weight:700;font-size:2.6cqw;letter-spacing:-.018em;margin:0;line-height:1.02}
-  .s20 .titlebar .eyebrow{font-size:.8cqw;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700;font-family:'Inter Tight';margin-bottom:.5cqw}
-  .s20 .body20{flex:1;padding:2.8cqw 4cqw;display:flex;flex-direction:column;gap:1.4cqw}
-  .s20 .body20 .lead{font-family:'Inter Tight';font-weight:700;font-size:1.4cqw;color:var(--navy);margin:0}
-  .s20 .body20 ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6cqw}
-  .s20 .body20 ul li{font-size:1cqw;line-height:1.55;color:var(--ink-2);padding-left:1.4cqw;position:relative}
-  .s20 .body20 ul li::before{content:"·";position:absolute;left:.4cqw;font-weight:700;color:var(--blue);font-size:1.4cqw;top:-.2cqw}
-  .s20 .swrow{margin-top:auto;display:flex;align-items:center;gap:1cqw}
-  .s20 .swrow .swatches{display:flex;gap:.6cqw}
-  .s20 .swrow .sw{width:3.2cqw;height:3.2cqw;border-radius:.8cqw}
-  .s20 .swrow .sw.label{font-family:'JetBrains Mono';font-size:.6cqw;color:var(--muted);display:flex;align-items:flex-end;justify-content:center;padding-bottom:.3cqw;border-radius:0;width:auto}
-  .s20 .swrow .caveat{margin-left:auto;font-size:.85cqw;color:var(--muted);font-family:'JetBrains Mono'}
+  /* === SLIDE 20 — Brand notes (poster style) === */
+  .s20{background:#fff;display:flex;flex-direction:column;padding:4.4cqw 4cqw 4cqw}
+  .s20 .titlebar-clean{padding:0 0 1.6cqw}
+  .s20 .grid{flex:1;display:grid;grid-template-columns:1.4fr 1fr;gap:3cqw}
+  .s20 .typesample{display:flex;flex-direction:column;gap:1.4cqw;justify-content:center}
+  .s20 .typesample .row{display:grid;grid-template-columns:5.5cqw 1fr;align-items:baseline;gap:1.4cqw;padding:.8cqw 0;border-bottom:1px solid var(--line)}
+  .s20 .typesample .row:last-child{border-bottom:0}
+  .s20 .typesample .k{font-family:'JetBrains Mono';font-size:.7cqw;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+  .s20 .typesample .v{color:var(--navy);font-family:'Inter Tight'}
+  .s20 .typesample .v.display{font-size:2.4cqw;font-weight:700;letter-spacing:-.025em;line-height:1}
+  .s20 .typesample .v.h2{font-size:1.6cqw;font-weight:700;letter-spacing:-.018em}
+  .s20 .typesample .v.h3{font-size:1.25cqw;font-weight:700;letter-spacing:-.005em}
+  .s20 .typesample .v.body{font-size:1cqw;font-weight:400;font-family:'Inter';color:var(--ink-2)}
+  .s20 .typesample .v.mono{font-size:.85cqw;font-family:'JetBrains Mono';color:var(--blue-deep);font-weight:500}
+  .s20 .right20{display:flex;flex-direction:column;gap:1.4cqw;justify-content:center}
+  .s20 .palette-row{display:flex;flex-direction:column;gap:.4cqw}
+  .s20 .palette-row .pl{font-family:'JetBrains Mono';font-size:.7cqw;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.2cqw}
+  .s20 .palette-row .swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:.5cqw}
+  .s20 .sw{aspect-ratio:1.1;border-radius:.5cqw;display:flex;align-items:flex-end;justify-content:flex-start;padding:.4cqw .5cqw;font-family:'JetBrains Mono';font-size:.55cqw;color:#fff;letter-spacing:.04em}
+  .s20 .sw.lt{color:var(--ink-2)}
+  .s20 .rules{display:flex;flex-direction:column;gap:.6cqw}
+  .s20 .rules .pl{font-family:'JetBrains Mono';font-size:.7cqw;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.2cqw}
+  .s20 .rules ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.4cqw;font-size:.85cqw;line-height:1.5;color:var(--ink-2)}
+  .s20 .rules li{padding-left:.9cqw;position:relative}
+  .s20 .rules li::before{content:"·";position:absolute;left:.1cqw;font-weight:700;color:var(--blue-deep)}
 
-  /* SLIDE 21 — Logos & icon library */
+  /* === SLIDE 21 — Logos & icon library === */
   .s21{display:grid;grid-template-columns:.85fr 1.15fr;background:#fff}
-  .s21 .left{padding:3cqw 3cqw;display:flex;flex-direction:column;gap:1.4cqw;background:#fff}
-  .s21 .left .head{font-family:'Inter Tight';font-weight:800;font-size:.85cqw;letter-spacing:.18em;text-transform:uppercase;color:var(--navy)}
-  .s21 .logos{display:grid;grid-template-columns:1fr 1fr;gap:1cqw;flex:1}
-  .s21 .lt{border-radius:.8cqw;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;padding:1cqw}
+  .s21 .left{padding:5cqw 3cqw;display:flex;flex-direction:column;gap:1.4cqw;background:#fff}
+  .s21 .head{font-family:'JetBrains Mono';font-weight:500;font-size:.78cqw;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .s21 .logos{display:grid;grid-template-columns:1fr 1fr;gap:.9cqw;flex:1}
+  .s21 .lt{border-radius:.7cqw;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;padding:1.2cqw}
   .s21 .lt.dark{background:var(--navy);border-color:transparent}
-  .s21 .lt img{max-width:80%;max-height:5cqw;object-fit:contain}
+  .s21 .lt img{max-width:78%;max-height:5cqw;object-fit:contain}
   .s21 .lt.dark img{filter:brightness(0) invert(1)}
-  .s21 .right{background:var(--navy);color:#fff;padding:3cqw;display:flex;flex-direction:column;gap:1.4cqw}
-  .s21 .right .head{font-family:'Inter Tight';font-weight:800;font-size:.85cqw;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7)}
-  .s21 .icons{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2cqw;flex:1}
-  .s21 .icons .ic{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.18);border-radius:.8cqw;color:#fff}
-  .s21 .icons .ic svg{width:50%;height:50%;stroke-width:1.4}
+  .s21 .right{background:var(--navy);color:#fff;padding:5cqw 3.4cqw;display:flex;flex-direction:column;gap:1.4cqw;position:relative}
+  .s21 .right .head{color:rgba(255,255,255,.55)}
+  .s21 .icons{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw;flex:1}
+  .s21 .icons .ic{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.12);border-radius:.7cqw;color:#fff}
+  .s21 .icons .ic svg{width:42%;height:42%;stroke-width:1.4}
 
-  /* SLIDE 22 — Product photos */
-  .s22{background:#fff;padding:3.5cqw 4cqw 4cqw}
-  .s22 .head{font-family:'Inter Tight';font-weight:800;font-size:.85cqw;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin:0 0 1.2cqw}
-  .s22 .grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1.4cqw}
-  .s22 .card{background:var(--mist);border:1px solid var(--line);border-radius:1cqw;display:flex;align-items:center;justify-content:center;padding:1cqw;position:relative;overflow:hidden}
-  .s22 .card.alt{background:linear-gradient(135deg,#5DBAEF,#2D8FE8)}
-  .s22 .device{width:80%;background:#fff;border-radius:.8cqw;border:1px solid var(--line);box-shadow:0 6px 20px -10px rgba(11,31,58,.15);overflow:hidden;position:relative}
-  .s22 .device.laptop{aspect-ratio:16/10}
-  .s22 .device.phone{width:auto;height:80%;aspect-ratio:9/19;border-radius:1.2cqw}
-  .s22 .device.monitor{aspect-ratio:16/10}
-  .s22 .device .topbar2{height:1.1cqw;background:var(--mist);display:flex;align-items:center;padding:0 .5cqw;gap:.3cqw;border-bottom:1px solid var(--line)}
-  .s22 .device .topbar2 i{width:.4cqw;height:.4cqw;border-radius:50%;background:var(--line);display:inline-block}
-  .s22 .device .ui{padding:.5cqw;display:flex;flex-direction:column;gap:.3cqw}
-  .s22 .device .ui .b{height:.4cqw;background:var(--line);border-radius:.15cqw}
-  .s22 .device .ui .b.a{background:var(--blue);width:30%}
-  .s22 .device .ui .b.s{width:60%}
-  .s22 .device .ui .b.l{width:40%}
-  .s22 .device .ui .row{display:flex;gap:.4cqw;align-items:center}
-  .s22 .device .ui .dot{width:.8cqw;height:.8cqw;border-radius:50%;background:var(--success)}
-  .s22 .device .ui .ringd{width:1.4cqw;height:1.4cqw;border-radius:50%;border:.18cqw solid var(--blue);border-top-color:var(--success)}
+  /* === SLIDE 22 — Product photos (real device frames) === */
+  .s22{background:#fff;padding:4.4cqw 4cqw 4cqw;display:flex;flex-direction:column}
+  .s22 .titlebar-clean{padding:0 0 1.6cqw}
+  .s22 .grid{flex:1;display:grid;grid-template-columns:1.2fr 1fr 1.2fr;grid-template-rows:1fr 1fr;gap:1cqw}
+  .s22 .card{background:var(--mist);border:1px solid var(--line);border-radius:.9cqw;display:flex;align-items:center;justify-content:center;padding:1.2cqw;position:relative;overflow:hidden}
+  .s22 .card.tall{grid-row:span 2}
+  .s22 .card.dk{background:linear-gradient(135deg,#1B3A66 0%,#0B1F3A 100%)}
+  /* device frames */
+  .s22 .device{background:#fff;border-radius:.7cqw;border:1px solid var(--line);box-shadow:0 8px 24px -10px rgba(11,31,58,.18);overflow:hidden;display:flex;flex-direction:column}
+  .s22 .device.dk{background:#0B1F3A;border-color:rgba(255,255,255,.1)}
+  .s22 .device.laptop{width:90%;aspect-ratio:16/10}
+  .s22 .device.phone{height:88%;aspect-ratio:9/19;border-radius:1cqw;border-width:.18cqw;border-color:#0B1F3A}
+  .s22 .device.monitor{width:90%;aspect-ratio:16/10}
+  .s22 .device .topbar{display:flex;align-items:center;height:1cqw;padding:0 .5cqw;gap:.25cqw;background:var(--mist);border-bottom:1px solid var(--line);flex-shrink:0}
+  .s22 .device.dk .topbar{background:#06152D;border-color:rgba(255,255,255,.06)}
+  .s22 .device .topbar i{width:.32cqw;height:.32cqw;border-radius:50%;background:var(--line);display:inline-block}
+  .s22 .device.dk .topbar i{background:rgba(255,255,255,.2)}
+  .s22 .device .ui{padding:.55cqw;display:flex;flex-direction:column;gap:.3cqw;flex:1;font-family:'JetBrains Mono';font-size:.42cqw}
+  .s22 .device.dk .ui{color:rgba(255,255,255,.85)}
+  .s22 .b{height:.32cqw;background:var(--line);border-radius:.1cqw}
+  .s22 .device.dk .b{background:rgba(255,255,255,.12)}
+  .s22 .b.a{background:var(--blue);width:24%}
+  .s22 .b.s{width:55%}.s22 .b.l{width:34%}.s22 .b.f{width:80%}
+  .s22 .row{display:flex;gap:.3cqw;align-items:center}
+  .s22 .pill{font-size:.36cqw;padding:.1cqw .35cqw;border-radius:.18cqw;background:rgba(46,168,106,.12);color:var(--success);font-weight:500;letter-spacing:.04em}
+  .s22 .pill.r{background:rgba(229,72,77,.1);color:var(--red)}
+  .s22 .device.dk .pill{background:rgba(46,168,106,.18)}
+  .s22 .ringd{width:1cqw;height:1cqw;border-radius:50%;border:.16cqw solid var(--blue);border-top-color:var(--success);flex-shrink:0}
+  .s22 .stat{font-family:'Inter Tight';font-weight:700;font-size:1.1cqw;color:var(--navy);letter-spacing:-.02em;line-height:1}
+  .s22 .device.dk .stat{color:#fff}
+  .s22 .stat-cap{font-size:.36cqw;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+  .s22 .device.dk .stat-cap{color:rgba(255,255,255,.5)}
+  .s22 .barcontainer{display:flex;align-items:flex-end;gap:.18cqw;height:1.4cqw;padding-top:.2cqw}
+  .s22 .barcontainer i{flex:1;background:var(--blue);border-radius:.05cqw;display:block}
+  .s22 .barcontainer i:nth-child(1){height:30%}
+  .s22 .barcontainer i:nth-child(2){height:55%}
+  .s22 .barcontainer i:nth-child(3){height:42%}
+  .s22 .barcontainer i:nth-child(4){height:78%;background:var(--success)}
+  .s22 .barcontainer i:nth-child(5){height:65%}
+  .s22 .barcontainer i:nth-child(6){height:90%;background:var(--success)}
+  .s22 .barcontainer i:nth-child(7){height:50%}
 
+  /* === SLIDE TOC links === */
   .doc-footer{padding:48px 32px;text-align:center;color:var(--muted);font-size:13px}
   .doc-footer a{color:var(--blue-deep);font-weight:600;text-decoration:none}
   @media(max-width:880px){.deck{padding:16px}}
@@ -380,244 +399,213 @@
 <div class="topbar">
   <div class="topbar-inner">
     <a href="index.html" style="display:inline-flex;align-items:center;gap:8px"><img src="assets/image30.png" alt="Foley"></a>
-    <div>22 slide layouts · 1:1 with original PDF · v0.3</div>
+    <div>22 slide layouts · v0.4 · tier‑1 redesign</div>
     <a href="brandbook.html">Brandbook →</a>
   </div>
 </div>
 
 <div class="deck">
 
-  <!-- 01 COVER · MAIN TITLE -->
+  <!-- 01 COVER · full-bleed photo -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">01 / 22</span><span class="name">Main Title</span><span>Cover · light w/ shape sidebar</span></div>
+    <div class="stage-meta"><span class="num">01 / 22</span><span class="name">Cover</span><span>Full‑bleed hero photo + huge title</span></div>
     <div class="slide">
       <div class="s s1">
-        <div class="navy-bar"></div>
-        <div class="grey-shape"></div>
-        <div class="light-bottom"></div>
-        <div class="accent-tint"></div>
-        <div class="accent-blue-stripe"></div>
-        <div class="accent-blue-stripe b"></div>
-        <div class="body">
-          <h1>Main Title<br/>Goes Here</h1>
-          <span class="pill">Date or Subtitle</span>
+        <div class="photo-bg"></div>
+        <div class="photo-overlay"></div>
+        <div class="grain"></div>
+        <div class="header dark">
+          <span class="lm"><img src="assets/image30.png" alt="Foley"></span>
+          <span>Investor briefing · Q2 2026</span>
         </div>
+        <div class="body">
+          <span class="eyebrow">Foley platform · 2026</span>
+          <h1>Smarter data.<br/>Lower risk.<br/>Safer <em>fleets</em>.</h1>
+          <p class="sub">A 30‑year compliance leader, rebuilt as a modern data platform for commercial transportation.</p>
+        </div>
+        <div class="footer dark"><span>foley.io</span><span>2026.05 · Confidential</span></div>
       </div>
     </div>
   </div>
 
   <!-- 02 COVER WITH PHOTO + CONTACTS -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">02 / 22</span><span class="name">Title with photo + contacts</span><span>Cover variant — split + driver photo</span></div>
+    <div class="stage-meta"><span class="num">02 / 22</span><span class="name">Title with photo + contacts</span><span>Split — text + driver photo</span></div>
     <div class="slide">
       <div class="s s2">
         <div class="left">
-          <div class="eyebrow-mark"><img src="assets/image29.png" alt=""></div>
-          <h1>Title goes<br/>here.</h1>
-          <div class="sub">Subtitle goes here.</div>
-          <span class="pill">Date or subtitle</span>
+          <span class="eyebrow">Briefing · May 2026</span>
+          <h1>Title<br/>goes <em>here</em>.</h1>
+          <p class="sub">Subtitle goes here — a short framing line for the meeting context.</p>
           <div class="contacts">
-            <div class="contact"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>marketing@foley.io</div>
-            <div class="contact"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>foley.io</div>
+            <div class="contact"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>marketing@foley.io</div>
+            <div class="contact"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>foley.io</div>
+            <div class="contact"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>May 2026</div>
           </div>
         </div>
         <div class="right">
-          <div class="silhouette">
-            <svg viewBox="0 0 200 200" fill="none">
-              <circle cx="100" cy="80" r="32" stroke="#fff" stroke-width="2"/>
-              <path d="M40 200c0-33 27-60 60-60s60 27 60 60" stroke="#fff" stroke-width="2"/>
-              <path d="M70 80c-2-12 5-25 18-30 12-4 24 2 30 12 5 8 4 18-2 26" stroke="#fff" stroke-width="2"/>
-            </svg>
-          </div>
-          <div class="accent-shape"></div>
-          <div class="photo-cap">photo · driver in cab</div>
+          <div class="photo-bg"></div>
+          <div class="photo-overlay"></div>
         </div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Briefing</span></div>
       </div>
     </div>
   </div>
 
-  <!-- 03 SECTION DIVIDER · BLUE -->
+  <!-- 03 SECTION DIVIDER · PHOTO -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">03 / 22</span><span class="name">Section title (blue)</span><span>Section divider · light gradient</span></div>
+    <div class="stage-meta"><span class="num">03 / 22</span><span class="name">Section title — photo</span><span>Cinematic section break</span></div>
     <div class="slide">
       <div class="s s3">
-        <div class="ring"><img src="assets/image29.png" alt=""></div>
+        <div class="photo-bg"></div>
+        <div class="photo-overlay"></div>
+        <div class="grain"></div>
+        <div class="num">01</div>
+        <div class="header dark"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Section · 01</span></div>
         <div class="body">
-          <div class="eyebrow">Section</div>
+          <span class="eyebrow">Part one</span>
           <h2>Section title goes<br/>here in two lines</h2>
-          <div class="underline"></div>
+          <p class="lede">A short framing line that previews what's next.</p>
         </div>
-        <div class="wordmark"><img src="assets/image30.png" alt="Foley"></div>
+        <div class="footer dark"><span>foley.io</span><span>03 / 22</span></div>
       </div>
     </div>
   </div>
 
-  <!-- 04 SECTION DIVIDER · NAVY -->
+  <!-- 04 SECTION DIVIDER · NAVY GRADIENT -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">04 / 22</span><span class="name">Section title (navy)</span><span>Section divider · dark gradient</span></div>
+    <div class="stage-meta"><span class="num">04 / 22</span><span class="name">Section title — navy</span><span>Pure dark gradient with numeral</span></div>
     <div class="slide">
       <div class="s s4">
-        <div class="ring"><img src="assets/image29.png" alt=""></div>
+        <div class="grain"></div>
+        <div class="num">02</div>
+        <div class="header dark"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Section · 02</span></div>
         <div class="body">
-          <div class="eyebrow">Section</div>
+          <span class="eyebrow">Part two</span>
           <h2>Section title goes<br/>here in two lines</h2>
-          <div class="underline"></div>
+          <p class="lede">A short framing line that previews what's next.</p>
         </div>
-        <div class="wordmark"><img src="assets/image30.png" alt="Foley"></div>
+        <div class="footer dark"><span>foley.io</span><span>04 / 22</span></div>
       </div>
     </div>
   </div>
 
   <!-- 05 AGENDA -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">05 / 22</span><span class="name">Agenda</span><span>Photo left + 6 numbered items</span></div>
+    <div class="stage-meta"><span class="num">05 / 22</span><span class="name">Agenda</span><span>Photo left + numbered list</span></div>
     <div class="slide">
       <div class="s s5">
-        <div class="photo">
-          <svg viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="80" r="30" stroke="#fff" stroke-width="2"/>
-            <path d="M40 200c0-33 27-60 60-60s60 27 60 60" stroke="#fff" stroke-width="2"/>
-            <path d="M50 110c-15 5-25 18-25 35M150 110c15 5 25 18 25 35" stroke="#fff" stroke-width="2"/>
-            <rect x="20" y="60" width="40" height="55" rx="3" stroke="#fff" stroke-width="2"/>
-          </svg>
+        <div class="photo-side">
+          <div class="photo-bg"></div>
+          <div class="photo-overlay"></div>
         </div>
         <div class="right">
-          <div class="accent-tint"></div>
-          <div class="accent-circle"></div>
-          <div class="accent-bottom"></div>
+          <span class="eyebrow">Today</span>
           <h2>Agenda</h2>
           <ol>
             <li><span class="t">First item</span></li>
-            <li class="alt"><span class="t">Second item</span></li>
+            <li><span class="t">Second item</span></li>
             <li><span class="t">Third item</span></li>
-            <li class="alt"><span class="t">Fourth item</span></li>
+            <li><span class="t">Fourth item</span></li>
             <li><span class="t">Fifth item</span></li>
-            <li class="alt"><span class="t">Sixth item</span></li>
+            <li><span class="t">Sixth item</span></li>
           </ol>
         </div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Agenda · 35 min</span></div>
+        <div class="footer light"><span>foley.io</span><span>05 / 22</span></div>
       </div>
     </div>
   </div>
 
-  <!-- 06 TITLE LEFT NAVY + 3 CARDS WITH CIRCLE PHOTOS -->
+  <!-- 06 TITLE + 3 PHOTO CARDS -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">06 / 22</span><span class="name">Title + 3 cards w/ circle photos</span><span>Navy panel + 3 stacked cards</span></div>
+    <div class="stage-meta"><span class="num">06 / 22</span><span class="name">Title + 3 photo cards</span><span>Navy panel + circle photo cards</span></div>
     <div class="slide">
       <div class="s s6">
-        <div class="mark" style="filter:brightness(0) invert(1)"><img src="assets/image29.png" alt=""></div>
         <div class="left">
+          <div class="grain"></div>
+          <span class="eyebrow">Section</span>
           <h2>Title goes<br/>here</h2>
-          <div class="underline"></div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula.</p>
+          <p>A short framing paragraph that introduces the three points laid out on the right.</p>
         </div>
         <div class="right">
-          <div class="card">
-            <div class="photo"></div>
-            <div class="text">
-              <span class="pill">Sub Title Goes Here</span>
-              <p class="body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="photo"></div>
-            <div class="text">
-              <span class="pill">Sub Title Goes Here</span>
-              <p class="body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="photo"></div>
-            <div class="text">
-              <span class="pill">Sub Title Goes Here</span>
-              <p class="body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p>
-            </div>
-          </div>
+          <div class="pcard"><div class="ph a"></div><div><div class="label">Subtitle</div><div class="sub">Subtitle goes here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
+          <div class="pcard"><div class="ph b"></div><div><div class="label">Subtitle</div><div class="sub">Subtitle goes here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
+          <div class="pcard"><div class="ph c"></div><div><div class="label">Subtitle</div><div class="sub">Subtitle goes here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
         </div>
+        <div class="header dark" style="left:auto;right:3.4cqw"><span class="lm" style="margin-left:auto"><img src="assets/image30.png" alt="Foley"></span></div>
       </div>
     </div>
   </div>
 
-  <!-- 07 TITLE PANEL LEFT + 3 NUMBERED ITEMS RIGHT -->
+  <!-- 07 TITLE PANEL + 3 NUMBERED -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">07 / 22</span><span class="name">Title panel + 3 numbered items</span><span>Navy panel left, content right</span></div>
+    <div class="stage-meta"><span class="num">07 / 22</span><span class="name">Title panel + 3 numbered</span><span>Mono numerals, hairline rules</span></div>
     <div class="slide">
       <div class="s s7">
-        <div class="mark"><img src="assets/image29.png" alt=""></div>
         <div class="left">
+          <span class="eyebrow">Section</span>
           <h2>Title<br/>here</h2>
-          <div class="underline"></div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
         <div class="right">
-          <div class="item">
-            <div class="num">1</div>
-            <div>
-              <div class="sub">Subtitle here</div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="num">2</div>
-            <div>
-              <div class="sub">Subtitle here</div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="num">3</div>
-            <div>
-              <div class="sub">Subtitle here</div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p>
-            </div>
-          </div>
+          <div class="item"><div class="n">01</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
+          <div class="item"><div class="n">02</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
+          <div class="item"><div class="n">03</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
         </div>
+        <div class="header light" style="left:auto;right:3.4cqw"><span class="lm" style="margin-left:auto"><img src="assets/image30.png" alt="Foley"></span></div>
+        <div class="footer light" style="left:auto;right:3.4cqw"><span>07 / 22</span></div>
       </div>
     </div>
   </div>
 
-  <!-- 08 4 NUMBERED ITEMS LEFT + NAVY PANEL RIGHT -->
+  <!-- 08 4 NUMBERED + NAVY PANEL -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">08 / 22</span><span class="name">4 numbered items + navy panel</span><span>Mirrored layout — content left, panel right</span></div>
+    <div class="stage-meta"><span class="num">08 / 22</span><span class="name">4 numbered + navy panel</span><span>Mirrored — content left, panel right</span></div>
     <div class="slide">
       <div class="s s8">
-        <div class="mark"><img src="assets/image29.png" alt=""></div>
         <div class="left">
-          <div class="item"><div class="num">1</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
-          <div class="item"><div class="num">2</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
-          <div class="item"><div class="num">3</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
-          <div class="item"><div class="num">4</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
+          <div class="item"><div class="n">01</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
+          <div class="item"><div class="n">02</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
+          <div class="item"><div class="n">03</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
+          <div class="item"><div class="n">04</div><div><div class="sub">Subtitle here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p></div></div>
         </div>
         <div class="right">
-          <h2>All caps title here</h2>
-          <div class="underline"></div>
+          <span class="eyebrow">Why this matters</span>
+          <h2>Title goes here</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula. Nullam semper sit amet felis quis pharetra.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula.</p>
         </div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span></div>
+        <div class="footer light"><span>foley.io</span><span style="color:rgba(255,255,255,.5)">08 / 22</span></div>
       </div>
     </div>
   </div>
 
   <!-- 09 TITLE BAR + 2 CARDS -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">09 / 22</span><span class="name">Title bar + 2 cards</span><span>Two-up grid with circle markers</span></div>
+    <div class="stage-meta"><span class="num">09 / 22</span><span class="name">Title + 2 cards</span><span>Two‑up grid · Linear‑style cards</span></div>
     <div class="slide">
       <div class="s s9">
-        <div class="mark" style="filter:brightness(0) invert(1)"><img src="assets/image29.png" alt=""></div>
-        <div class="titlebar"><h2>All caps title here</h2></div>
-        <div class="grid">
-          <div class="card">
-            <div class="dot"></div>
-            <div class="sub">Subtitle Goes Here</div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Section</span></div>
+        <div class="titlebar-clean">
+          <div><div class="eyebrow">Two of two</div><h2>Title goes here</h2></div>
+          <div class="meta">09 / 22</div>
+        </div>
+        <div class="grid-cards">
+          <div class="nc">
+            <div class="n">01</div>
+            <div class="sub">Subtitle goes here</div>
             <ul>
               <li>Paragraph or bullets can go here</li>
               <li>Bullets can go here</li>
               <li>Adjust text size to best fill the space</li>
-              <li>Please ensure the text size in this column is the same/consistent with the text size in the right column</li>
+              <li>Please ensure the text size in this column is the same as the right column</li>
             </ul>
           </div>
-          <div class="card">
-            <div class="dot"></div>
-            <div class="sub">Subtitle Goes Here</div>
+          <div class="nc">
+            <div class="n">02</div>
+            <div class="sub">Subtitle goes here</div>
             <ul>
               <li>Paragraph or bullets can go here</li>
               <li>Bullets can go here</li>
@@ -625,563 +613,565 @@
             </ul>
           </div>
         </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
 
   <!-- 10 TITLE BAR + 3 CARDS -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">10 / 22</span><span class="name">Title bar + 3 cards</span><span>Three-up grid with circle markers</span></div>
+    <div class="stage-meta"><span class="num">10 / 22</span><span class="name">Title + 3 cards</span><span>Three‑up grid</span></div>
     <div class="slide">
       <div class="s s10">
-        <div class="mark" style="filter:brightness(0) invert(1)"><img src="assets/image29.png" alt=""></div>
-        <div class="titlebar"><h2>All caps title here</h2></div>
-        <div class="grid">
-          <div class="card"><div class="dot"></div><div class="sub">Subtitle Goes Here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to best fill the space</li><li>Ensure the text size all columns are the same</li></ul></div>
-          <div class="card"><div class="dot"></div><div class="sub">Subtitle Goes Here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to best fill the space</li><li>Ensure the text size all columns are the same</li></ul></div>
-          <div class="card"><div class="dot"></div><div class="sub">Subtitle Goes Here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to best fill the space</li><li>Ensure the text size all columns are the same</li></ul></div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Section</span></div>
+        <div class="titlebar-clean">
+          <div><div class="eyebrow">Three of three</div><h2>Title goes here</h2></div>
+          <div class="meta">10 / 22</div>
         </div>
+        <div class="grid-cards">
+          <div class="nc"><div class="n">01</div><div class="sub">Subtitle goes here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to best fill the space</li><li>Ensure consistency across columns</li></ul></div>
+          <div class="nc"><div class="n">02</div><div class="sub">Subtitle goes here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to best fill the space</li><li>Ensure consistency across columns</li></ul></div>
+          <div class="nc"><div class="n">03</div><div class="sub">Subtitle goes here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to best fill the space</li><li>Ensure consistency across columns</li></ul></div>
+        </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
 
   <!-- 11 TITLE BAR + 4 CARDS -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">11 / 22</span><span class="name">Title bar + 4 cards</span><span>Four-up grid with circle markers</span></div>
+    <div class="stage-meta"><span class="num">11 / 22</span><span class="name">Title + 4 cards</span><span>Four‑up grid · tighter</span></div>
     <div class="slide">
       <div class="s s11">
-        <div class="mark" style="filter:brightness(0) invert(1)"><img src="assets/image29.png" alt=""></div>
-        <div class="titlebar"><h2>All caps title here</h2></div>
-        <div class="grid">
-          <div class="card"><div class="dot"></div><div class="sub">Subtitle<br/>Goes Here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to best fill the space</li><li>Ensure the text size all columns are the same</li></ul></div>
-          <div class="card"><div class="dot"></div><div class="sub">Subtitle<br/>Goes Here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to best fill the space</li><li>Ensure the text size all columns are the same</li></ul></div>
-          <div class="card"><div class="dot"></div><div class="sub">Subtitle<br/>Goes Here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to best fill the space</li><li>Ensure the text size all columns are the same</li></ul></div>
-          <div class="card"><div class="dot"></div><div class="sub">Subtitle<br/>Goes Here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to best fill the space</li><li>Ensure the text size all columns are the same</li></ul></div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Section</span></div>
+        <div class="titlebar-clean">
+          <div><div class="eyebrow">Four of four</div><h2>Title goes here</h2></div>
+          <div class="meta">11 / 22</div>
         </div>
+        <div class="grid-cards">
+          <div class="nc"><div class="n">01</div><div class="sub">Subtitle goes here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to fill the space</li><li>Keep columns consistent</li></ul></div>
+          <div class="nc"><div class="n">02</div><div class="sub">Subtitle goes here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to fill the space</li><li>Keep columns consistent</li></ul></div>
+          <div class="nc"><div class="n">03</div><div class="sub">Subtitle goes here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to fill the space</li><li>Keep columns consistent</li></ul></div>
+          <div class="nc"><div class="n">04</div><div class="sub">Subtitle goes here</div><ul><li>Paragraph or bullets can go here</li><li>Adjust text size to fill the space</li><li>Keep columns consistent</li></ul></div>
+        </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
 
   <!-- 12 FOUR QUADRANTS -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">12 / 22</span><span class="name">Four quadrants</span><span>Title + four pill-subtitle blocks</span></div>
+    <div class="stage-meta"><span class="num">12 / 22</span><span class="name">Four quadrants</span><span>Crosshair grid · mono numerals</span></div>
     <div class="slide">
       <div class="s s12">
-        <div class="mark"><img src="assets/image29.png" alt=""></div>
-        <h2>Title goes here</h2>
-        <div class="underline"></div>
-        <div class="quads">
-          <div class="quad"><span class="pill">Sub Title Goes Here</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula.</p></div>
-          <div class="quad"><span class="pill">Adjust Length as Needed</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula.</p></div>
-          <div class="quad"><span class="pill">Adjust Length to Avoid Two Lines of Text</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula.</p></div>
-          <div class="quad"><span class="pill">Sub Title</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula.</p></div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Section</span></div>
+        <div class="titlebar-clean">
+          <div><div class="eyebrow">Four areas</div><h2>Title goes here</h2></div>
+          <div class="meta">12 / 22</div>
         </div>
+        <div class="quads">
+          <div class="quad"><div class="n">01</div><div class="sub">Subtitle goes here</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet.</p></div>
+          <div class="quad"><div class="n">02</div><div class="sub">Adjust length as needed</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet.</p></div>
+          <div class="quad"><div class="n">03</div><div class="sub">Adjust length to avoid two lines</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet.</p></div>
+          <div class="quad"><div class="n">04</div><div class="sub">Subtitle</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet.</p></div>
+        </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
 
   <!-- 13 SOCIAL PROOF -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">13 / 22</span><span class="name">Social Proof</span><span>4 testimonials, alternating navy/blue</span></div>
+    <div class="stage-meta"><span class="num">13 / 22</span><span class="name">Social proof</span><span>Four testimonials · clean white cards</span></div>
     <div class="slide">
       <div class="s s13">
-        <div class="mark"><img src="assets/image29.png" alt=""></div>
-        <h2>Social proof</h2>
-        <div class="underline"></div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Trustpilot · verified reviews</span></div>
+        <div class="titlebar-clean">
+          <div><div class="eyebrow">4.3★ on Trustpilot · 1,124 reviews</div><h2>Social proof</h2></div>
+          <div class="meta">13 / 22</div>
+        </div>
         <div class="grid">
-          <div class="card navy">
-            <div class="avatar">BS</div>
-            <blockquote>In a world flooded with marketing noise, Thynk Unlimited stands out as a beacon of creativity and effectiveness.</blockquote>
-            <div class="who"><span class="name">Benjamin Shah</span><span class="stars">★★★★★</span></div>
+          <div class="card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Hiring went from a three‑week cycle to under a week. Driver gets in the cab, not in a queue."</blockquote>
+            <div class="who"><div class="av a"></div><div><div class="name">Benjamin Shah</div><div class="role">Recruiter · 80‑truck fleet</div></div></div>
           </div>
-          <div class="card blue">
-            <div class="avatar">DF</div>
-            <blockquote>In a world flooded with marketing noise, Thynk Unlimited stands out as a beacon of creativity and effectiveness.</blockquote>
-            <div class="who"><span class="name">Drew Feig</span><span class="stars">★★★★★</span></div>
+          <div class="card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Audit risk is now a KPI on our weekly review. Before Foley, that was impossible."</blockquote>
+            <div class="who"><div class="av b"></div><div><div class="name">Drew Feig</div><div class="role">Director of Safety · regional carrier</div></div></div>
           </div>
-          <div class="card blue">
-            <div class="avatar">RM</div>
-            <blockquote>In a world flooded with marketing noise, Thynk Unlimited stands out as a beacon of creativity and effectiveness.</blockquote>
-            <div class="who"><span class="name">Reese Miller</span><span class="stars">★★★★★</span></div>
+          <div class="card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Navigator caught a Clearinghouse mismatch on a Friday. We would have lost a contract Monday."</blockquote>
+            <div class="who"><div class="av c"></div><div><div class="name">Reese Miller</div><div class="role">Compliance lead · waste hauler</div></div></div>
           </div>
-          <div class="card navy">
-            <div class="avatar">RS</div>
-            <blockquote>In a world flooded with marketing noise, Thynk Unlimited stands out as a beacon of creativity and effectiveness.</blockquote>
-            <div class="who"><span class="name">Rufus Stewart</span><span class="stars">★★★★★</span></div>
+          <div class="card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"From scattered spreadsheets to one operating picture. The CFO asks fewer questions, not more."</blockquote>
+            <div class="who"><div class="av d"></div><div><div class="name">Rufus Stewart</div><div class="role">VP of Operations · long‑haul</div></div></div>
           </div>
         </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- 14 TITLE + 6-PHOTO COLLAGE -->
+  <!-- 14 PHOTO COLLAGE -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">14 / 22</span><span class="name">Title + 6-photo collage</span><span>Navy panel left + 2×3 photo grid</span></div>
+    <div class="stage-meta"><span class="num">14 / 22</span><span class="name">Title + photo collage</span><span>Bento grid with thematic photos</span></div>
     <div class="slide">
       <div class="s s14">
-        <div class="mark" style="filter:brightness(0) invert(1)"><img src="assets/image29.png" alt=""></div>
         <div class="left">
-          <h2>All caps<br/>title here</h2>
-          <div class="underline"></div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula. Nullam semper sit amet felis quis pharetra. In hac habitasse platea dictumst.</p>
+          <div class="grain"></div>
+          <span class="eyebrow">Industries</span>
+          <h2>Where Foley<br/>operates</h2>
+          <p>Real fleets, real depots, real dispatch — Foley powers compliance and screening across seven industries from coast to coast.</p>
         </div>
         <div class="right">
-          <div class="ph"><span class="label">truck · highway</span></div>
-          <div class="ph b"><span class="label">driver · cab</span></div>
-          <div class="ph c"><span class="label">depot</span></div>
-          <div class="ph"><span class="label">excavator</span></div>
-          <div class="ph c"><span class="label">crew · site</span></div>
-          <div class="ph b"><span class="label">fleet · road</span></div>
+          <div class="ph a"><span class="lab">truck · highway</span></div>
+          <div class="ph b"><span class="lab">depot</span></div>
+          <div class="ph c"><span class="lab">aerial</span></div>
+          <div class="ph d"><span class="lab">driver</span></div>
+          <div class="ph e"><span class="lab">crew</span></div>
         </div>
+        <div class="header dark" style="left:auto;right:3.4cqw"><span class="lm" style="margin-left:auto"><img src="assets/image30.png" alt="Foley"></span></div>
       </div>
     </div>
   </div>
 
-  <!-- 15 FOLEY FLYWHEEL -->
+  <!-- 15 FLYWHEEL -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">15 / 22</span><span class="name">Foley Flywheel</span><span>5-segment circular flywheel</span></div>
+    <div class="stage-meta"><span class="num">15 / 22</span><span class="name">Foley Flywheel</span><span>5‑segment radial · refined typography</span></div>
     <div class="slide">
       <div class="s s15">
-        <div class="mark"><img src="assets/image29.png" alt=""></div>
-        <h2>Foley Flywheel</h2>
-        <div class="underline"></div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>How we compound</span></div>
+        <div class="titlebar-clean"><div><div class="eyebrow">The loop</div><h2>Foley Flywheel</h2></div><div class="meta">15 / 22</div></div>
         <div class="stage15">
           <div class="wheel">
             <svg viewBox="0 0 200 200" style="width:100%;height:100%;display:block">
               <defs>
-                <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-                  <path d="M0,0 L10,5 L0,10 z" fill="#2D8FE8"/>
-                </marker>
+                <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="1.5" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
               </defs>
-              <!-- 5 wedges (puzzle-like ring) -->
               <g transform="translate(100 100)">
-                <!-- Wedge 1: top (Great People) — Navy -->
+                <!-- 5 wedges, refined gradient palette -->
                 <path d="M 0 -82 A 82 82 0 0 1 78 -25 L 47 -15 A 50 50 0 0 0 0 -50 Z" fill="#0B1F3A"/>
-                <!-- Wedge 2: right (Dominant Vertical Solutions) — Blue -->
-                <path d="M 78 -25 A 82 82 0 0 1 48 66 L 29 40 A 50 50 0 0 0 47 -15 Z" fill="#2D8FE8"/>
-                <!-- Wedge 3: bottom-right (Marketing & Sales) — Sky -->
-                <path d="M 48 66 A 82 82 0 0 1 -48 66 L -29 40 A 50 50 0 0 0 29 40 Z" fill="#5DBAEF"/>
-                <!-- Wedge 4: bottom-left (6-Star Customer) — Muted -->
-                <path d="M -48 66 A 82 82 0 0 1 -78 -25 L -47 -15 A 50 50 0 0 0 -29 40 Z" fill="#6B7B8E"/>
-                <!-- Wedge 5: left (ARR Growth) — Blue Deep -->
-                <path d="M -78 -25 A 82 82 0 0 1 0 -82 L 0 -50 A 50 50 0 0 0 -47 -15 Z" fill="#1B6FBF"/>
-                <!-- Inner outline circle -->
-                <circle cx="0" cy="0" r="50" fill="none" stroke="#fff" stroke-width="1.5"/>
-                <circle cx="0" cy="0" r="82" fill="none" stroke="#fff" stroke-width="1.5"/>
-                <!-- Outer arrow ring -->
-                <circle cx="0" cy="0" r="92" fill="none" stroke="#2D8FE8" stroke-width="1.2" stroke-dasharray="240 8 4 4"/>
-                <!-- Arrowheads on outer ring -->
-                <path d="M 92 0 L 86 -4 L 86 4 Z" fill="#2D8FE8"/>
-                <path d="M -28 88 L -22 84 L -27 78 Z" fill="#2D8FE8"/>
-                <path d="M -88 -28 L -82 -32 L -84 -25 Z" fill="#2D8FE8"/>
-              </g>
-              <!-- icons at each wedge -->
-              <g fill="#fff" stroke="#fff" stroke-width="1.4" fill-opacity=".95">
-                <!-- top: megaphone -->
-                <g transform="translate(96 30)">
-                  <path d="M 0 4 L 8 0 L 8 12 L 0 8 Z" fill="#fff" stroke="none"/>
-                  <rect x="-4" y="3" width="4" height="6" fill="#fff" stroke="none"/>
-                </g>
-                <!-- right: cube/network -->
-                <g transform="translate(150 90)" fill="none">
-                  <circle cx="0" cy="0" r="3"/>
-                  <circle cx="-6" cy="6" r="2.4"/>
-                  <circle cx="6" cy="6" r="2.4"/>
-                  <line x1="0" y1="3" x2="-5" y2="5"/>
-                  <line x1="0" y1="3" x2="5" y2="5"/>
-                </g>
-                <!-- bottom-right: factory -->
-                <g transform="translate(132 145)" fill="#fff" stroke="none">
-                  <rect x="-5" y="0" width="3" height="6"/>
-                  <rect x="-1" y="-2" width="3" height="8"/>
-                  <rect x="3" y="0" width="3" height="6"/>
-                </g>
-                <!-- bottom-left: stopwatch -->
-                <g transform="translate(68 145)" fill="none">
-                  <circle cx="0" cy="2" r="5"/>
-                  <line x1="0" y1="2" x2="3" y2="-1"/>
-                  <line x1="0" y1="-3" x2="0" y2="-5"/>
-                </g>
-                <!-- left: bar chart up -->
-                <g transform="translate(50 90)" fill="#fff" stroke="none">
-                  <rect x="-5" y="2" width="2" height="5"/>
-                  <rect x="-1" y="-1" width="2" height="8"/>
-                  <rect x="3" y="-3" width="2" height="10"/>
-                </g>
+                <path d="M 78 -25 A 82 82 0 0 1 48 66 L 29 40 A 50 50 0 0 0 47 -15 Z" fill="#1B6FBF"/>
+                <path d="M 48 66 A 82 82 0 0 1 -48 66 L -29 40 A 50 50 0 0 0 29 40 Z" fill="#2D8FE8"/>
+                <path d="M -48 66 A 82 82 0 0 1 -78 -25 L -47 -15 A 50 50 0 0 0 -29 40 Z" fill="#5DBAEF"/>
+                <path d="M -78 -25 A 82 82 0 0 1 0 -82 L 0 -50 A 50 50 0 0 0 -47 -15 Z" fill="#A8D4F2"/>
+                <!-- Inner & outer rings -->
+                <circle cx="0" cy="0" r="50" fill="none" stroke="#fff" stroke-width="1.2"/>
+                <circle cx="0" cy="0" r="82" fill="none" stroke="#fff" stroke-width="1.2"/>
+                <!-- subtle inner circle to seat the disc -->
+                <circle cx="0" cy="0" r="50" fill="#fff"/>
+                <!-- Outer rotation indicator: arc with arrow -->
+                <path d="M 86 -32 A 92 92 0 0 1 32 86" fill="none" stroke="#2D8FE8" stroke-width="1" stroke-linecap="round"/>
+                <path d="M 30 86 L 36 80 L 38 88 Z" fill="#2D8FE8"/>
               </g>
             </svg>
             <div class="center-disc">Screening and compliance for drivers and safety‑sensitive employees</div>
-            <div class="label top">Great People<br/>Winning Together</div>
-            <div class="label right">Dominant Vertical<br/>Solutions</div>
-            <div class="label br">Exceptional<br/>Marketing and Sales<br/>Execution</div>
-            <div class="label bottom">6‑Star Customer and<br/>Candidate Experience</div>
-            <div class="label left">Annual Recurring<br/>Revenue Growth</div>
+          </div>
+          <div class="legend">
+            <div class="leg-item"><div class="sw" style="background:#0B1F3A"></div><div><div class="n">01</div><div class="h">Great People Winning Together</div></div></div>
+            <div class="leg-item"><div class="sw" style="background:#1B6FBF"></div><div><div class="n">02</div><div class="h">Dominant Vertical Solutions</div></div></div>
+            <div class="leg-item"><div class="sw" style="background:#2D8FE8"></div><div><div class="n">03</div><div class="h">Exceptional Marketing &amp; Sales Execution</div></div></div>
+            <div class="leg-item"><div class="sw" style="background:#5DBAEF"></div><div><div class="n">04</div><div class="h">6‑Star Customer &amp; Candidate Experience</div></div></div>
+            <div class="leg-item"><div class="sw" style="background:#A8D4F2"></div><div><div class="n">05</div><div class="h">Annual Recurring Revenue Growth</div></div></div>
           </div>
         </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
 
   <!-- 16 TIMELINE -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">16 / 22</span><span class="name">Timeline</span><span>Year-arrows with notes above &amp; below</span></div>
+    <div class="stage-meta"><span class="num">16 / 22</span><span class="name">Timeline</span><span>Swiss horizontal timeline</span></div>
     <div class="slide">
       <div class="s s16">
-        <div class="mark" style="filter:brightness(0) invert(1)"><img src="assets/image29.png" alt=""></div>
-        <div class="titlebar">
-          <h2>All caps<br/>title</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula.</p>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Roadmap</span></div>
+        <div class="titlebar-clean">
+          <div><div class="eyebrow">Platform · 2021 → 2026</div><h2>How we got here, and what's next.</h2><p style="margin-top:.6cqw">Five releases that shaped the platform — and one that's about to.</p></div>
+          <div class="meta">16 / 22</div>
         </div>
-        <div class="timeline">
-          <div class="timeline-wrap">
-            <div class="ntop">
+        <div class="body">
+          <div class="timeline">
+            <div class="top">
+              <div class="note"><div class="h">Compliance API</div><p class="b">Foundational data layer launched.</p></div>
               <div class="note"></div>
-              <div class="note"><div class="ti">Subtitle</div><div class="h">Header 3 Goes Here</div><p class="b">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="stem"></div><div class="pin"></div></div>
+              <div class="note"><div class="h">Audit Risk Monitor</div><p class="b">Live audit risk score for every fleet.</p></div>
               <div class="note"></div>
-              <div class="note"><div class="ti">Subtitle</div><div class="h">Header 3 Goes Here</div><p class="b">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="stem"></div><div class="pin"></div></div>
-              <div class="note"></div>
+              <div class="note"><div class="h">Navigator AI</div><p class="b">Plain‑English explanations and next steps.</p></div>
             </div>
-            <div class="years">
-              <div class="yr a">2021</div>
-              <div class="yr b">2022</div>
-              <div class="yr c">2023</div>
-              <div class="yr d">2024</div>
-              <div class="yr e">Soon</div>
+            <div class="markers">
+              <div class="marker"><div class="dot"></div><div class="yr">2021</div></div>
+              <div class="marker"><div class="dot"></div><div class="yr">2022</div></div>
+              <div class="marker"><div class="dot"></div><div class="yr">2023</div></div>
+              <div class="marker now"><div class="dot"></div><div class="yr">2024</div></div>
+              <div class="marker future"><div class="dot"></div><div class="yr">Soon</div></div>
             </div>
-            <div class="nbot">
-              <div class="note"><div class="pin"></div><div class="stem"></div><div class="ti">Subtitle</div><div class="h">Header 3 Goes Here</div><p class="b">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
+            <div class="bot">
               <div class="note"></div>
-              <div class="note"><div class="pin"></div><div class="stem"></div><div class="ti">Subtitle</div><div class="h">Header 3 Goes Here</div><p class="b">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
+              <div class="note"><div class="h">CSA Monitoring</div><p class="b">Real‑time inspection &amp; violation alerts.</p></div>
               <div class="note"></div>
+              <div class="note"><div class="h">Hiring 3.0</div><p class="b">Days, not weeks — DQ file in one flow.</p></div>
               <div class="note"></div>
             </div>
           </div>
         </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- 17 DONUT CHARTS -->
+  <!-- 17 DONUTS -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">17 / 22</span><span class="name">Donut charts pair</span><span>Title panel + two donut charts</span></div>
+    <div class="stage-meta"><span class="num">17 / 22</span><span class="name">Donut pair</span><span>Thin stroke · big % center</span></div>
     <div class="slide">
       <div class="s s17">
-        <div class="mark"><img src="assets/image29.png" alt=""></div>
         <div class="left">
-          <h2>All caps<br/>title here</h2>
-          <div class="underline"></div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula. Nullam semper sit amet felis quis pharetra.</p>
+          <span class="eyebrow">Performance</span>
+          <h2>Two metrics<br/>that moved.</h2>
+          <p>A 12‑month look at how Foley cohorts shifted on audit risk and DQ file completeness.</p>
         </div>
         <div class="right">
           <div class="donuts">
             <div class="donut">
-              <div class="ti">Chart Title</div>
+              <div class="ti">Audit risk · 12 mo</div>
               <div class="chart">
                 <svg viewBox="0 0 36 36">
-                  <circle cx="18" cy="18" r="14" fill="#fff" stroke="#E1E7EF" stroke-width="6"/>
-                  <circle cx="18" cy="18" r="14" fill="none" stroke="#5DBAEF" stroke-width="6" stroke-dasharray="35 100" stroke-dashoffset="0" transform="rotate(-90 18 18)"/>
-                  <circle cx="18" cy="18" r="14" fill="none" stroke="#2D8FE8" stroke-width="6" stroke-dasharray="22 100" stroke-dashoffset="-35" transform="rotate(-90 18 18)"/>
-                  <circle cx="18" cy="18" r="14" fill="none" stroke="#1B6FBF" stroke-width="6" stroke-dasharray="14 100" stroke-dashoffset="-57" transform="rotate(-90 18 18)"/>
-                  <circle cx="18" cy="18" r="14" fill="none" stroke="#0B1F3A" stroke-width="6" stroke-dasharray="22 100" stroke-dashoffset="-71" transform="rotate(-90 18 18)"/>
-                  <circle cx="18" cy="18" r="14" fill="none" stroke="#6B7B8E" stroke-width="6" stroke-dasharray="7 100" stroke-dashoffset="-93" transform="rotate(-90 18 18)"/>
+                  <circle cx="18" cy="18" r="15.5" fill="none" stroke="#E1E7EF" stroke-width="2.4"/>
+                  <circle cx="18" cy="18" r="15.5" fill="none" stroke="#2D8FE8" stroke-width="2.4" stroke-dasharray="42 100" stroke-linecap="round"/>
                 </svg>
+                <div class="center"><div class="pct">−42%</div><div class="pct-cap">Foley cohort</div></div>
               </div>
+              <div class="legend"><span><span class="sw" style="background:#2D8FE8"></span>Reduction</span><span><span class="sw" style="background:#E1E7EF"></span>Industry baseline</span></div>
             </div>
             <div class="donut">
-              <div class="ti">Chart Title</div>
+              <div class="ti">DQ file completeness</div>
               <div class="chart">
                 <svg viewBox="0 0 36 36">
-                  <circle cx="18" cy="18" r="14" fill="#fff" stroke="#5DBAEF" stroke-width="6"/>
-                  <circle cx="18" cy="18" r="14" fill="none" stroke="#0B1F3A" stroke-width="6" stroke-dasharray="25 100" stroke-dashoffset="0" transform="rotate(-90 18 18)"/>
+                  <circle cx="18" cy="18" r="15.5" fill="none" stroke="#E1E7EF" stroke-width="2.4"/>
+                  <circle cx="18" cy="18" r="15.5" fill="none" stroke="#0B1F3A" stroke-width="2.4" stroke-dasharray="98.4 100" stroke-linecap="round"/>
                 </svg>
-                <div class="center-pct">75%</div>
+                <div class="center"><div class="pct">98.4%</div><div class="pct-cap">Average</div></div>
               </div>
+              <div class="legend"><span><span class="sw" style="background:#0B1F3A"></span>Complete</span><span><span class="sw" style="background:#E1E7EF"></span>Pending</span></div>
             </div>
           </div>
-          <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet mollis ligula. Nullam semper sit amet felis quis pharetra.</p>
+          <p class="desc">Across 480 fleets onboarded in 2024, weighted monthly average. Audit risk reduction is measured against the carrier's pre‑Foley 12‑month baseline.</p>
         </div>
+        <div class="header light" style="left:auto;right:3.4cqw"><span class="lm" style="margin-left:auto"><img src="assets/image30.png" alt="Foley"></span></div>
+        <div class="footer light" style="left:auto;right:3.4cqw"><span>17 / 22</span></div>
       </div>
     </div>
   </div>
 
-  <!-- 18 CHART PAIR (BAR + AREA) -->
+  <!-- 18 BAR + AREA CHARTS -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">18 / 22</span><span class="name">Chart pair (bar + area)</span><span>Two chart cards with descriptions</span></div>
+    <div class="stage-meta"><span class="num">18 / 22</span><span class="name">Bar + area charts</span><span>Swiss minimal · single‑accent</span></div>
     <div class="slide">
       <div class="s s18">
-        <div class="mark" style="filter:brightness(0) invert(1)"><img src="assets/image29.png" alt=""></div>
-        <div class="titlebar"><h2>All caps title</h2></div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Outcomes</span></div>
+        <div class="titlebar-clean">
+          <div><div class="eyebrow">Cohort study · 12 mo</div><h2>Customer outcomes</h2></div>
+          <div class="meta">18 / 22</div>
+        </div>
         <div class="charts">
           <div class="ch">
-            <div class="ti">Chart Title</div>
+            <div class="ti">Audit risk by cluster</div>
+            <div class="h">−42% on average</div>
             <div class="area">
               <svg viewBox="0 0 360 200" preserveAspectRatio="none">
-                <line x1="40" y1="20" x2="360" y2="20" stroke="#E1E7EF"/>
-                <line x1="40" y1="60" x2="360" y2="60" stroke="#E1E7EF"/>
-                <line x1="40" y1="100" x2="360" y2="100" stroke="#E1E7EF"/>
-                <line x1="40" y1="140" x2="360" y2="140" stroke="#E1E7EF"/>
-                <line x1="40" y1="180" x2="360" y2="180" stroke="#0B1828"/>
-                <g font-family="Inter" font-size="9" fill="#6B7B8E">
+                <g font-family="JetBrains Mono" font-size="9" fill="#6B7B8E">
                   <text x="34" y="22" text-anchor="end">5</text>
                   <text x="34" y="62" text-anchor="end">4</text>
                   <text x="34" y="102" text-anchor="end">3</text>
                   <text x="34" y="142" text-anchor="end">2</text>
                   <text x="34" y="182" text-anchor="end">1</text>
                 </g>
+                <line x1="40" y1="20" x2="360" y2="20" stroke="#EFF2F6"/>
+                <line x1="40" y1="60" x2="360" y2="60" stroke="#EFF2F6"/>
+                <line x1="40" y1="100" x2="360" y2="100" stroke="#EFF2F6"/>
+                <line x1="40" y1="140" x2="360" y2="140" stroke="#EFF2F6"/>
+                <line x1="40" y1="180" x2="360" y2="180" stroke="#0B1828" stroke-width="1.4"/>
                 <!-- Cluster 1 -->
                 <rect x="60" y="40" width="22" height="140" fill="#5DBAEF"/>
                 <rect x="84" y="100" width="22" height="80" fill="#0B1F3A"/>
-                <rect x="108" y="120" width="22" height="60" fill="#2EA86A"/>
+                <rect x="108" y="120" width="22" height="60" fill="#2D8FE8"/>
                 <!-- Cluster 2 -->
                 <rect x="160" y="80" width="22" height="100" fill="#5DBAEF"/>
                 <rect x="184" y="20" width="22" height="160" fill="#0B1F3A"/>
-                <rect x="208" y="120" width="22" height="60" fill="#2EA86A"/>
+                <rect x="208" y="120" width="22" height="60" fill="#2D8FE8"/>
                 <!-- Cluster 3 -->
                 <rect x="260" y="50" width="22" height="130" fill="#5DBAEF"/>
                 <rect x="284" y="115" width="22" height="65" fill="#0B1F3A"/>
-                <rect x="308" y="65" width="22" height="115" fill="#2EA86A"/>
-                <g font-family="Inter" font-size="9" fill="#1B6FBF">
-                  <text x="95" y="195" text-anchor="middle">Category 1</text>
-                  <text x="195" y="195" text-anchor="middle">Category 2</text>
-                  <text x="295" y="195" text-anchor="middle">Category 3</text>
+                <rect x="308" y="65" width="22" height="115" fill="#2D8FE8"/>
+                <g font-family="JetBrains Mono" font-size="8" fill="#6B7B8E">
+                  <text x="95" y="195" text-anchor="middle">Q1</text>
+                  <text x="195" y="195" text-anchor="middle">Q2</text>
+                  <text x="295" y="195" text-anchor="middle">Q3</text>
                 </g>
               </svg>
             </div>
-            <div class="legend"><span><span class="sw" style="background:#5DBAEF"></span>Series 1</span><span><span class="sw" style="background:#0B1F3A"></span>Series 2</span><span><span class="sw" style="background:#2EA86A"></span>Series 3</span></div>
-            <div class="meta"><div class="h">Chart Title</div><p class="b">Optional chart description here.</p></div>
+            <div class="legend"><span><span class="sw" style="background:#5DBAEF"></span>Inspections</span><span><span class="sw" style="background:#0B1F3A"></span>Violations</span><span><span class="sw" style="background:#2D8FE8"></span>Crashes</span></div>
+            <p class="b">Avg cohort score, weighted by fleet size, per quarter.</p>
           </div>
           <div class="ch">
-            <div class="ti">Chart Title</div>
+            <div class="ti">Time to hire · days</div>
+            <div class="h">14.2 → 3.2 days</div>
             <div class="area">
               <svg viewBox="0 0 360 200" preserveAspectRatio="none">
-                <line x1="40" y1="20" x2="360" y2="20" stroke="#E1E7EF"/>
-                <line x1="40" y1="60" x2="360" y2="60" stroke="#E1E7EF"/>
-                <line x1="40" y1="100" x2="360" y2="100" stroke="#E1E7EF"/>
-                <line x1="40" y1="140" x2="360" y2="140" stroke="#E1E7EF"/>
-                <line x1="40" y1="180" x2="360" y2="180" stroke="#0B1828"/>
-                <g font-family="Inter" font-size="9" fill="#6B7B8E">
+                <g font-family="JetBrains Mono" font-size="9" fill="#6B7B8E">
                   <text x="34" y="22" text-anchor="end">50</text>
                   <text x="34" y="62" text-anchor="end">35</text>
                   <text x="34" y="102" text-anchor="end">25</text>
                   <text x="34" y="142" text-anchor="end">15</text>
                   <text x="34" y="182" text-anchor="end">0</text>
                 </g>
-                <!-- Stacked area: top is series 2 (sky), bottom is series 1 (success/green) -->
-                <path d="M40,30 L120,30 L200,40 L280,80 L360,30 L360,180 L40,180 Z" fill="#5DBAEF" fill-opacity=".95"/>
-                <path d="M40,55 L120,55 L200,80 L280,140 L360,135 L360,180 L40,180 Z" fill="#2EA86A" fill-opacity=".95"/>
-                <g font-family="Inter" font-size="9" fill="#1B6FBF">
-                  <text x="60" y="195" text-anchor="middle">1/5/2002</text>
-                  <text x="135" y="195" text-anchor="middle">1/6/2002</text>
-                  <text x="210" y="195" text-anchor="middle">1/7/2002</text>
-                  <text x="285" y="195" text-anchor="middle">1/8/2002</text>
-                  <text x="350" y="195" text-anchor="middle">1/9/2002</text>
+                <line x1="40" y1="20" x2="360" y2="20" stroke="#EFF2F6"/>
+                <line x1="40" y1="60" x2="360" y2="60" stroke="#EFF2F6"/>
+                <line x1="40" y1="100" x2="360" y2="100" stroke="#EFF2F6"/>
+                <line x1="40" y1="140" x2="360" y2="140" stroke="#EFF2F6"/>
+                <line x1="40" y1="180" x2="360" y2="180" stroke="#0B1828" stroke-width="1.4"/>
+                <path d="M40,30 L120,30 L200,40 L280,80 L360,30 L360,180 L40,180 Z" fill="#5DBAEF" fill-opacity=".55"/>
+                <path d="M40,55 L120,55 L200,80 L280,140 L360,135 L360,180 L40,180 Z" fill="#2D8FE8" fill-opacity=".85"/>
+                <path d="M40,55 L120,55 L200,80 L280,140 L360,135" fill="none" stroke="#1B6FBF" stroke-width="1.6"/>
+                <g font-family="JetBrains Mono" font-size="8" fill="#6B7B8E">
+                  <text x="60" y="195" text-anchor="middle">Jan</text>
+                  <text x="135" y="195" text-anchor="middle">Apr</text>
+                  <text x="210" y="195" text-anchor="middle">Jul</text>
+                  <text x="285" y="195" text-anchor="middle">Oct</text>
+                  <text x="350" y="195" text-anchor="middle">Now</text>
                 </g>
               </svg>
             </div>
-            <div class="legend"><span><span class="sw" style="background:#2EA86A"></span>Series 1</span><span><span class="sw" style="background:#5DBAEF"></span>Series 2</span></div>
-            <div class="meta"><div class="h">Chart Title</div><p class="b">Optional chart description here.</p></div>
+            <div class="legend"><span><span class="sw" style="background:#2D8FE8"></span>Foley cohort</span><span><span class="sw" style="background:#5DBAEF"></span>Industry</span></div>
+            <p class="b">Median days from requisition to driver in cab.</p>
           </div>
         </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
 
   <!-- 19 COMPARISON MATRIX -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">19 / 22</span><span class="name">Comparison matrix</span><span>4×4 table with check / cross icons</span></div>
+    <div class="stage-meta"><span class="num">19 / 22</span><span class="name">Comparison matrix</span><span>Hairline grid · soft semantic icons</span></div>
     <div class="slide">
       <div class="s s19">
-        <div class="mark" style="filter:brightness(0) invert(1)"><img src="assets/image29.png" alt=""></div>
-        <div class="titlebar">
-          <h2>All caps<br/>title</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim nunc id ante porttitor mattis.</p>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Comparison</span></div>
+        <div class="titlebar-clean">
+          <div><div class="eyebrow">vs. legacy stack</div><h2>Why a single platform wins.</h2><p style="margin-top:.6cqw">Three workflows, three vendors, one platform.</p></div>
+          <div class="meta">19 / 22</div>
         </div>
         <div class="matrix">
           <table>
             <thead>
-              <tr><th></th><th>Option A</th><th>Option B</th><th>Option C</th></tr>
+              <tr><th>Capability</th><th>Foley</th><th>Legacy A</th><th>Legacy B</th></tr>
             </thead>
             <tbody>
-              <tr><th>Feature 1</th>
-                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-                <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
-                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+              <tr><th>Real‑time CSA &amp; audit risk</th>
+                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span></td>
               </tr>
-              <tr><th>Feature 2</th>
-                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-                <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+              <tr><th>Hiring &amp; DQ file in one flow</th>
+                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
               </tr>
-              <tr><th>Feature 3</th>
-                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+              <tr><th>Navigator AI guidance</th>
+                <td><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+                <td><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
               </tr>
             </tbody>
           </table>
         </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- 20 BRAND NOTES (POWERPOINT BRANDING) -->
+  <!-- 20 BRAND NOTES -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">20 / 22</span><span class="name">Brand notes (PowerPoint Branding)</span><span>Internal style reference</span></div>
+    <div class="stage-meta"><span class="num">20 / 22</span><span class="name">Brand notes</span><span>Type sample + palette + rules</span></div>
     <div class="slide">
       <div class="s s20">
-        <div class="mark" style="filter:brightness(0) invert(1)"><img src="assets/image29.png" alt=""></div>
-        <div class="titlebar">
-          <div class="eyebrow">Internal · style</div>
-          <h2>Brand quick reference</h2>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Brand · quick reference</span></div>
+        <div class="titlebar-clean">
+          <div><div class="eyebrow">Internal · style</div><h2>Brand quick reference</h2></div>
+          <div class="meta">20 / 22</div>
         </div>
-        <div class="body20">
-          <p class="lead">Slide title font is Inter Tight, sentence case (no ALL CAPS).</p>
-          <ul>
-            <li>Slide body copy font is Inter, regular weight.</li>
-            <li>Space for text on slides is optional — not every text box has to be used.</li>
-            <li>When a slide has multiple text blocks, keep the text size consistent across them.</li>
-            <li>Use brand colors only — do not use arbitrary colors without approval from marketing.</li>
-            <li>Foley Blue is the only brand accent. Green is reserved for "cleared" status. Red is for errors only.</li>
-          </ul>
-          <div class="swrow">
-            <div class="swatches">
-              <div class="sw" style="background:#0B1F3A" title="Navy"></div>
-              <div class="sw" style="background:#F2F6FB;border:1px solid var(--line)" title="Mist"></div>
-              <div class="sw" style="background:#2D8FE8" title="Blue"></div>
-              <div class="sw" style="background:#5DBAEF" title="Sky"></div>
-              <div class="sw" style="background:#1B6FBF" title="Blue Deep"></div>
-              <div class="sw" style="background:#6B7B8E" title="Muted"></div>
-              <div class="sw" style="background:#2EA86A" title="Success"></div>
-              <div class="sw" style="background:#E5484D" title="Red — semantic only"></div>
-              <div class="sw" style="background:#F4B740" title="Amber — semantic only"></div>
+        <div class="grid">
+          <div class="typesample">
+            <div class="row"><span class="k">Display</span><span class="v display">Smarter data.</span></div>
+            <div class="row"><span class="k">H2</span><span class="v h2">Section title goes here</span></div>
+            <div class="row"><span class="k">H3</span><span class="v h3">Subhead, sentence case</span></div>
+            <div class="row"><span class="k">Body</span><span class="v body">Inter, regular weight, max 70 characters per line for readability.</span></div>
+            <div class="row"><span class="k">Mono</span><span class="v mono">50,000+ companies · 4.3★ · 30 yrs</span></div>
+          </div>
+          <div class="right20">
+            <div class="palette-row">
+              <div class="pl">Brand palette</div>
+              <div class="swatches">
+                <div class="sw" style="background:#0B1F3A">#0B1F3A</div>
+                <div class="sw" style="background:#1B6FBF">#1B6FBF</div>
+                <div class="sw" style="background:#2D8FE8">#2D8FE8</div>
+                <div class="sw" style="background:#5DBAEF">#5DBAEF</div>
+                <div class="sw lt" style="background:#F2F6FB">#F2F6FB</div>
+              </div>
             </div>
-            <div class="caveat">Examples on slides 18 &amp; 19</div>
+            <div class="palette-row">
+              <div class="pl">Semantic only</div>
+              <div class="swatches">
+                <div class="sw" style="background:#2EA86A">success</div>
+                <div class="sw" style="background:#F4B740" >caution</div>
+                <div class="sw" style="background:#E5484D">risk</div>
+                <div class="sw lt" style="background:#fff;border:1px solid var(--line)">paper</div>
+                <div class="sw" style="background:#6B7B8E">muted</div>
+              </div>
+            </div>
+            <div class="rules">
+              <div class="pl">Rules</div>
+              <ul>
+                <li>Inter Tight for headings — sentence case only, never ALL CAPS.</li>
+                <li>Foley Blue is the only brand accent. Green is reserved for "cleared" status.</li>
+                <li>Use the supplied logo unmodified. Don't redraw the rings.</li>
+                <li>One photo or one UI shot per slide — never both.</li>
+              </ul>
+            </div>
           </div>
         </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- 21 LOGOS & ICON LIBRARY -->
+  <!-- 21 LOGOS + ICONS -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">21 / 22</span><span class="name">Foley logos &amp; icon library</span><span>Logo variants + 4×4 icon grid</span></div>
+    <div class="stage-meta"><span class="num">21 / 22</span><span class="name">Logos &amp; icon library</span><span>Asset reference page</span></div>
     <div class="slide">
       <div class="s s21">
         <div class="left">
           <div class="head">Foley logos</div>
           <div class="logos">
-            <div class="lt symbol"><img src="assets/image29.png" alt="Foley symbol"></div>
-            <div class="lt"><img src="assets/image30.png" alt="Foley wordmark"></div>
-            <div class="lt"><img src="assets/image31.png" alt="Foley wordmark — grey"></div>
-            <div class="lt dark"><img src="assets/image30.png" alt="Foley wordmark on navy"></div>
+            <div class="lt"><img src="assets/image30.png" alt="Wordmark"></div>
+            <div class="lt dark"><img src="assets/image30.png" alt="Wordmark on navy"></div>
+            <div class="lt"><img src="assets/image29.png" alt="Symbol"></div>
+            <div class="lt dark"><img src="assets/image29.png" alt="Symbol on navy"></div>
           </div>
         </div>
         <div class="right">
-          <div class="head">Icon library</div>
+          <div class="head">Icon library · 1.5 px stroke</div>
           <div class="icons">
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="3" width="14" height="18" rx="1.5"/><polyline points="9 9 11 11 15 7"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="3" width="14" height="18" rx="1.5"/><polyline points="9 9 11 11 15 7"/><line x1="9" y1="14" x2="15" y2="14"/></svg></div>
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16" fill="currentColor" stroke="none"/></svg></div>
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><polyline points="8 12 11 15 16 9"/></svg></div>
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11l11-5v9c0 4-3 7-7 7s-4-3-4-3"/><line x1="14" y1="6" x2="20" y2="3"/><line x1="14" y1="10" x2="22" y2="6"/></svg></div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11l11-5v9c0 4-3 7-7 7s-4-3-4-3"/><line x1="14" y1="6" x2="20" y2="3"/></svg></div>
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="6" width="18" height="13" rx="1"/><polyline points="3 8 12 14 21 8"/></svg></div>
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="6" y="3" width="12" height="18" rx="2"/><circle cx="16" cy="8" r="2.5" fill="currentColor"/><polyline points="14.5 8 15.7 9 17.3 7"/></svg></div>
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="12 4 12 16"/><polyline points="7 11 12 16 17 11"/><line x1="4" y1="20" x2="20" y2="20"/></svg></div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="6" y="3" width="12" height="18" rx="2"/><circle cx="16" cy="8" r="2.5"/></svg></div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="12 4 12 16"/><polyline points="7 11 12 16 17 11"/></svg></div>
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 21V12a8 8 0 1 1 16 0v9"/><line x1="2" y1="21" x2="22" y2="21"/></svg></div>
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="8" r="3"/><circle cx="15" cy="8" r="3"/><path d="M3 21c0-3 3-6 6-6s6 3 6 6"/><path d="M11 21c0-3 3-6 6-6s4 2 4 6"/></svg></div>
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="13" rx="1"/><circle cx="17" cy="9" r="3"/><polyline points="15.5 9 16.7 10 18.3 8"/><line x1="6" y1="20" x2="18" y2="20"/></svg></div>
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="8" height="16" rx="1"/><rect x="13" y="4" width="8" height="16" rx="1"/><line x1="6" y1="8" x2="8" y2="8"/><line x1="16" y1="8" x2="18" y2="8"/></svg></div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="13" rx="1"/><circle cx="17" cy="9" r="3"/></svg></div>
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l8 4v5c0 4-3 7-8 9-5-2-8-5-8-9V7l8-4z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 18l5-9 4 5 4-7 5 11"/><polyline points="3 12 3 6 9 6"/><polyline points="18 6 21 6 21 9"/></svg></div>
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 16h2l1-7h12l1 5h2"/><circle cx="8" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><rect x="6" y="11" width="6" height="3"/></svg></div>
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="9" width="14" height="9" rx="1"/><polyline points="16 12 21 9 21 18 16 15"/></svg></div>
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="9" r="6"/><path d="M6 21v-1c0-2 2-3 4-3h4c2 0 4 1 4 3v1"/><path d="M12 9c2 0 3 1 3 3"/></svg></div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 18l5-9 4 5 4-7 5 11"/></svg></div>
           </div>
         </div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span></div>
       </div>
     </div>
   </div>
 
   <!-- 22 PRODUCT PHOTOS -->
   <div class="stage">
-    <div class="stage-meta"><span class="num">22 / 22</span><span class="name">Product photos</span><span>6 device mockups grid</span></div>
+    <div class="stage-meta"><span class="num">22 / 22</span><span class="name">Product photos</span><span>Real device mockups · 3‑col bento</span></div>
     <div class="slide">
       <div class="s s22">
-        <div class="head">Product photos</div>
+        <div class="header light"><span class="lm"><img src="assets/image30.png" alt="Foley"></span><span>Product</span></div>
+        <div class="titlebar-clean">
+          <div><div class="eyebrow">Platform · 2026</div><h2>Product photos</h2></div>
+          <div class="meta">22 / 22</div>
+        </div>
         <div class="grid">
-          <div class="card">
-            <div class="device laptop">
-              <div class="topbar2"><i></i><i></i><i></i></div>
+          <!-- A: large laptop monitor -->
+          <div class="card tall">
+            <div class="device monitor">
+              <div class="topbar"><i></i><i></i><i></i></div>
               <div class="ui">
-                <div class="row"><div class="b a"></div><div class="b s"></div></div>
+                <div class="row"><div class="b a"></div><div class="stat" style="margin-left:auto">−42%</div></div>
+                <div class="stat-cap" style="margin-bottom:.4cqw">Audit risk · 12 mo</div>
+                <div class="barcontainer"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="row" style="margin-top:.3cqw"><span class="pill">cleared 12</span><span class="pill r" style="margin-left:auto">action 3</span></div>
                 <div class="b s"></div>
-                <div class="b l"></div>
-                <div class="b s"></div>
-                <div class="b l"></div>
+                <div class="b f"></div>
                 <div class="row"><div class="ringd"></div><div class="b s"></div></div>
               </div>
             </div>
           </div>
-          <div class="card alt">
-            <div class="device phone">
-              <div class="topbar2"><i></i><i></i><i></i></div>
+          <!-- B: phone -->
+          <div class="card dk">
+            <div class="device phone dk">
+              <div class="topbar"><i></i><i></i><i></i></div>
               <div class="ui">
                 <div class="b a"></div>
-                <div class="b s"></div>
+                <div class="stat">98.4%</div>
+                <div class="stat-cap">DQ complete</div>
+                <div class="b s" style="margin-top:.4cqw"></div>
+                <div class="b f"></div>
                 <div class="b l"></div>
-                <div class="b s"></div>
-                <div class="row"><div class="dot"></div><div class="b l"></div></div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="device monitor">
-              <div class="topbar2"><i></i><i></i><i></i></div>
-              <div class="ui">
-                <div class="row"><div class="b a"></div><div class="b s"></div></div>
-                <div class="row"><div class="b s"></div><div class="b s"></div><div class="b s"></div></div>
-                <div class="b l"></div>
-                <div class="row"><div class="dot" style="background:#E5484D"></div><div class="b s"></div></div>
-                <div class="b l"></div>
-              </div>
-            </div>
-          </div>
-          <div class="card alt">
-            <div class="device monitor">
-              <div class="topbar2"><i></i><i></i><i></i></div>
-              <div class="ui">
-                <div class="row"><div class="ringd"></div><div class="b a"></div></div>
-                <div class="b s"></div>
-                <div class="b l"></div>
+                <div class="row"><span class="pill">cleared</span></div>
                 <div class="b s"></div>
               </div>
             </div>
           </div>
+          <!-- C: laptop -->
           <div class="card">
             <div class="device laptop">
-              <div class="topbar2"><i></i><i></i><i></i></div>
+              <div class="topbar"><i></i><i></i><i></i></div>
               <div class="ui">
-                <div class="b a"></div>
-                <div class="b s"></div>
-                <div class="b l"></div>
-                <div class="row"><div class="b s"></div><div class="b s"></div></div>
-                <div class="b l"></div>
+                <div class="row"><div class="b a"></div><div class="b s" style="margin-left:auto"></div></div>
+                <div class="row"><div class="b s"></div><div class="b s"></div><div class="b s"></div></div>
+                <div class="b f"></div>
+                <div class="row"><span class="pill">3.2 d to hire</span><div class="b l" style="margin-left:auto"></div></div>
                 <div class="b s"></div>
               </div>
             </div>
           </div>
-          <div class="card">
-            <div class="device monitor">
-              <div class="topbar2"><i></i><i></i><i></i></div>
+          <!-- D: monitor -->
+          <div class="card dk">
+            <div class="device monitor dk">
+              <div class="topbar"><i></i><i></i><i></i></div>
               <div class="ui">
-                <div class="row"><div class="b a"></div><div class="b s"></div><div class="b s"></div></div>
+                <div class="row"><div class="ringd"></div><div class="stat" style="margin-left:auto">50,000+</div></div>
+                <div class="stat-cap">Companies</div>
+                <div class="b s" style="margin-top:.4cqw"></div>
+                <div class="b f"></div>
                 <div class="b l"></div>
-                <div class="b s"></div>
-                <div class="b l"></div>
-                <div class="row"><div class="dot"></div><div class="b s"></div></div>
+              </div>
+            </div>
+          </div>
+          <!-- E: laptop -->
+          <div class="card">
+            <div class="device laptop">
+              <div class="topbar"><i></i><i></i><i></i></div>
+              <div class="ui">
+                <div class="row"><div class="b a"></div></div>
+                <div class="stat" style="margin-top:.2cqw">4.3★</div>
+                <div class="stat-cap">Trustpilot · 1,124 reviews</div>
+                <div class="b s" style="margin-top:.4cqw"></div>
+                <div class="b f"></div>
               </div>
             </div>
           </div>
         </div>
+        <div class="footer light"><span>foley.io</span><span></span></div>
       </div>
     </div>
   </div>
@@ -1189,7 +1179,7 @@
 </div>
 
 <div class="doc-footer">
-  Foley · Slide drafts v0.3 · 22 layouts · 1:1 with original PDF · <a href="brandbook.html">Brandbook</a> · <a href="gamma-prompt.md">Gamma prompt</a> · <a href="index.html">Index</a>
+  Foley · Slide drafts v0.4 · 22 layouts · tier‑1 redesign · <a href="brandbook.html">Brandbook</a> · <a href="gamma-prompt.md">Gamma config</a> · <a href="index.html">Index</a>
 </div>
 
 </body>

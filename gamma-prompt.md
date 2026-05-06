@@ -1,224 +1,415 @@
-# Foley — AI Deck Generation Prompt (Gamma / Tome / Beautiful.ai / Pitch AI)
+# Foley Deck — AI generation config
 
-> Copy the entire block below into the "Generate a presentation" field in Gamma (or its equivalent). The prompt is self‑contained: it defines the brand, tone, visual system, typography, palette, layouts, and sample content. Edit only the **CONTENT BRIEF** section to fit a specific use case (sales pitch / investor / all‑hands / partnership).
+A loadable spec for Gamma, Tome, Beautiful.ai, Pitch AI, or any LLM‑driven deck tool. Two parts:
 
----
+1. **Theme + layouts schema** (YAML) — paste this as the system style or attach as a reference doc.
+2. **Generation prompt** (markdown) — paste into the "Generate a presentation" field.
 
-## SYSTEM PROMPT — copy from here
-
-You are creating a **modern executive presentation** for **Foley** — a 30‑year compliance, safety, and screening platform for commercial fleets in North America (foley.io). The deck is going to investors, banks, executive partners, and large prospects, so it must look like a **tier‑1 SaaS / fintech keynote**, not a corporate template.
-
-Treat the instructions below as a strict design system. Don't invent stock visuals, clipart, or yellow/orange gradients. When in doubt — fewer elements, more whitespace, sharper typography. The existing Foley logo (three concentric blue rings + green arc forming the "O" in FOLEY) is the canonical brand mark — use the supplied PNG/SVG, never redraw or recolor it.
+Both are below. Do not edit the schema unless brand rules change. Edit only the **CONTENT BRIEF** at the bottom of the prompt to fit a specific use case.
 
 ---
 
-### 1. BRAND POSITION
+## 1. Theme + layouts schema
 
-- **Brand name:** Foley (do **not** use "Foley Services" or "Foley Carrier Services" — those are discontinued).
-- **Tagline:** *Smarter Data. Lower Risk. Safer Fleets.*
-- **One‑line positioning:** All‑in‑one compliance, safety, and screening platform for commercial fleets — from 5 drivers to 500.
-- **Brand promise:** Get your fleet to clear — and keep it there.
-- **Personality:** Calm expert. 30 years of compliance experience, but speaks like a modern SaaS — not like an insurance broker.
-- **Audience:** Safety / HR directors, COO, CFO in transportation, retail, construction, agriculture, healthcare, manufacturing.
-- **Trust proof points (use sparingly, never list all in one slide):**
-  - 50,000+ companies trust Foley
-  - #1 DOT Compliance Provider
-  - 4.3★ Trustpilot · 1,124 reviews
-  - 30 years of compliance expertise
-  - Industries: Transportation, Retail, Construction, Waste, Agriculture, Healthcare, Manufacturing
-- **Product surfaces (real product names, use exactly):** CSA Monitoring · MVR Monitor · Audit Risk Monitor · Hiring & Onboarding · Background Checks · Foley Navigator AI · Drug & Alcohol Testing · DOT Physicals · FMCSA Clearinghouse.
-- **Foley Flywheel (real internal model — use exactly when building the flywheel slide):** Great People Winning Together · Dominant Vertical Solutions · Exceptional Marketing & Sales Execution · 6‑Star Customer & Candidate Experience · Annual Recurring Revenue Growth · Screening & Compliance Edge.
+```yaml
+# foley-deck-config.yaml — v1
+# Feed this whole block to the deck tool as the brand spec.
+
+theme:
+  name: Foley
+  version: 1.0
+  surface_default: paper       # paper | mist | navy
+  aspect: 16:9
+  baseline_size: 1280x720
+
+brand:
+  name: Foley                   # NEVER "Foley Services" or "Foley Carrier Services"
+  domain: foley.io
+  email: marketing@foley.io
+  tagline: "Smarter Data. Lower Risk. Safer Fleets."
+  promise: "Get your fleet to clear — and keep it there."
+  positioning: "All-in-one compliance, safety, and screening platform for commercial fleets — from 5 drivers to 500."
+  audience:
+    - Safety / HR directors
+    - COO, CFO
+    - Industries: transportation, retail, construction, agriculture, healthcare, manufacturing
+  trust_proof_points:           # use sparingly, never list all in one slide
+    - "50,000+ companies trust Foley"
+    - "#1 DOT Compliance Provider"
+    - "4.3★ Trustpilot · 1,124 reviews"
+    - "30 years of compliance expertise"
+  product_names:                # use exactly, do not abbreviate
+    - CSA Monitoring
+    - MVR Monitor
+    - Audit Risk Monitor
+    - Hiring & Onboarding
+    - Background Checks
+    - Foley Navigator AI
+    - Drug & Alcohol Testing
+    - DOT Physicals
+    - FMCSA Clearinghouse
+  flywheel_forces:              # the 5 canonical Foley Flywheel forces
+    - Great People Winning Together
+    - Dominant Vertical Solutions
+    - Exceptional Marketing & Sales Execution
+    - 6-Star Customer & Candidate Experience
+    - Annual Recurring Revenue Growth
+  flywheel_center: "Screening and compliance for drivers and safety-sensitive employees"
+
+logo:
+  primary_url:    "https://golfiy.github.io/foley-rebrand/assets/image30.png"  # full color wordmark on light
+  symbol_url:     "https://golfiy.github.io/foley-rebrand/assets/image29.png"  # rings only
+  symbol_white:   "use CSS filter: brightness(0) invert(1) on the wordmark for dark surfaces"
+  rules:
+    - "DO NOT redraw, recolor, restroke, or replace the supplied logo."
+    - "Min size: 24 px tall on a 1280x720 slide."
+    - "Clearspace: at least the height of the lowercase 'o' on every side."
+  placement_by_layout:
+    cover:           "wordmark · top-left"
+    cover_contact:   "wordmark · top-left"
+    section:         "wordmark · top-left, slide counter top-right"
+    content:         "wordmark · top-left, slide counter top-right"
+    closing:         "wordmark · top-left"
+
+palette:
+  surfaces:
+    primary_dark:    { hex: "#0B1F3A", name: "Foley Navy",       use: "covers, section dividers, executive panels" }
+    primary_dark_2:  { hex: "#061429", name: "Foley Navy Deep",  use: "layered dark backgrounds" }
+    soft:            { hex: "#F2F6FB", name: "Mist",             use: "alternate content sections" }
+    primary_light:   { hex: "#FFFFFF", name: "Paper",            use: "default content slides" }
+  accent:
+    brand:           { hex: "#2D8FE8", name: "Foley Blue",       use: "ONLY brand accent — KPI highlights, links, primary buttons" }
+    deep:            { hex: "#1B6FBF", name: "Foley Blue Deep",  use: "hover state, secondary accent" }
+    sky:             { hex: "#5DBAEF", name: "Foley Sky",        use: "lighter accent, echoes the logo's inner cyan, illustration accents" }
+    soft_tint:       { hex: "#E5EFFB", name: "Foley Tint",       use: "tag bg, hover surfaces" }
+  semantic:                      # NEVER use as brand colors — semantic states only
+    success:         { hex: "#2EA86A", use: "ONLY for cleared/passed/OK status indicators" }
+    risk:            { hex: "#E5484D", use: "ONLY for errors, violations, comparison X marks" }
+    caution:         { hex: "#F4B740", use: "ONLY for warnings, attention needed" }
+  text:
+    ink:             { hex: "#0B1828", use: "primary body on light surfaces" }
+    ink_soft:        { hex: "#3A4A5E", use: "lede, captions, secondary text on light" }
+    muted:           { hex: "#6B7B8E", use: "meta, timestamps, footer text, axis labels" }
+    line:            { hex: "#E1E7EF", use: "1px borders, dividers, hairline rules" }
+  forbidden:
+    - "yellow / orange gradients (the brand FAQ says: moving away from yellow/orange tones)"
+    - "red as a brand color"
+    - "green as a brand color (green is reserved for cleared status only)"
+    - "multicolor pie charts"
+    - "drop shadows on text or buttons"
+    - "gradients with more than 2 stops"
+
+typography:
+  display:
+    family: "Inter Tight"
+    weight: 700
+    case: "sentence case ONLY"   # NEVER ALL CAPS for headlines
+    tracking: "-2.5%"
+    line_height: 0.98
+    sizes_px: { hero: 96, h1: 64, h2: 44, h3: 28 }
+  body:
+    family: "Inter"
+    weight: 400
+    line_height: 1.6
+    max_width: "70ch"
+    sizes_px: { lede: 20, body: 16, caption: 13 }
+  mono:
+    family: "JetBrains Mono"
+    weight: 500
+    use: "KPI values, dates, percentages, axis labels, footer counters, eyebrow labels"
+    sizes_px: { kpi: 14, meta: 12, caps_label: 11 }
+  rules:
+    - "NEVER use ALL CAPS for headlines. Eyebrow labels (≤12 px mono) only."
+    - "NEVER use Title Case Headings. Sentence case only."
+    - "NEVER use Arial. Inter Tight + Inter + JetBrains Mono only."
+    - "Use tabular numerals for numbers (font-feature-settings: tnum)."
+
+spacing:
+  unit: 8                        # px
+  slide_margin_pct: 5            # of slide width
+  vertical_rhythm: 1.5
+
+imagery:
+  photography:
+    style: "documentary editorial — real fleets, drivers, depots, dispatch rooms, warehouses"
+    avoid: "stock handshakes, staged offices, cartoon clipart, multicolor flat illustrations"
+    treatment: "navy/blue tonal grade; never warm yellow/orange filters"
+    overlay_rule: "linear-gradient(rgba(11,31,58,.4) 0%, rgba(11,31,58,.55) 50%, rgba(11,31,58,.92) 100%) over hero photos for text legibility"
+  icons:
+    library: "Lucide / Phosphor / Heroicons outline"
+    stroke: "1.5 px"
+    color: "Foley Blue Deep on light surfaces; white on dark"
+    forbidden: "filled icons, multicolor icons, cartoon-style icons"
+  decoration:
+    allowed: "subtle dot grid (2 px dots, 24 px gap, 5–8% opacity) on Navy"
+    forbidden: "abstract swooshes, blob shapes, beveled buttons, drop shadows"
+  charts:
+    style: "Swiss minimal — single accent color, thin axis lines, mono labels, generous whitespace"
+    line_weight: "2–2.5 px"
+    foley_series_color: "#2D8FE8"
+    benchmark_color: "#6B7B8E (dashed)"
+    fill_opacity: "10–18% for area fill under lines"
+
+layouts:
+  # 22 layouts — every slide must match one. Do not invent new ones.
+
+  - id: 01_cover
+    name: Cover
+    surface: navy
+    treatment: full-bleed photo with dark gradient overlay
+    slots:
+      - { name: logo,     position: top-left,                    asset: logo.primary }
+      - { name: meta,     position: top-right,                   type: mono caption ("Investor briefing · Q2 2026") }
+      - { name: eyebrow,  position: bottom-left-above-title,     type: small uppercase mono in Foley Blue }
+      - { name: title,    position: bottom-left,                 type: H1 hero, max_width: 14ch, italicize_one_word: true }
+      - { name: sub,      position: below-title,                 type: body lede, opacity: 0.78 }
+      - { name: footer,   position: bottom-right,                type: mono "foley.io · date · classification" }
+
+  - id: 02_cover_contact
+    name: Cover with photo + contacts
+    surface: split (paper left + photo right)
+    slots:
+      - { name: eyebrow, position: top-left-of-text-side, type: mono }
+      - { name: title,   type: H1, max_width: 13ch, italicize_one_word: true }
+      - { name: sub,     type: body lede }
+      - { name: contacts, type: 3 mono rows with outline icons (mail / web / calendar) }
+      - { name: photo,    side: right, treatment: subtle navy edge gradient }
+
+  - id: 03_section_photo
+    name: Section title — photo
+    surface: navy with hero photo
+    slots:
+      - { name: numeral, position: top-right, type: huge Inter Tight 800, color: "rgba(45,143,232,.18)" }
+      - { name: eyebrow, position: bottom-left-above-title, type: small uppercase mono in Foley Blue }
+      - { name: title,   position: bottom-left, type: H2, max_width: 14ch }
+      - { name: lede,    position: below-title, type: body, opacity: 0.7 }
+
+  - id: 04_section_navy
+    name: Section title — navy gradient
+    surface: navy gradient (no photo)
+    slots: same as 03_section_photo
+
+  - id: 05_agenda
+    name: Agenda
+    surface: split (photo left + paper right)
+    slots:
+      - { name: photo,    side: left, treatment: navy gradient overlay }
+      - { name: eyebrow,  side: right, type: mono }
+      - { name: title,    type: H2 ("Agenda") }
+      - { name: items,    type: numbered list, count: 5-6, numerals: JetBrains Mono ("01"..), divider: hairline rule between items }
+
+  - id: 06_title_photo_cards
+    name: Title + 3 photo cards
+    surface: split (navy panel left + paper right)
+    slots:
+      - { name: panel_eyebrow, side: left, type: mono }
+      - { name: panel_title,   side: left, type: H2 white }
+      - { name: panel_body,    side: left, type: body, opacity: 0.72 }
+      - { name: cards,         side: right, type: 3 horizontal cards each with: circle photo (56px), mono label, H3, body }
+
+  - id: 07_title_3numbered
+    name: Title panel + 3 numbered
+    surface: split (navy panel left + paper right)
+    slots:
+      - { name: panel,  side: left,  type: navy panel with eyebrow + H2 + body }
+      - { name: items,  side: right, type: 3 items each with mono numeral + subhead H3 + 2-line body }
+
+  - id: 08_4numbered_panel
+    name: 4 numbered + navy panel
+    surface: mirrored — content left, navy panel right
+    slots:
+      - { name: items, side: left,  type: 4 items each with mono numeral + subhead + body }
+      - { name: panel, side: right, type: navy panel with eyebrow + H2 + 2 short paragraphs }
+
+  - id: 09_title_2cards
+    name: Title bar + 2 cards
+    surface: paper
+    slots:
+      - { name: titlebar, type: clean (no navy fill) — eyebrow + H2 + slide counter }
+      - { name: cards,    count: 2, style: white card, 1px border, 2px Foley Blue accent on top, mono numeral + subhead + bullets }
+
+  - id: 10_title_3cards
+    name: Title bar + 3 cards
+    surface: paper
+    slots: same shape as 09 with count: 3
+
+  - id: 11_title_4cards
+    name: Title bar + 4 cards
+    surface: paper
+    slots: same shape as 09 with count: 4 (tighter)
+
+  - id: 12_quadrants
+    name: Four quadrants
+    surface: paper
+    slots:
+      - { name: titlebar, type: clean }
+      - { name: quads, count: 4, separator: hairline crosshair (#E1E7EF), each: mono numeral + subhead + body }
+
+  - id: 13_social_proof
+    name: Social proof
+    surface: paper
+    slots:
+      - { name: titlebar, type: clean with eyebrow ("4.3★ Trustpilot · 1,124 reviews") }
+      - { name: cards,    count: 4, style: white card with 1px border, contains: 5 stars (Foley Blue), pull quote H3-styled, photo avatar + name + role }
+
+  - id: 14_photo_collage
+    name: Title + photo collage
+    surface: split (navy panel + bento photo grid)
+    slots:
+      - { name: panel,  side: left,  type: navy with eyebrow + H2 + body }
+      - { name: bento,  side: right, type: 5-tile bento grid (one tile spans 2 cols) with documentary photos and tiny mono labels }
+
+  - id: 15_flywheel
+    name: Foley Flywheel
+    surface: paper
+    slots:
+      - { name: titlebar, type: clean ("Foley Flywheel") }
+      - { name: wheel,    type: 5-segment radial (Navy, Blue Deep, Blue, Sky, Tint blue), with center disc containing flywheel_center copy }
+      - { name: legend,   type: 5 rows with color swatch + mono numeral + force name (use brand.flywheel_forces verbatim) }
+
+  - id: 16_timeline
+    name: Timeline
+    surface: paper
+    slots:
+      - { name: titlebar, type: clean with eyebrow + H2 + lede }
+      - { name: timeline, type: thin horizontal line with 5 circle markers, year labels in mono below, content cards alternating above and below }
+
+  - id: 17_donut_pair
+    name: Donut chart pair
+    surface: split (navy panel + paper)
+    slots:
+      - { name: panel,  side: left,  type: navy with H2 + body }
+      - { name: donuts, side: right, count: 2, style: thin stroke (8% width), big % in center (Inter Tight 700), mono caption below }
+
+  - id: 18_bar_area
+    name: Bar + area chart pair
+    surface: paper
+    slots:
+      - { name: titlebar, type: clean with eyebrow + H2 }
+      - { name: chart_left,  type: clustered bar chart, 3 series, colors: [Sky, Navy, Blue] }
+      - { name: chart_right, type: stacked area chart, 2 series, colors: [Sky 55% opacity, Blue 85% opacity] }
+      - { name: legends,     type: mono small with circle swatches }
+
+  - id: 19_comparison_matrix
+    name: Comparison matrix
+    surface: paper
+    slots:
+      - { name: titlebar, type: clean with eyebrow + H2 + short lede }
+      - { name: table,    type: 4-column hairline grid, header row underlined with 2px navy, row labels in Inter Tight 600 left-aligned, cells: success_check or risk_cross icons (1.7cqw circles with semantic tinted bg) }
+
+  - id: 20_brand_notes
+    name: Brand notes (style reference)
+    surface: paper
+    slots:
+      - { name: titlebar, type: clean }
+      - { name: typesample, type: 5 rows: Display / H2 / H3 / Body / Mono with mono key on left + actual sample on right }
+      - { name: palette_row, type: brand swatches (5) + semantic swatches (5) }
+      - { name: rules,    type: 4 short bullet rules }
+
+  - id: 21_logos_icons
+    name: Logos & icon library
+    surface: split (paper left + navy right)
+    slots:
+      - { name: logos, side: left,  type: 4-tile grid (wordmark light, wordmark dark, symbol light, symbol dark) }
+      - { name: icons, side: right, type: 12-icon grid on navy with thin 1px white-12% borders, 1.4 stroke }
+
+  - id: 22_product_photos
+    name: Product photos
+    surface: paper
+    slots:
+      - { name: titlebar, type: clean }
+      - { name: bento,    type: 5-card mockup grid in 3 columns, contains: real-feeling device frames (laptop / phone / monitor) with stylized Foley UI inside (KPI numbers in Inter Tight, mono captions, thin progress rings, success pills) }
+
+voice:
+  sounds_like:
+    - "Hire in days, not weeks."
+    - "Get your fleet to clear — and keep it there."
+    - "Foley surfaces the signals. Navigator explains what they mean."
+    - "From 5 drivers to 500, one platform."
+  does_not_sound_like:
+    - "Revolutionary, world-class, best-in-breed solutions."
+    - "Leveraging synergies to drive compliance excellence."
+    - "YOUR #1 PARTNER!!!"
+    - "Click here to learn more."
+  rules:
+    - "Second person: 'you', 'your fleet'. Not 'our customers'."
+    - "Sentences ≤ 18 words. One idea per sentence."
+    - "Tabular numerals (write '42%', not 'forty-two percent')."
+    - "Concrete CTA verbs: 'Book a demo', 'See pricing', 'Talk to compliance'. Never 'Learn more' alone."
+    - "Sentence case for headlines. No marketing-style Title Case."
+
+self_check:
+  - Zero ALL CAPS headlines (eyebrow/mono labels only, ≤12 px)
+  - Foley Blue is the only brand accent. Green is only "cleared" status.
+  - The supplied Foley logo is used unmodified — never redrawn or recolored
+  - Every slide answers exactly one question
+  - ≤5 bullets per slide, ≤3 sentences per paragraph
+  - One photo OR one UI shot per slide (never both)
+  - Foley wordmark + slide counter on every slide
+  - Closing slide has a concrete CTA verb, not "Thank you"
+  - No "Foley Services" / "Foley Carrier Services" anywhere
+
+```
 
 ---
 
-### 2. VISUAL SYSTEM
+## 2. Generation prompt
 
-**Mood:** cool, modern, executive. Closer to Linear / Stripe / Cursor than to a SaaS template. Generous whitespace, no decorative shapes, minimal use of color.
+> Paste the block below into Gamma's "Generate a presentation" field (or equivalent in Tome / Beautiful.ai / Pitch AI). The schema above defines the rules; this prompt drives the content.
 
-**Palette (use exact hex):**
+```
+You are creating a modern executive presentation for Foley (foley.io) — a 30-year compliance, safety, and screening platform for commercial fleets in North America. The deck goes to investors, banks, executive partners, and large prospects, so the visual bar is tier-1 SaaS (think Stripe, Linear, Anthropic), not a corporate template.
 
-| Token | Hex | Role |
-|---|---|---|
-| Foley Navy | `#0B1F3A` | Primary surface (dark), executive slides |
-| Foley Navy Deep | `#061429` | Layered dark alt |
-| Foley Blue | `#2D8FE8` | Brand accent, KPI highlight, "to clear" moments |
-| Foley Blue Deep | `#1B6FBF` | Hover, active, secondary accent |
-| Foley Sky | `#5DBAEF` | Light accent (echoes the logo's inner cyan) |
-| Foley Tint | `#E5EFFB` | Soft accent, tag bg, highlight |
-| Mist | `#F2F6FB` | Section background, soft canvas |
-| Paper | `#FFFFFF` | Default canvas |
-| Ink | `#0B1828` | Body text on light |
-| Ink Soft | `#3A4A5E` | Lede, captions |
-| Muted | `#6B7B8E` | Eyebrows, meta, footnotes |
-| Line | `#E1E7EF` | Dividers, borders |
-| Success (semantic only) | `#2EA86A` | "Cleared", positive status |
-| Caution (semantic only) | `#F4B740` | Warning state, never as brand color |
-| Risk (semantic only) | `#E5484D` | Error / violation state, never as brand color |
+The brand spec for this deck is in the attached `foley-deck-config.yaml`. Treat it as binding. Pick layouts only from the 22 listed there. Use the exact palette tokens, the exact typography, the supplied Foley logo. Use the brand's voice rules. Run the self_check before finishing.
 
-**Forbidden:** yellow / orange gradients (the brand FAQ explicitly says "moving away from yellow/orange tones"), red as a brand color, green as a brand color (green is reserved for "cleared" status only), multicolor pie charts, beveled buttons, drop shadows, gradients across more than two stops.
+Photography direction: documentary editorial of real fleets, drivers, depots, dispatch rooms — never staged stock handshakes, never abstract gradients in place of imagery. Apply a navy tonal overlay over hero photos so titles in white remain legible.
 
-**Surface system:** every slide should be one of four surfaces — Navy (dark, executive), Blue (KPI moments only, sparingly), Mist (analytical, calm), Paper (default). Do not mix more than 2 surfaces in one deck section.
+Charts: Swiss minimal. Foley Blue as the primary series color, Muted grey dashed for benchmarks. Tabular mono labels on axes, hairline grid lines. No multicolor pie charts.
 
----
+Density rule: each slide answers exactly one question. If you can't articulate the question, cut the slide.
 
-### 3. TYPOGRAPHY
+CONTENT BRIEF — replace this section per use case
+==================================================
 
-- **Display & headings:** **Inter Tight** 700, letter‑spacing −2.2 to −2.5%, line‑height 0.98–1.05.
-- **Body:** **Inter** 400/500, line‑height 1.5–1.6, max width ~70 characters.
-- **Numerals & meta:** **JetBrains Mono** 500 (KPIs use Inter Tight, but mono for footnotes / dates / percentages in running text).
-- **Cap rule:** **never set entire titles in ALL CAPS.** The old Foley template used Arial Black ALL CAPS — that is the look we are leaving behind. ALL CAPS is allowed only for tiny eyebrow labels (≤ 12 px).
-- **Type scale (1280×720 slide):** display 96 px · h1 48 px · h2 28 px · h3 20 px · body 17 px · eyebrow 12 px.
+Audience:        VP of Safety / COO at a 200–500 truck fleet
+Length:          22 slides, ~35-minute meeting
+Goal:            book a demo and pilot CSA Monitoring + Hiring + Navigator AI
+Date:            May 2026
 
----
+Slide order (mapped to layouts in the YAML schema):
 
-### 4. LOGO USAGE
+  01_cover                  Smarter data. Lower risk. Safer fleets.
+  02_cover_contact          Briefing context — May 2026, contacts
+  03_section_photo          01 · The compliance reality
+  06_title_photo_cards      Three problems we kept hearing
+  09_title_2cards           Two systems compared
+  04_section_navy           02 · The Foley platform
+  10_title_3cards           Three signal classes (CSA, Hiring, Navigator)
+  11_title_4cards           Four product surfaces (CSA · Hiring · Background · Navigator AI)
+  07_title_3numbered        How CSA Monitoring works in 3 steps
+  08_4numbered_panel        Hiring flow in 4 steps
+  12_quadrants              Four areas of the platform
+  17_donut_pair             Audit risk −42%, DQ completeness 98.4%
+  18_bar_area               12-month outcomes (bar + area)
+  19_comparison_matrix      Foley vs. legacy stack
+  03_section_photo          03 · Customer voice
+  13_social_proof           4 testimonials
+  14_photo_collage          Industries served (bento)
+  15_flywheel               The Foley Flywheel
+  16_timeline               Roadmap 2021 → Soon
+  20_brand_notes            (internal only — drop for external)
+  21_logos_icons            (internal only — drop for external)
+  22_product_photos         Product surfaces preview
 
-- The wordmark **must** be the supplied Foley PNG/SVG (three concentric blue rings + green arc forming the "O" in "FOLEY"). Do not redraw, recolor, restroke, or replace it.
-- Header on every slide: small symbol mark + "Foley" wordmark, top‑left.
-- On dark surfaces: use the white wordmark variant (or invert the supplied wordmark to white). The colored symbol mark stays colored — the green and cyan rings work on dark.
-- Minimum size on a 1280×720 slide: 24 px tall.
-- Clearspace: at least the height of the lowercase "o" of the wordmark on every side.
+For external decks: drop slides 20 and 21 and renumber.
 
----
+Photography keywords for each slide that needs imagery (use these to source/generate visuals):
+  01_cover         "highway aerial top-down, freight trucks, dawn, navy tonal grade"
+  02_cover_contact "semi truck driver portrait in cab, candid, natural light"
+  03_section_photo "fleet of trucks in depot, wide angle, slight blue grade"
+  05_agenda        "truck dashboard / steering wheel, candid, shallow DOF"
+  06_title_photo_cards  3x circle portraits: "Director of Safety", "Recruiter at fleet", "Compliance lead"
+  14_photo_collage 5x bento: "truck on highway", "depot at dusk", "aerial road", "driver portrait", "warehouse crew"
 
-### 5. IMAGERY DIRECTION
-
-- **Photography:** documentary, real fleets, real drivers, depots, dispatch rooms, warehouses. Never staged handshakes, never generic stock office.
-- **Tint:** photos should sit on Navy backgrounds with a subtle blue tonal grade, or on Mist with neutral grading. Avoid warm yellow/orange filters.
-- **UI shots:** show real product surfaces (Audit Risk Monitor dashboards, candidate flow, CSA score widgets) on Navy background with blue data accents.
-- **Iconography:** Lucide / Phosphor outline icons, 1.5 px stroke, single color (Foley Blue Deep on light, Foley Blue on dark). Never multicolor flat illustrations.
-- **Decoration:** subtle dot grid (2 px dots, 24 px gap, 5–8% opacity) is acceptable on Navy. No other patterns, no abstract shapes, no swooshes.
-- **Charts:** thin lines (2–2.5 px), one accent color (Foley Blue) for the Foley series, neutral grey (Muted) for benchmarks. Dashed line = industry average. Soft fill under the line at 10–18% opacity.
-
----
-
-### 6. LAYOUT SYSTEM (use these 22 layouts — one per slide type)
-
-For each generated slide, pick one of these layout names and follow its rules. Do not invent new layouts. The numbering matches the original Internal Deck Template 2025 1:1, modernized.
-
-1. **Cover** — Navy. Wordmark top‑left, eyebrow ("Investor briefing · Q2 2026"), giant 3‑line H1 with one accent word in Foley Blue (`<em>fleets</em>`), one‑line sub at 70% opacity, footer URL + date.
-2. **Cover with contact** — Navy. Same as Cover but ends with three contact rows (web · email · date) above the footer, each in JetBrains Mono.
-3. **Section divider · dark** — Navy. Huge outlined numeral (text‑stroke Foley Blue, no fill), eyebrow, H2 in 4–6 words, one short lede.
-4. **Section divider · light** — Mist. Same as 3 but on light surface for transitions inside long sections.
-5. **Agenda** — Paper. Eyebrow + H2, then 5–6 numbered items in two columns, each with bold title + 1‑line description. Numbers in JetBrains Mono.
-6. **Statement / Manifesto** — Navy. Single centered sentence, max 12 words, with 1 word italicized in Foley Blue. Tiny attribution underneath.
-7. **Title + body (light)** — Paper. Eyebrow + H2 + 2 short paragraphs + 3‑KPI strip at the bottom.
-8. **Title + body (dark)** — Navy. Same as 7 but on dark, with a left‑border pull quote instead of the KPI strip.
-9. **Hero stat** — Paper. Massive number (e.g. `50,000+`) in Inter Tight, plus side block with H3 + 3 supporting facts in mono.
-10. **Two column** — Mist + Navy panel. Left: copy block (eyebrow + H2 + body). Right: Navy card with KPI + caption + small line chart.
-11. **Three column** — Paper. H2 + three balanced columns with icon, subhead, 2‑line description each.
-12. **Three‑step process** — Mist. H2 at top, 3 cards in a row, each with step number, title, description, arrow.
-13. **Feature grid 2×2** — Paper. H2 at top, 4 feature cards (icon + title + 1‑sentence description) on Mist tiles.
-14. **Foley Flywheel** — Paper. Six‑petal radial diagram with the six Flywheel forces (see §1). Center disc says "Foley Flywheel". Right side has a short legend explaining why the loop compounds.
-15. **Single quote** — Navy. Large monogram avatar, name + role + 5 stars (Foley Blue), quote on the right ≤ 28 words.
-16. **Three quotes** — Paper. H2 + 3 customer cards on Mist, each with stars, quote, monogram avatar, name, role. Use real‑sounding fleet roles (Director of Safety, Recruiter, Compliance lead).
-17. **Chart pair** — Paper. H2 + sub, then 2 chart cards side by side. Foley solid blue line, industry dashed grey. One line chart + one bar chart.
-18. **Comparison (Before / After)** — Paper. H2, two columns: "Before Foley" on Mist with neutral bullets, "With Foley" on blue‑tinted card with `+` bullets in Foley Blue Deep.
-19. **Photo · full bleed** — full‑canvas image with bottom gradient scrim. H2 in white at the bottom with one italicized word in Foley Blue.
-20. **Brand notes** — Paper. In‑deck reference card with two panels: Color (with swatches) and Typography (with sample type rows). Replaces the old "POWERPOINT BRANDING" slide.
-21. **Logo & icon library** — Paper. Asset reference: 4 logo tiles (light/dark × wordmark/symbol) + a 12‑icon outline grid.
-22. **Closing / CTA** — Navy. Big H2 with one italicized word, single blue button "Book a demo →", URL + email in mono.
-
-**Density rule:** each slide answers exactly one question. If you can't say what question a slide answers, cut it.
-
-**Don'ts (override even if asked):**
-- No bullet lists with more than 5 items.
-- No three‑column dense text walls (the old template's `slideLayout10/11` problem). Use layout 11 only with short subhead + 2‑line description per column.
-- No lorem ipsum.
-- No "ALL CAPS TITLE GOES HERE" placeholder vibes.
-- No more than 2 fonts per slide (Inter Tight + Inter; mono only for KPI/meta).
-- No more than 1 photo per slide.
-
----
-
-### 7. VOICE & TONE
-
-Foley sounds like:
-- "Hire in days, not weeks."
-- "Get your fleet to clear — and keep it there."
-- "Foley surfaces the signals. Navigator explains what they mean."
-- "From 5 drivers to 500, one platform."
-
-Foley does **not** sound like:
-- "Revolutionary, world‑class, best‑in‑breed solutions."
-- "Leveraging synergies to drive compliance excellence."
-- "YOUR #1 PARTNER FOR DOT REGULATIONS!!!"
-- "Click here to learn more about our amazing services."
-
-Rules:
-- Use second person ("you", "your fleet"), not "our customers".
-- Sentences ≤ 18 words. One idea per sentence.
-- Numbers always in tabular numerals, never spelled out (write `42%`, not `forty‑two percent`).
-- Capitalize like a human: only proper nouns, product names, and sentence starts. No marketing‑style Title Case Headings.
-- Every CTA verb is concrete: *Book a demo*, *See pricing*, *Talk to compliance*. Never *Learn more* alone.
-
----
-
-### 8. CONTENT BRIEF — replace this section per use case
-
-> **EDIT THIS BLOCK** before generating. Below is a sample brief for an **executive sales pitch deck**. Swap it for investor / partnership / all‑hands as needed.
-
-**Audience:** VP of Safety / COO at a 200–500 truck fleet evaluating a compliance platform.
-**Length:** 22 slides, ~35 minute meeting.
-**Goal:** convince them to book a demo and pilot CSA Monitoring + Hiring + Navigator AI.
-**Mandatory slides (in order, mapped to the 22 layouts above):**
-
-1. Cover (1) — *Smarter data. Lower risk. Safer fleets.*
-2. Cover with contact (2) — meeting variant with date and email.
-3. Section divider · dark (3) — "01 · The compliance reality."
-4. Statement (6) — "Compliance shouldn't show up only when the auditor does."
-5. Title + body · dark (8) — "Thirty years of compliance, rebuilt as software."
-6. Hero stat (9) — "50,000+ companies."
-7. Section divider · light (4) — "02 · The Foley platform."
-8. Three column (11) — three signal classes in one operating picture.
-9. Feature grid 2×2 (13) — CSA Monitoring · Hiring & Screening · Background Checks · Navigator AI.
-10. Two column (10) — CSA Monitoring deep‑dive with `−42%` audit risk reduction KPI.
-11. Three‑step (12) — Hiring flow: Post & source → Screen & verify → Onboard & file.
-12. Comparison (18) — Before Foley vs. With Foley.
-13. Foley Flywheel (14) — six forces, one direction.
-14. Chart pair (17) — 12‑month cohort: audit risk down + time‑to‑hire down.
-15. Single quote (15) — Sarah M., Director of Safety.
-16. Three quotes (16) — three customer voices.
-17. Title + body · light (7) — "Why now: insurance carriers price risk in real time."
-18. Photo · full bleed (19) — "Seven industries, one operating picture."
-19. Brand notes (20) — internal style reference (only for internal versions).
-20. Logo & icon library (21) — internal reference (only for internal versions).
-21. Section divider · dark (3) — "03 · Roadmap 2026."
-22. Closing (22) — *Smarter data starts with one conversation.* — Book a demo · foley.io · marketing@foley.io.
-
-For external decks: drop slides 19 and 20 (those are internal references) and renumber.
-
----
-
-### 9. OUTPUT REQUIREMENTS
-
-- 16:9 aspect, 1280×720 baseline.
-- Use the exact 22 layouts above; do not invent new ones.
-- Use the exact palette tokens above; do not introduce new colors.
-- Include the supplied Foley wordmark + symbol in the top‑left header of every slide. Footer: `foley.io` left, slide counter right, Inter Tight + JetBrains Mono.
-- For each slide, generate: title, body copy, optional KPI/quote, image direction (1 sentence describing the photo OR UI screenshot — never both).
-- Image generation prompt template (for tools like Midjourney / Gamma image): *"documentary photo of [subject] in [context], natural light, slight cool blue tonal grade, shallow depth of field, no text, no logos, editorial style"*.
-- Do **not** include: a logo wall, an org chart, a roadmap with cartoon icons, a team photo grid with circular crops, "Thank you" as the last slide title.
-
----
-
-### 10. QUICK SELF‑CHECK BEFORE FINISHING
-
-Before returning the deck, verify:
-
-- [ ] Zero ALL CAPS headlines (eyebrow labels only).
-- [ ] No yellow, orange, or red used as primary accent. Foley Blue is the only brand accent. Green is used only for "cleared" status indicators.
-- [ ] The supplied Foley logo is used unmodified — never redrawn or recolored.
-- [ ] Every slide answers one specific question.
-- [ ] Every body paragraph ≤ 3 sentences.
-- [ ] No slide has more than 5 bullet points.
-- [ ] One photo OR one UI shot per slide (never both).
-- [ ] Foley wordmark + slide counter on every slide.
-- [ ] Closing slide has a concrete CTA verb, not "Thank you".
-- [ ] No "Foley Services" or "Foley Carrier Services" anywhere.
-
-If any check fails — fix before returning.
-
----
-
-## END OF SYSTEM PROMPT
+End of brief.
+```
